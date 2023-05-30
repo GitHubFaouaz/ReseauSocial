@@ -1,0 +1,17 @@
+.profileUser {
+  position: relative;
+  display: grid;
+  grid-template-columns: 25% auto 20%;
+  gap: 1rem;
+  padding: 0 1rem;
+  background: linear-gradient(
+    150deg,
+    transparent,
+    rgba(2, 214, 221, 0.9),
+    transparent
+  );
+  .Profile-center {
+    display: flex;
+    justify-content: center;
+  }
+}
