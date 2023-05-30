@@ -8,6 +8,7 @@ import morgan from "morgan";
 // routes
 import authRoutes from "./routers/AuthRoute.js";
 import userRoutes from "./routers/UserRoute.js";
+import PostRoute from "./routers/PostRoute.js";
 
 const app = express();
 dotenv.config();
@@ -50,7 +51,7 @@ app.use("/images", express.static("images"));
 
 //.................................................. ROUTES ..............................
 app.use("/api/auth", authRoutes);
-
 app.use("/api/user", userRoutes);
+app.use("/posts", PostRoute);
 
 export default app;

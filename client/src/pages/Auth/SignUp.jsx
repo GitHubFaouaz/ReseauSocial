@@ -180,16 +180,16 @@ function SignUp() {
                 </button>
                 {/* <input type="submit" value={"c"} /> */}
                 {/* </div> */}
-                <div className="square">
+                <div className="square animationSquare">
                   <Link to="/login"> Don't have an account?</Link>
                 </div>
-                <div className="square"></div>
+                <div className="square animationSquare"></div>
 
-                <div className="square pseudoError emailError passwordEerror password-confirmError ">
+                <div className="square animationSquare pseudoError emailError passwordEerror password-confirmError ">
                   {/* {error !== "" && { error }} */}
                   {errorRef.current !== "" && <div>{errorRef.current}</div>}
                 </div>
-                <div className="square"></div>
+                <div className="square animationSquare"></div>
               </form>
             </div>
           </div>

@@ -1,9 +1,11 @@
 import React from "react";
 import PostShare from "../PostShare/PostShare";
+import Posts from "../Posts/Posts";
 function ProfileCenter() {
   return (
     <div className="ProfileCenter">
-      <PostShare />
+      <PostShare /> {/* pour poster quelque chose images video .... */}
+      <Posts /> {/*les elements deja postés en dessous*/}
     </div>
   );
 }

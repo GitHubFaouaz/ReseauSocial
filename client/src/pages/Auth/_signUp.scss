@@ -153,8 +153,6 @@
       border-right: 1px solid rgba(255, 255, 255, 0.2);
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 10px;
-      animation: animateSquare 10s linear infinite;
-      animation-delay: calc(-1s * var(--i)); /*les variables du html*/
 
       p {
         margin-bottom: 5px;
@@ -165,8 +163,8 @@
       &:nth-child(8) {
         position: absolute;
 
-        bottom: -100px;
-        right: -40px;
+        bottom: -55px;
+        right: 0px;
         width: 153px;
         height: 50px;
         z-index: 2;
@@ -217,6 +215,10 @@
         height: 60px;
         --i: 4;
       }
+    }
+    .animationSquare {
+      animation: animateSquare 10s linear infinite;
+      animation-delay: calc(-1s * var(--i)); /*les variables du html*/
     }
   }
 
