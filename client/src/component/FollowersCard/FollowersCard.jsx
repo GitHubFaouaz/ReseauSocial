@@ -13,7 +13,7 @@ const FollowersCard = ({ location }) => {
     const fetchPersons = async () => {
       const { data } = await getAllUser();
       setPersons(data);
-      console.log(data);
+      // console.log(data);
     };
     fetchPersons();
   }, []);
@@ -24,7 +24,6 @@ const FollowersCard = ({ location }) => {
 
       {persons.map((person, id) => {
         if (person._id !== user._id) return <User person={person} key={id} />;
-        
       })}
       {/* {!location ? (
         <span onClick={() => setModalOpened(true)}>Show more</span>

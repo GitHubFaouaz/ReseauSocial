@@ -9,6 +9,7 @@ import { uploadImage, uploadPost } from "../../actions/UploadAction";
 const PostShare = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
+  const loading = useSelector((state) => state.postReducer.uploading);
   const [image, setImage] = useState(null);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const descRef = useRef(); //Le useRefcrochet vous permet de conserver des valeurs entre les rendus.
@@ -47,12 +48,12 @@ const PostShare = () => {
       newPost.image = fileName; //Vous mettez à jour la propriété image de l'objet newPost avec le nom de fichier généré (fileName)
       console.log(newPost);
       try {
-        dispatch(uploadImage(data)); // on envoi limage a redux
+        dispatch(uploadImage(data)); // on envoi limage a redux pour la mise a jour
       } catch (err) {
         console.log(err);
       }
     }
-    // dispatch(uploadPost(newPost));
+    dispatch(uploadPost(newPost)); // on poste
     resetShare();
   };
   //---- Reset Post Share la fonction pour remettre a zero l'input post et limage
@@ -97,21 +98,27 @@ const PostShare = () => {
           <button
             className="button ps-button"
             onClick={handleUpload}
-            // disabled={loading}
+            disabled={loading}
           >
-            <span>Partager</span>
-            {/* {loading ? "uploading" : "Share"} */}
+            {/* <span>Partager</span> */}
+            {loading ? <span>uploading...</span> : <span>Partager</span>}
           </button>
-          {/*   // A REVOIRE 
+          {/* // A REVOIRE a comprendre la liaison avec button photo  */}
           <div style={{ display: "none" }} className="fileChange">
             <input type="file" ref={imageRef} onChange={onImageChange} />
-          </div> */}
+          </div>
         </div>
         {/* si on a une image elle s'affiche avant detre publier */}
         {image && (
           <div className="previewImage">
-            <UilTimes onClick={() => setImage(null)} />{" "}
-            {/*on click sur la croix limage disparait elle est nul  */}
+            <UilTimes
+              style={{
+                position: "absolute",
+                right: "0",
+              }} /*on click sur la croix limage disparait elle est nul  */
+              onClick={() => setImage(null)}
+            />
+
             <img src={URL.createObjectURL(image)} alt="preview" />
             {/* createObjectURLest exécuté de manière synchrone (immédiatement) 
             La méthode statique URL.createObjectURL() crée une chaîne contenant une URL représentant l’objet passé en paramètre. La durée de vie de l’URL est liée au document de la fenêtre depuis laquelle elle a été créée. La nouvelle URL d’objet représente l’objet File ou Blob spécifié.*/}

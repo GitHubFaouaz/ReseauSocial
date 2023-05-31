@@ -5,7 +5,7 @@ function ProfileCenter() {
   return (
     <div className="ProfileCenter">
       <PostShare /> {/* pour poster quelque chose images video .... */}
-      <Posts /> {/*les elements deja postés en dessous*/}
+      <Posts /> {/*les elements deja postés en dessous */}
     </div>
   );
 }

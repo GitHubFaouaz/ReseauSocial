@@ -1,5 +1,6 @@
 import * as PostsApi from "../api/PostsRequests";
 
+// obtenir des publications(posts) sur la chronologie
 export const getTimelinePosts = (id) => async (dispatch) => {
   dispatch({ type: "RETREIVING_START" });
   try {

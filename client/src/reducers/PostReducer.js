@@ -3,7 +3,7 @@ const postReducer = (
   action
 ) => {
   switch (action.type) {
-    // belongs to PostShare.jsx appartient à PostShare.jsx
+    // belongs to PostShare.jsx appartient à PostShare quand on poste une image ou text
     case "UPLOAD_START":
       return { ...state, error: false, uploading: true };
     case "UPLOAD_SUCCESS":
@@ -15,7 +15,7 @@ const postReducer = (
       };
     case "UPLOAD_FAIL":
       return { ...state, uploading: false, error: true };
-    // belongs to Posts.jsx appartient à Posts.jsx
+    // belongs to Posts.jsx appartient à Posts.jsx  on recupere les posts pour les affichés
     case "RETREIVING_START": //RÉCUPÉRATION DEBUT
       return { ...state, loading: true, error: false };
     case "RETREIVING_SUCCESS":

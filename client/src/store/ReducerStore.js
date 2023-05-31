@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk"; // thunk permet de faire des requettes asynch ;distribuer des actions
 import { indexReducers } from "../reducers";
 // import { sign_Up } from "../action/AuthActions";
-import { getAllUser } from "../action/UserAction";
+import { getAllUser } from "../actions/UserAction";
 
 const store = createStore(
   indexReducers,

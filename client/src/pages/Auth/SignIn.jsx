@@ -3,7 +3,7 @@ import logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../action/AuthActions";
+import { logIn } from "../../actions/AuthActions";
 import { useEffect } from "react";
 
 function SignIn() {

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../img/logo.png";
 import BouttonSignUp from "../../component/utils/BouttonSignUp";
-import { sign_Up } from "../../action/AuthActions";
+import { sign_Up } from "../../actions/AuthActions";
 import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 

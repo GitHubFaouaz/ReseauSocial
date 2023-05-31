@@ -12,5 +12,5 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const uploadImage = (data) => API.post("/upload/", data); // l'api adresse pour limage  + la data
-export const uploadPost = (data) => API.post("/posts", data); // on post limage  avec le desc
+export const uploadImage = (data) => API.post("/upload/", data); // mise a jour pour limage  + la data
+export const uploadPost = (data) => API.post("/posts", data); // on post limage  avec le desc dans la page profilCenter

@@ -3,14 +3,8 @@
   justify-content: space-between;
   align-items: center;
   max-width: 400px;
+  gap: 20px;
 
-  & > div {
-    //Contrairement au sélecteur descendant, les éléments cibles doivent être les enfants directs du parent
-    // les enfants(div)  direct de follower
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
   .followerImage {
     width: 3.2rem;
     height: 3.2rem;
@@ -20,6 +14,7 @@
   .name {
     display: flex;
     flex-direction: column;
+    align-items: center;
     // margin: 0 5px 0;
     justify-content: center;
     & > span:nth-of-type(1) {
