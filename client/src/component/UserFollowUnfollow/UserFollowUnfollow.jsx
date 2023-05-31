@@ -7,7 +7,7 @@ const User = ({ person }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch();
 
-  console.log(user);
+  // console.log(user);
 
   const [following, setFollowing] = useState(
     person.followers.includes(user._id) // s'il ya un suiveur (following) on regarde si son id est includ dans le tableau des followers

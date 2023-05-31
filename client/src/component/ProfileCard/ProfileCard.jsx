@@ -55,6 +55,10 @@ function ProfileCard({ location }) {
             {location === "profilPage" && (
               <h3>
                 {/* on va filtrer pour afficher les posts correspondant au id de lutilisateur  */}
+                {posts
+                  ? posts.filter((post) => post.userdId === user._id)
+                  : "0"}
+                <br />
                 {/* {posts.filter((post) => post.userdId === user._id)} <br /> */}
                 <span>Post</span>
               </h3>

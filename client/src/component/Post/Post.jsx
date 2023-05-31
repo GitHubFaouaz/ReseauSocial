@@ -19,8 +19,8 @@ const Post = ({ data }) => {
   };
   return (
     <div className="Post">
-      <img
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} //si image alors envoie  adresse suivant
+      <img // si image on l'affiche dans la page au centre
+        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
       />
 
