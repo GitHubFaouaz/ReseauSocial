@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import Comment from "../../img/comment.png";
-import Share from "../../img/share.png";
-import Heart from "../../img/like.png";
-import NotLike from "../../img/notlike.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; //Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
+import { faComment } from "@fortawesome/free-regular-svg-icons";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useSelector } from "react-redux";
 
@@ -25,24 +27,40 @@ const Post = ({ data }) => {
       />
 
       <div className="postReact">
-        <img
-          src={liked ? Heart : NotLike}
-          alt=""
+        <div
+          className="container-like"
+          onClick={handleLike}
           style={{ cursor: "pointer" }}
-          onClick={handleLike} // quand on click on appele la fonction handleLike
+        >
+          {liked ? (
+            <FontAwesomeIcon
+              icon={solidHeart}
+              style={{ fontSize: "30px", color: "#02d6dd" }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={regularHeart}
+              style={{ fontSize: "30px", color: "#000" }}
+            />
+          )}
+        </div>
+
+        {/* <img src={Comment} alt="" /> */}
+        <FontAwesomeIcon
+          icon={faComment}
+          style={{ fontSize: "30px", cursor: "pointer" }}
         />
-        <img src={Comment} alt="" />
-        <img src={Share} alt="" />
+        <FontAwesomeIcon
+          icon={faShare}
+          style={{ fontSize: "30px", cursor: "pointer" }}
+        />
       </div>
 
-      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
-        {likes} likes
-      </span>
-      <div className="detail">
-        <span>
-          <b>{data.name} </b>
-        </span>
+      <span> {likes} likes</span>
+      <div className="details">
         <span>{data.desc}</span>
+        <br />
+        <span>{user.pseudo}</span>
       </div>
     </div>
   );

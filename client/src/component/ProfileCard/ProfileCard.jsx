@@ -6,7 +6,8 @@ const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
 function ProfileCard({ location }) {
   const { user } = useSelector((state) => state.authReducer.authData);
-  const posts = useSelector((state) => state.postReducer.posts);
+  // const posts = useSelector((state) => state.postReducer.posts);
+  const { posts } = useSelector((state) => state.postReducer);
   // console.log(user);
 
   return (
@@ -54,12 +55,12 @@ function ProfileCard({ location }) {
             {/* si pageProfile on affiche voir page profilUser  */}
             {location === "profilPage" && (
               <h3>
-                {/* on va filtrer pour afficher les posts correspondant au id de lutilisateur  */}
-                {posts
-                  ? posts.filter((post) => post.userdId === user._id)
-                  : "0"}
+                {
+                  // on affiche les nombres de post fait par le user
+                  posts.filter((post) => post.userId === user._id).length
+                }
                 <br />
-                {/* {posts.filter((post) => post.userdId === user._id)} <br /> */}
+
                 <span>Post</span>
               </h3>
             )}

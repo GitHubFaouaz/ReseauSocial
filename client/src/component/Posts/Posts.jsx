@@ -20,7 +20,7 @@ const Posts = () => {
   return (
     <div className="Posts">
       {loading
-        ? "Fetching posts...." // pendant le chargement
+        ? "Chargement" // pendant le chargement
         : posts.map((post, id) => {
             return <Post data={post} key={id} />; // on affiche tous les post avec le id
           })}
