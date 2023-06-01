@@ -1,11 +1,12 @@
 import React from "react";
 import FollowersCard from "../FollowersCard/FollowersCard";
+import InfoCard from "../InfoCard/InfoCard";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
-function ProfileLeft() {
+function ProfileLeft({ location }) {
   return (
     <div className="profileLeft">
-      <ProfileCard location="homePage" />
+      {location === "profilLeft" ? <ProfileCard /> : <InfoCard />}
       <FollowersCard />
     </div>
   );

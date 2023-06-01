@@ -20,7 +20,6 @@ const User = ({ person }) => {
   };
   return (
     <div className="follower">
-      {/* <div> */}
       <img
         src={
           // serverPublic + person.profilePicture
@@ -44,7 +43,6 @@ const User = ({ person }) => {
       >
         {following ? "Unfollow" : "Follow"}
       </button>
-      {/* </div> */}
     </div>
   );
 };

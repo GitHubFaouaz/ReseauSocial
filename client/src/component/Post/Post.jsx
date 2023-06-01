@@ -12,7 +12,7 @@ const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // las listes des likes
-
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   //manipulation des likes
   const handleLike = () => {
     likePost(data._id, user._id);
@@ -44,8 +44,6 @@ const Post = ({ data }) => {
             />
           )}
         </div>
-
-        {/* <img src={Comment} alt="" /> */}
         <FontAwesomeIcon
           icon={faComment}
           style={{ fontSize: "30px", cursor: "pointer" }}
@@ -56,11 +54,22 @@ const Post = ({ data }) => {
         />
       </div>
 
-      <span> {likes} likes</span>
-      <div className="details">
-        <span>{data.desc}</span>
-        <br />
-        <span>{user.pseudo}</span>
+      <div className="container-Img-details">
+        <img
+          src={
+            user.profilePicture
+              ? serverPublic + user.profilePicture
+              : serverPublic + "defaultProfile.png"
+          }
+          alt="imgUser"
+        />
+        <div className="details">
+          <span>{user.pseudo}</span>
+          <span>
+            <i>{likes}</i> likes
+          </span>
+          <span>{data.desc}</span>
+        </div>
       </div>
     </div>
   );

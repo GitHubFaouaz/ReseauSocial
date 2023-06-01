@@ -9,7 +9,7 @@ function Home() {
     <>
       <BarreHome />
       <div className="home">
-        <ProfileLeft />
+        <ProfileLeft location="profilLeft" />
         <ProfileCenter />
         <ProfileRight />
       </div>

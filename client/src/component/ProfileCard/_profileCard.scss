@@ -1,4 +1,119 @@
-.card {
+.cardProfilPage {
+  width: 100%;
+  position: relative;
+
+  overflow: hidden;
+  // border-radius: 2rem;
+  margin: 10px 0;
+  /* ---------------------------------------img-------------------------------------- */
+  .imgBx {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 450px;
+
+    transition: 0.5s;
+    overflow: hidden;
+    background: $blackLight;
+
+    .imgCover {
+      width: 100%;
+      img {
+        height: 50%; //height: 50%  ou 100%;
+        width: 100%;
+      }
+    }
+    .imgProfile {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(10%, -100%);
+      display: flex;
+      align-items: center;
+      // padding: 2px;
+      // background: $black;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        // border-radius: 50%;
+      }
+
+      &::before {
+        content: "";
+      }
+
+      img {
+        width: 130px;
+
+        overflow: hidden;
+      }
+    }
+    span {
+      position: absolute;
+      top: 48%;
+      left: 0%;
+      transform: translate(150px, -100%);
+      font-size: 18px;
+      color: $white;
+    }
+  }
+
+  /* --------------------------------------------------------info user------------------- */
+  .contentData {
+    overflow: hidden;
+    position: absolute;
+    top: 45%;
+    .details {
+      padding: 40px;
+      text-align: center;
+      width: 100%;
+      transition: 0.5s;
+
+      h2 {
+        font-size: 1.25em;
+        font-weight: 600;
+        color: $aqua;
+        line-height: 1.2em;
+        span {
+          font-size: 0.75em;
+          font-weight: 500;
+          color: $white;
+        }
+      }
+      .data {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+
+        h3 {
+          font-size: 1em;
+          font-weight: 600;
+          color: $aqua;
+          margin: 0 1rem;
+
+          span {
+            font-size: 0.85em;
+            font-weight: 400;
+            color: $white;
+          }
+        }
+      }
+      .actionBtn {
+        text-align: center;
+
+        p {
+          font-size: 20px;
+          font-weight: 500;
+
+          cursor: pointer;
+          color: $aqua;
+        }
+      }
+    }
+  }
+}
+.cardHomePage {
   width: 100%;
   max-width: 600px;
   position: relative;
@@ -27,106 +142,105 @@
   &:hover .imgProfile img {
     filter: grayscale(0);
   }
-}
-
-/* ---------------------------------------img-------------------------------------- */
-.imgBx {
-  position: relative;
-  display: flex;
-  justify-content: center;
-
-  height: 450px;
-
-  transition: 0.5s;
-  overflow: hidden;
-  background: $blackLight;
-
-  .imgCover {
-    img {
-      height: 50%; //height: 50%  ou 100%;
-    }
-  }
-  .imgProfile {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+  /* ---------------------------------------img-------------------------------------- */
+  .imgBx {
+    position: relative;
     display: flex;
-    align-items: center;
-    padding: 2px;
-    background: $black;
-    border-radius: 50%;
-    overflow: hidden;
+    justify-content: center;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -100%);
-      width: 300px;
-      height: 60px;
-      background: $aquaBg;
-      animation: animate2 6s linear infinite;
-    }
+    height: 450px;
 
-    img {
-      width: 130px;
-      filter: grayscale(1); /* photo noir blanc*/
-      overflow: hidden;
-    }
-  }
-}
-
-/* --------------------------------------------------------info user------------------- */
-.contentData {
-  overflow: hidden;
-  position: absolute;
-  top: 45%;
-  .details {
-    padding: 40px;
-    text-align: center;
-    width: 100%;
     transition: 0.5s;
+    overflow: hidden;
+    background: $blackLight;
 
-    h2 {
-      font-size: 1.25em;
-      font-weight: 600;
-      color: $aqua;
-      line-height: 1.2em;
-      span {
-        font-size: 0.75em;
-        font-weight: 500;
-        color: $white;
+    .imgCover {
+      img {
+        height: 50%; //height: 50%  ou 100%;
       }
     }
-    .data {
+    .imgProfile {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -100%);
       display: flex;
-      justify-content: space-between;
-      margin: 20px 0;
+      align-items: center;
+      padding: 2px;
+      background: $black;
+      border-radius: 50%;
+      overflow: hidden;
 
-      h3 {
-        font-size: 1em;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        width: 300px;
+        height: 60px;
+        background: $aquaBg;
+        animation: animate2 6s linear infinite;
+      }
+
+      img {
+        width: 130px;
+        filter: grayscale(1); /* photo noir blanc*/
+        overflow: hidden;
+      }
+    }
+  }
+
+  /* --------------------------------------------------------info user------------------- */
+  .contentData {
+    overflow: hidden;
+    position: absolute;
+    top: 45%;
+    .details {
+      padding: 40px;
+      text-align: center;
+      width: 100%;
+      transition: 0.5s;
+
+      h2 {
+        font-size: 1.25em;
         font-weight: 600;
         color: $aqua;
-        margin: 0 1rem;
-
+        line-height: 1.2em;
         span {
-          font-size: 0.85em;
-          font-weight: 400;
+          font-size: 0.75em;
+          font-weight: 500;
           color: $white;
         }
       }
-    }
-    .actionBtn {
-      text-align: center;
+      .data {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
 
-      p {
-        font-size: 20px;
-        font-weight: 500;
+        h3 {
+          font-size: 1em;
+          font-weight: 600;
+          color: $aqua;
+          margin: 0 1rem;
 
-        cursor: pointer;
-        color: $aqua;
+          span {
+            font-size: 0.85em;
+            font-weight: 400;
+            color: $white;
+          }
+        }
+      }
+      .actionBtn {
+        text-align: center;
+
+        p {
+          font-size: 20px;
+          font-weight: 500;
+
+          cursor: pointer;
+          color: $aqua;
+        }
       }
     }
   }
