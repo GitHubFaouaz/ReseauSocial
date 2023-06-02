@@ -1,7 +1,7 @@
 @import "./utils/variable";
 @import "./utils/animations";
 @import "./utils/placeholders";
-@import "../component/utils/buttonSignUp";
+@import "../component/utils/BouttonSignUp/BouttonSignUp";
 @import "../pages/Auth/signUp";
 @import "../pages/Auth/singnIn";
 @import "../pages/Home/home";
@@ -19,3 +19,4 @@
 @import "../component/Posts/Posts";
 @import "../component/Post/Post";
 @import "../component/InfoCard/InfoCard";
+@import "../component/utils/BouttonLogOut/BouttonLogOut";

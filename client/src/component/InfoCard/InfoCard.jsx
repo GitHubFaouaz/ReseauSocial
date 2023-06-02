@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequests.js";
 import { logout } from "../../actions/AuthActions";
+import BouttonLogOut from "../utils/BouttonLogOut/BouttonLogOut.jsx";
 
 // info card la partie profil  ( profil info  status lives in works at )
 const InfoCard = () => {
@@ -82,7 +83,8 @@ const InfoCard = () => {
       </div>
 
       <button className="button logout-button" onClick={handleLogOut}>
-        Déconnexion
+        <BouttonLogOut />
+        {/* Déconnexion */}
         {/* Log Out */}
       </button>
     </div>

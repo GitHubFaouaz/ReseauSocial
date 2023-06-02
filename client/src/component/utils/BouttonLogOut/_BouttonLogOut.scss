@@ -1,0 +1,73 @@
+.bouttonLogOut {
+  width: 7rem;
+  padding: 0.5rem;
+  font-size: 15px;
+  background: black;
+  color: transparent;
+  overflow: hidden;
+  & span:nth-child(1) {
+    text-shadow: 0px 0px 0px red;
+    transition: 2s;
+  }
+  & span:nth-child(2) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(3) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(4) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(5) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(6) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(7) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+  & span:nth-child(8) {
+    text-shadow: 0px 0px 0px rgba(205, 19, 19, 1);
+    transition: 2s;
+  }
+}
+
+.bouttonLogOut:hover span:nth-child(1) {
+  text-shadow: 80px -19px 0px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(2) {
+  text-shadow: -100px -14px 4px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(3) {
+  text-shadow: -80px 0px 0px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(4) {
+  text-shadow: 80px 15px 4px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(5) {
+  text-shadow: 134px 0px 4px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(6) {
+  text-shadow: 50px 0px 0px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(7) {
+  text-shadow: -57px 15px 0px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
+.bouttonLogOut:hover span:nth-child(8) {
+  text-shadow: -177px 24px 0px rgba(255, 255, 255, 0.5);
+  transition: 2s;
+}
