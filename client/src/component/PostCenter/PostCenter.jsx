@@ -4,6 +4,7 @@ import Posts from "../Posts/Posts";
 function ProfileCenter() {
   return (
     <div className="ProfileCenter">
+      {/* postSide ou center  */}
       <PostShare /> {/* pour poster quelque chose images video .... */}
       <Posts /> {/*les elements deja postés en dessous */}
     </div>

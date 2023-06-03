@@ -12,6 +12,9 @@ const BouttonLogOut = () => {
         <span>n</span>
         <span>e</span>
         <span>x</span>
+        <span>i</span>
+        <span>o</span>
+        <span>n</span>
       </button>
     </>
   );

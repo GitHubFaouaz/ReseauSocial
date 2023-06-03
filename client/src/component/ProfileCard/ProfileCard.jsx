@@ -15,33 +15,31 @@ function ProfileCard({ location }) {
       {/* si pageProfile */}
       {location === "profilPage" ? (
         <div className="cardProfilPage">
-          <div className="imgBx">
-            <div className="imgCover">
-              <img
-                src={
-                  user.coverPicture
-                    ? serverPublic + user.coverPicture
-                    : serverPublic + "defaultCover.jpg"
-                }
-                alt="CoverImage"
-              />
-            </div>
-            <div className="imgProfile">
-              <img
-                src={
-                  user.profilePicture
-                    ? serverPublic + user.profilePicture
-                    : serverPublic + "defaultProfile.png"
-                }
-                alt="ProfileImage"
-              />
-            </div>
-            <span>
-              {user.firstname} {user.lastname}
-            </span>
+          {/* <div className="imgBx"> */}
+          <div className="imgCover">
+            <img
+              src={
+                user.coverPicture
+                  ? serverPublic + user.coverPicture
+                  : serverPublic + "defaultCover.jpg"
+              }
+              alt="CoverImage"
+            />
           </div>
-
-          {/*      <div className="contentData">
+          <div className="imgProfile">
+            <img
+              src={
+                user.profilePicture
+                  ? serverPublic + user.profilePicture
+                  : serverPublic + "defaultProfile.png"
+              }
+              alt="ProfileImage"
+            />
+          </div>
+          <span>
+            {user.firstname} {user.lastname}
+          </span>
+          <div className="contentData">
             <div className="details">
               <h2>
                 <br />
@@ -70,9 +68,10 @@ function ProfileCard({ location }) {
                 </h3>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       ) : (
+        // </div>
         <div className="cardHomePage">
           <div className="imgBx">
             <div className="imgCover">

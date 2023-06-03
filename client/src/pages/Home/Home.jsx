@@ -1,6 +1,6 @@
 // import ToogleBg from "../../component/ToogleBg/ToogleBg";
 import BarreHome from "../../component/barreHome/BarreHome";
-import ProfileCenter from "../../component/ProfileCenter/ProfileCenter";
+import PostCenter from "../../component/PostCenter/PostCenter";
 import ProfileLeft from "../../component/ProfileLeft/ProfileLeft";
 import ProfileRight from "../../component/ProfileRight/ProfileRight";
 
@@ -10,7 +10,7 @@ function Home() {
       <BarreHome />
       <div className="home">
         <ProfileLeft location="profilLeft" />
-        <ProfileCenter />
+        <PostCenter />
         <ProfileRight />
       </div>
     </>
