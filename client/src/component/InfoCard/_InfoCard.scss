@@ -22,8 +22,13 @@
   cursor: pointer;
 }
 
-.InfoCard button:last-child {
+.logout-button {
+  // width: 7rem;
+  // height: 2rem;
+  // margin-top: 6rem;
+  // align-self: flex-end;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+  border: 0;
 }

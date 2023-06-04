@@ -90,6 +90,7 @@
         margin: 20px 0;
 
         h3 {
+          // display: flex;
           font-size: 1em;
           font-weight: 600;
           color: $aqua;
@@ -97,10 +98,27 @@
           background: $black;
           width: 30%;
           padding: 0.8rem 0;
+          position: relative;
           span {
             font-size: 0.85em;
             font-weight: 400;
             color: $white;
+          }
+          &::before {
+            content: "";
+            // display: flex;
+            width: 1%;
+            height: 100%;
+            background: $blackLight;
+          }
+          &::after {
+            content: "";
+            // position: absolute;
+            // right: 0;
+            // display: flex;
+            width: 1%;
+            height: 100%;
+            background: $blackLight;
           }
         }
       }

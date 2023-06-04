@@ -19,7 +19,21 @@ const authReducer = (
       };
     case "Auth_Fail":
       return { ...state, loading: false, error: action.error };
+    //mise a jours des infos du modal en front end
+    case "UPDATING_START":
+      return { ...state, updateLoading: true, error: false };
+    case "UPDATING_SUCCESS":
+      localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
+      return {
+        ...state,
+        authData: action.data,
+        updateLoading: false,
+        error: false,
+      };
 
+    case "UPDATING_FAIL":
+      return { ...state, updateLoading: true, error: true };
+    // --------------
     // on nettoyage du localstoragea la deconexion
     case "LOG_OUT":
       localStorage.clear();

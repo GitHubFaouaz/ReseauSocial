@@ -61,9 +61,7 @@ export const updateUser = async (req, res) => {
   } else {
     res
       .status(403)
-      .json(
-        "Accès refusé! vous ne pouvez mettre à jour que votre propre profil"
-      );
+      .json("Accès refusé! vous ne pouvez mettre à jour que le profil");
   }
 };
 

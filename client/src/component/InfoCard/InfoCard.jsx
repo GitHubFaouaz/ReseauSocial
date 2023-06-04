@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { UilPen } from "@iconscout/react-unicons";
-// import ProfileModal from "../ProfileModal/ProfileModal";
+import ProfileModal from "../ProfileModal/ProfileModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequests.js";
@@ -50,11 +50,11 @@ const InfoCard = () => {
               height="1.2rem"
               onClick={() => setModalOpened(true)}
             />
-            {/* <ProfileModal
+            <ProfileModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
               data={user}
-            /> */}
+            />
           </div>
         ) : (
           ""
@@ -82,9 +82,9 @@ const InfoCard = () => {
         <span>{profileUser.worksAt}</span>
       </div>
 
-      {/* <button className="button logout-button" > */}
-      <BouttonLogOut onClick={handleLogOut} />
-      {/* </button> */}
+      <button className="button logout-button" onClick={handleLogOut}>
+        <BouttonLogOut onClick={handleLogOut} />
+      </button>
     </div>
   );
 };
