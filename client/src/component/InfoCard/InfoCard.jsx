@@ -65,25 +65,25 @@ const InfoCard = () => {
         <span>
           <b>Status </b>
         </span>
-        {/* <span>{profileUser.relationship}</span> */}
+        <span>{profileUser.relationship}</span>
         {/*  maintenant qu'on a trouver le profiluser on exploite ses données */}
       </div>
       <div className="info">
         <span>
-          <b>Lives in </b>
+          <b>Vit à </b>
           {/*L'élément HTML <b> permet d'attirer l'attention du lecteur sur un contenu qui n'a pas, pour autant, d'importance significative. Anciennement utilisé pour mettre le texte en gras */}
         </span>
-        <span>{profileUser.livesIn}</span>
+        <span>{profileUser.livesin}</span>
       </div>
       <div className="info">
         <span>
-          <b>Works at </b>
+          <b>Travaille à </b>
         </span>
         <span>{profileUser.worksAt}</span>
       </div>
 
       <button className="button logout-button" onClick={handleLogOut}>
-        <BouttonLogOut onClick={handleLogOut} />
+        <BouttonLogOut />
       </button>
     </div>
   );

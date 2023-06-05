@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core"; // sur le site matine
-import "./ProfileModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { uploadImage } from "../../actions/UploadAction";
@@ -80,14 +79,14 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form className="infoForm" onSubmit={handleSubmit}>
+      <form className="infoFormModal" onSubmit={handleSubmit}>
         <h3>Your Info</h3>
         <div>
           <input
             value={formData.firstname}
             onChange={handleChange}
             type="text"
-            placeholder="First Name"
+            placeholder="Nom"
             name="firstname"
             className="infoInput"
           />
@@ -95,7 +94,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
             value={formData.lastname}
             onChange={handleChange}
             type="text"
-            placeholder="Last Name"
+            placeholder="Prenom"
             name="lastname"
             className="infoInput"
           />
@@ -106,7 +105,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
             value={formData.worksAt}
             onChange={handleChange}
             type="text"
-            placeholder="Works at"
+            placeholder="Travaille à"
             name="worksAt"
             className="infoInput"
           />
@@ -114,10 +113,10 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
 
         <div>
           <input
-            value={formData.livesin}
+            value={formData.livesIn}
             onChange={handleChange}
             type="text"
-            placeholder="Lives in"
+            placeholder="Vit à"
             name="livesin"
             className="infoInput"
           />
@@ -125,22 +124,22 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
             value={formData.country}
             onChange={handleChange}
             type="text"
-            placeholder="Country"
+            placeholder="pays"
             name="country"
             className="infoInput"
           />
         </div>
 
-        {/* <div>
+        <div>
           <input
             value={formData.relationship}
             onChange={handleChange}
             type="text"
             className="infoInput"
-            placeholder="Relationship status"
+            placeholder="status"
             name="relationship"
           />
-        </div> */}
+        </div>
 
         <div>
           Profile image
@@ -149,12 +148,8 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
           <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
 
-        <button
-          className="button infoButton"
-          type="submit"
-          onChange={handleSubmit}
-        >
-          Update
+        <button className="" type="submit" onChange={handleSubmit}>
+          <span>Update</span>
         </button>
       </form>
     </Modal>

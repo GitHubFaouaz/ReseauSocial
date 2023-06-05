@@ -1,0 +1,96 @@
+.infoFormModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+  & > div {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    input {
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 1px -1px 1px black, -2px 2px 2px black;
+      outline: none;
+    }
+  }
+  div:nth-child(2),
+  div:nth-child(4) {
+    input {
+      width: 50%;
+
+      // display: flex;
+      // flex-wrap: wrap;
+    }
+  }
+  div:nth-child(3),
+  div:nth-child(5) {
+    input {
+      width: 100%;
+    }
+  }
+  div:nth-child(6) {
+    // display: flex;
+    // flex-direction: column;
+    input {
+      width: 50%;
+    }
+  }
+  button {
+    position: relative;
+    width: 160px;
+    height: 30px;
+    display: inline-block;
+    align-self: flex-end;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, $aqua, #040404, #040404, $aqua);
+      transition: 0.5s;
+    }
+    &:hover::after {
+      inset: -1px;
+    }
+    &:hover::before {
+      inset: -1px;
+      filter: blur(5px);
+    }
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      background: $black;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // font-size: 1.2em;
+      // text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffffff;
+      border: 1px solid $black;
+      overflow: hidden; /* pour le .container a span:before*/
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 100%;
+        height: 100%;
+        background: $blackLight;
+        transform: skew(
+          25deg
+        ); /* fait que le trait soit oblique au millieu    https://developer.mozilla.org/fr/docs/Web/CSS/transform-function/skew*/
+        z-index: -1;
+      }
+    }
+  }
+}
