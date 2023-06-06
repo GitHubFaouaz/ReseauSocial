@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Modal, useMantineTheme } from "@mantine/core"; // sur le site matine
-import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "@mantine/core"; // sur le site matine
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { uploadImage } from "../../actions/UploadAction";
 import { updateUser } from "../../actions/UserAction";
 
 // modale du profil
 const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
-  const theme = useMantineTheme();
   const { password, ...other } = data; // other =autre (mots de passe)
   const [formData, setFormData] = useState(other); // on met les information du modal dans le state
   const [profileImage, setProfileImage] = useState(null);
@@ -15,7 +14,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const dispatch = useDispatch();
   const param = useParams();
   console.log(other);
-  const { user } = useSelector((state) => state.authReducer.authData);
+  // const { user } = useSelector((state) => state.authReducer.authData);
 
   // Fonction qui prend toutes les informations des inputs pour les traités
   const handleChange = (e) => {
@@ -68,19 +67,12 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
 
   return (
     <Modal
-      overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
-      }
-      overlayOpacity={0.55}
-      overlayBlur={3}
-      size="55%"
+      size="50%"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
       <form className="infoFormModal" onSubmit={handleSubmit}>
-        <h3>Your Info</h3>
+        <h3>Informations</h3>
         <div>
           <input
             value={formData.firstname}
