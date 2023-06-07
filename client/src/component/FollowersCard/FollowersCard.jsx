@@ -39,13 +39,14 @@ const FollowersCard = ({ location }) => {
       {/* Si la valeur de location est définie (différente de null, undefined ou vide), alors le <span> ne sera pas affiché. */}
       {!location ? (
         <span onClick={() => setModalOpened(true)} className="buttonModal">
-          Montre plus
+          Afficher plus
         </span>
       ) : (
         ""
       )}
 
       <FollowersModal
+        // className="FollowersModal"
         // on utilise les props pour gerer l'ouverture et la fermeture du modal au clic de Montre plus
         modalOpened={modalOpened}
         setModalOpened={setModalOpened} //onClose={() => setModalOpened(false)

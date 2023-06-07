@@ -141,7 +141,8 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
         </div>
 
         <button className="" type="submit" onChange={handleSubmit}>
-          <span>Update</span>
+          {/* <span>Update</span> */}
+          <span>Mise à jour</span>
         </button>
       </form>
     </Modal>
