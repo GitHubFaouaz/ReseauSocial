@@ -49,6 +49,7 @@ const InfoCard = () => {
               width="2rem"
               height="1.2rem"
               onClick={() => setModalOpened(true)}
+              color="#02d6dd"
             />
             <ProfileModal
               modalOpened={modalOpened}

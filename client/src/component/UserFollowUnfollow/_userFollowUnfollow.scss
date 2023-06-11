@@ -29,7 +29,7 @@
     height: 2rem;
     padding-left: 20px;
     padding-right: 20px;
-
+    transition: 0.5s;
     border-radius: 5px;
     border: 2px solid $black;
     &:hover {
@@ -42,11 +42,12 @@
     background: $blackLight;
     color: aqua;
     cursor: pointer;
+    box-shadow: $box-shadow;
   }
 
   .UnfollowButton {
     color: $blackLight;
-
+    // box-shadow: $box-shadow;
     cursor: pointer;
     background: transparent;
   }

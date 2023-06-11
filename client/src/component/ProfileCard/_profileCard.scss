@@ -7,22 +7,13 @@
   margin: 10px 0;
   background: $blackLight;
   height: 450px;
-  /* ---------------------------------------img-------------------------------------- */
-  // .imgBx {
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // width: 100%;
-  // //
+  box-shadow: $box-shadow;
 
-  // transition: 0.5s;
-  // overflow: hidden;
+  /* ---------------------------------------img-------------------------------------- */
 
   .imgCover {
     width: 100%;
     img {
-      // height: 50%; //height: 50%  ou 100%;
       width: 100%;
       height: 300px;
     }
@@ -34,17 +25,15 @@
     transform: translate(10%, -100%);
     display: flex;
     align-items: center;
-    // padding: 2px;
-    // background: $black;
     border-radius: 50%;
     overflow: hidden;
     img {
       // border-radius: 50%;
     }
 
-    &::before {
-      content: "";
-    }
+    // &::before {
+    //   content: "";
+    // }
 
     img {
       width: 130px;
@@ -59,15 +48,10 @@
     font-size: 18px;
     color: $white;
   }
-  // }
 
   /* --------------------------------------------------------info user------------------- */
   .contentData {
-    // overflow: hidden;
-    // position: absolute;
-    // top: 45%;
     .details {
-      // padding: 0rem 1rem;
       text-align: center;
       width: 100%;
       transition: 0.5s;
@@ -102,7 +86,6 @@
           font-size: 1em;
           font-weight: 600;
           color: $aqua;
-          // margin: 0 0rem 0 0;
           background: $black;
           width: 33%;
           padding: 0.8rem 0 0.8rem;
@@ -155,27 +138,10 @@
   align-items: center;
 
   overflow: hidden;
-  // border-radius: 3rem;
+  border-radius: 1rem;
   margin: 10px 0;
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   width: 600px;
-  //   height: 120px;
-  //   background: linear-gradient(transparent, $aqua, $aqua, $aqua, transparent);
-  //   animation: animate 4s linear infinite;
-  // }
-  &:hover .imgBx {
-    // transform: scale(1.2);
-  }
+  box-shadow: $box-shadow;
 
-  &:hover .imgProfile {
-    // position: absolute;
-    // top: 45%;
-    // filter: grayscale(0);
-  }
   /* ---------------------------------------img-------------------------------------- */
   .imgBx {
     position: relative;
@@ -224,7 +190,6 @@
         width: 130px;
         height: 130px;
         border-radius: 50%;
-        // filter: grayscale(1); /* photo noir blanc*/
         overflow: hidden;
         z-index: 1;
       }
