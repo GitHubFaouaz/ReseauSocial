@@ -36,17 +36,18 @@ function ProfileCard({ location }) {
               alt="ProfileImage"
             />
           </div>
-          <span>
-            {user.firstname} {user.lastname}
-          </span>
+
           <div className="contentData">
             <div className="details">
-              <h2>
+              {/* <h2>
+                <span>
+                  {user.firstname} {user.lastname}
+                </span>
                 <br />
                 <span>
                   {user.worksAt ? user.worksAt : "Écris à propos de toi"}
                 </span>
-              </h2>
+              </h2> */}
               <div className="data">
                 <h3>
                   {user.followers.length} <br />

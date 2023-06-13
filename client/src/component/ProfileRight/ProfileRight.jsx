@@ -6,7 +6,7 @@ function ProfileRight() {
   return (
     <div className="profileRight">
       <Nav />
-      <TrendCard /> {/*// api  */}
+      <TrendCard /> {/* api  */}
     </div>
   );
 }

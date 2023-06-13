@@ -64,7 +64,10 @@ const Post = ({ data }) => {
           alt="imgUser"
         />
         <div className="details">
-          <span>{user.pseudo}</span>
+          <div>
+            <span>{user.lastname} </span>
+            <span>{user.firstname}</span>
+          </div>
           <span>
             <i>{likes}</i> likes
           </span>

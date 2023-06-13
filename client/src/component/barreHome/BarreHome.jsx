@@ -5,7 +5,7 @@ const BarreHome = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   return (
     <div class="containeBarre">
-      <p className="welcom">bienvenue {user.pseudo}</p>
+      <p className="welcom">bienvenue {user.lastname}</p>
     </div>
   );
 };

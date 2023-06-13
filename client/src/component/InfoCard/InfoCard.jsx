@@ -25,13 +25,13 @@ const InfoCard = () => {
     const fetchProfileUser = async () => {
       if (profileUserId === user._id) {
         setProfileUser(user); // on a le user dans le state
-        console.log("si user trouvé" + profileUser);
+        // console.log("si user trouvé" + profileUser);
       } else {
         // soit on va le chercher
-        console.log("fetching");
+        // console.log("fetching");
         const profileUser = await UserApi.getUser(profileUserId); //aller chercher le user dont le id correspond a l'url
         setProfileUser(profileUser);
-        console.log(profileUser);
+        // console.log(profileUser);
       }
     };
 
@@ -60,6 +60,18 @@ const InfoCard = () => {
         ) : (
           ""
         )}
+      </div>
+      <div className="info">
+        <span>
+          <b>Nom </b>
+        </span>
+        <span>{profileUser.lastname}</span>
+      </div>
+      <div className="info">
+        <span>
+          <b>Prenom </b>
+        </span>
+        <span>{profileUser.firstname}</span>
       </div>
 
       <div className="info">
