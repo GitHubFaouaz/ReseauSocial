@@ -15,6 +15,7 @@ const Profile = () => {
           <PostCenter />
           {/* si location="homePage" est actif on attribut location="profilPage" */}
           {/* on utilise location pour afficher certains elements ou pas quand on est sur la page profil */}
+          {/* <PostSide /> */}
         </div>
         <ProfileRight />
       </div>
