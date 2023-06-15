@@ -52,6 +52,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   .containerLogo {
     display: flex;
     justify-content: center;
@@ -249,9 +250,81 @@
       .inputBox:nth-child(4) {
         width: 300px;
       }
+      .square {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(
+          5px
+        ); /*pour le flou la visibilité comme opacity \en-US\docs\Web\CSS\backdrop-filter */
+        box-shadow: 0 25px 45px rgba(255, 255, 255, 0.1);
+
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        transition: 2s;
+
+        p {
+          margin-bottom: 5px;
+        }
+
+        /* --------------------------------------les carrés  */
+
+        // &:nth-child(7) {
+        //   position: absolute;
+
+        //   bottom: -55px;
+        //   right: 0px;
+        // }
+        &:nth-child(8) {
+          position: absolute;
+          top: 150px;
+          left: -70px;
+        }
+        &:nth-child(9) {
+          position: absolute;
+          top: -50px;
+          right: -60px;
+        }
+        &:nth-child(10) {
+          position: absolute;
+          bottom: -80px;
+          right: -195px;
+          left: initial;
+        }
+        &:nth-child(11) {
+          position: absolute;
+          top: -80px;
+          left: -90px;
+        }
+      }
     }
     .box {
       margin: 1rem 0 0;
+    }
+  }
+}
+@media (max-width: 470px) {
+  .containerForm {
+    .form {
+      .inputBox:nth-child(2) {
+        span {
+          top: 20px;
+        }
+      }
+      .inputBox:nth-child(3) {
+        span {
+          top: 20px;
+        }
+      }
+      .inputBox:nth-child(4) {
+        span {
+          top: 20px;
+        }
+      }
     }
   }
 }

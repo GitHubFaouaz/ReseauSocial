@@ -170,7 +170,7 @@ function SignUp() {
                     // value={data.confirmpass}
                     // onChange={handleChange}
                   />
-                  <span>Confirmez mot de passe</span>
+                  <span>Confirmez le mot de passe</span>
                   <i></i>
                 </div>
 
@@ -185,7 +185,7 @@ function SignUp() {
                 </div>
                 <div className="square animationSquare"></div>
 
-                <div className="square animationSquare pseudoError emailError passwordEerror password-confirmError ">
+                <div className="square animationSquare ">
                   {/* {error !== "" && { error }} */}
                   {errorRef.current !== "" && <div>{errorRef.current}</div>}
                 </div>
