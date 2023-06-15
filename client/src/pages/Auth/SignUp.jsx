@@ -106,7 +106,7 @@ function SignUp() {
 
             <div className="box">
               <form className="form" onSubmit={HandleSubmit}>
-                <h2>Sign Up</h2>
+                <h2>S'inscrire</h2>
                 <div className="inputBox">
                   <input
                     type="text"
@@ -129,7 +129,7 @@ function SignUp() {
                   <span>Lastname</span>
                   <i></i>
                 </div>
-                <div className="inputBox">
+                {/* <div className="inputBox">
                   <input
                     type="text"
                     required="required"
@@ -139,7 +139,7 @@ function SignUp() {
                   />
                   <span>Pseudo</span>
                   <i></i>
-                </div>
+                </div> */}
                 <div className="inputBox">
                   <input
                     type="text"
@@ -181,7 +181,7 @@ function SignUp() {
                 {/* <input type="submit" value={"c"} /> */}
                 {/* </div> */}
                 <div className="square animationSquare">
-                  <Link to="/login"> Don't have an account?</Link>
+                  <Link to="/login">Vous n'avez pas de compte ?</Link>
                 </div>
                 <div className="square animationSquare"></div>
 

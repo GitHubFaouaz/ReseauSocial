@@ -39,15 +39,6 @@ function ProfileCard({ location }) {
 
           <div className="contentData">
             <div className="details">
-              {/* <h2>
-                <span>
-                  {user.firstname} {user.lastname}
-                </span>
-                <br />
-                <span>
-                  {user.worksAt ? user.worksAt : "Écris à propos de toi"}
-                </span>
-              </h2> */}
               <div className="data">
                 <h3>
                   {user.followers.length} <br />

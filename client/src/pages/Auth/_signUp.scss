@@ -73,7 +73,9 @@
 
     display: flex;
     flex-wrap: wrap;
-
+    .inputBox:nth-child(4) {
+      width: 600px; /* Nouvelle valeur */
+    }
     h2 {
       color: $orange;
       font-weight: 500;
@@ -160,7 +162,7 @@
 
       /* --------------------------------------les carrés  */
 
-      &:nth-child(8) {
+      &:nth-child(7) {
         position: absolute;
 
         bottom: -55px;
@@ -171,7 +173,7 @@
         --i: 2;
         border-radius: 50px;
       }
-      &:nth-child(9) {
+      &:nth-child(8) {
         position: absolute;
         top: 150px;
         left: -85px;
@@ -188,7 +190,7 @@
           text-decoration: none;
         }
       }
-      &:nth-child(10) {
+      &:nth-child(9) {
         position: absolute;
         top: -50px;
         right: -60px;
@@ -198,7 +200,7 @@
 
         --i: 0;
       }
-      &:nth-child(11) {
+      &:nth-child(10) {
         position: absolute;
         bottom: -80px;
         left: 100px;
@@ -207,7 +209,7 @@
         text-align: center;
         --i: 3;
       }
-      &:nth-child(12) {
+      &:nth-child(11) {
         position: absolute;
         top: -80px;
         right: 140px;

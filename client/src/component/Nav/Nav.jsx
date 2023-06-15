@@ -20,7 +20,7 @@ const Nav = () => {
             <span className="icon">
               <ion-icon name="home-outline"></ion-icon>
             </span>
-            <span className="text">Home</span>
+            <span className="text">Accueil</span>
           </NavLink>
         </li>
 

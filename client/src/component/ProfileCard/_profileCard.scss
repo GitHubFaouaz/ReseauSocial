@@ -10,38 +10,13 @@
   margin: 10px 0;
   background: $blackLight;
   gap: 5px;
-  // height: 450px;
-  // box-shadow: $box-shadow;
+
+  box-shadow: $box-shadow;
 
   /* ---------------------------------------img-------------------------------------- */
 
   .imgCover {
     width: 100%;
-    // margin-bottom: 55px;
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   top: 57%;
-    //   left: 10%;
-    //   width: 20px;
-    //   height: 20px;
-    //   background: transparent;
-    //   z-index: 10;
-    //   border-bottom-left-radius: 20px;
-    //   box-shadow: -6px 6px $blackLight;
-    // }
-    &::after {
-      content: "";
-      position: absolute;
-      top: 72%;
-      left: 15%;
-      width: 26px;
-      height: 20px;
-      background: transparent;
-      z-index: 10;
-      border-bottom-left-radius: 20px;
-      box-shadow: -6px 6px $blackLight;
-    }
 
     img {
       width: 100%;
@@ -80,30 +55,7 @@
     border-radius: 10px;
     background: repeating-radial-gradient(black, transparent 5px);
     padding: 10px;
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   top: 80%;
-    //   left: 18%;
-    //   background: transparent;
-    //   width: 20px;
-    //   height: 20px;
-    //   z-index: 10;
-    //   border-top-left-radius: 20px;
-    //   box-shadow: -6px -6px $aqua;
-    // }
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   bottom: 1%;
-    //   left: 10%;
-    //   background: transparent;
-    //   width: 20px;
-    //   height: 20px;
-    //   z-index: 10;
-    //   border-top-left-radius: 20px;
-    //   box-shadow: -6px -6px $aqua;
-    // }
+
     .details {
       text-align: center;
       width: 95%;
