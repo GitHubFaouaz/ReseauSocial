@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/AuthActions";
 const Nav = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
+  const dispatch = useDispatch();
+  // boutton de deconnection
+  const handleLogOut = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
@@ -30,16 +36,20 @@ const Nav = () => {
             <span className="text">Profile</span>
           </NavLink>
         </li>
-        {/*     <li>
-          <span className="icon">
-            <NavLink to="">
+        <li>
+          <NavLink
+            to=""
+            // className={({ isActive }) => (isActive ? "active" : "")}
+            className={({ isActive }) => (isActive ? "" : "")}
+          >
+            <span className="icon">
               <ion-icon name="camera-outline"></ion-icon>
-            </NavLink>
-          </span>
-          <span className="text">Messages</span>
+            </span>
+            <span className="text">Messages</span>
+          </NavLink>
         </li>
 
-        <li>
+        {/*   <li>
           <span className="icon">
       
             <NavLink to="">
@@ -48,6 +58,15 @@ const Nav = () => {
           </span>
           <span className="text">Settings</span>
         </li> */}
+        <li onClick={handleLogOut}>
+          <NavLink to={""} className={({ isActive }) => (isActive ? "" : "")}>
+            <span className="icon">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </span>
+
+            <span className="text">Deconnexion</span>
+          </NavLink>
+        </li>
       </ul>
     </>
   );

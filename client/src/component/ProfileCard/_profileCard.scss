@@ -1,22 +1,52 @@
 .cardProfilPage {
   width: 100%;
   position: relative;
-
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-end;
+  align-items: flex-end;
   overflow: hidden;
   border-radius: 1rem;
   margin: 10px 0;
   background: $blackLight;
+  gap: 5px;
   // height: 450px;
-  box-shadow: $box-shadow;
+  // box-shadow: $box-shadow;
 
   /* ---------------------------------------img-------------------------------------- */
 
   .imgCover {
     width: 100%;
-    margin-bottom: 55px;
+    // margin-bottom: 55px;
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 57%;
+    //   left: 10%;
+    //   width: 20px;
+    //   height: 20px;
+    //   background: transparent;
+    //   z-index: 10;
+    //   border-bottom-left-radius: 20px;
+    //   box-shadow: -6px 6px $blackLight;
+    // }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 72%;
+      left: 15%;
+      width: 26px;
+      height: 20px;
+      background: transparent;
+      z-index: 10;
+      border-bottom-left-radius: 20px;
+      box-shadow: -6px 6px $blackLight;
+    }
+
     img {
       width: 100%;
       height: 300px;
+      border-radius: 10px;
     }
   }
   .imgProfile {
@@ -24,41 +54,62 @@
     // top: 65%;
     // left: 0%;
     // transform: translate(10%, -100%);
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+    top: 95%;
+    left: 0%;
+    transform: translate(0%, -100%);
     display: flex;
     align-items: center;
     border-radius: 50%;
+    border: 10px solid $blackLight;
     overflow: hidden;
-    img {
-      // border-radius: 50%;
-    }
-
-    // &::before {
-    //   content: "";
-    // }
+    // box-shadow: 0px 0px 0px 2px #000000, 0px 0px 0px 3px #02d6dd,
+    //   0px 0px 0px 4px #000000, 0px 0px 20px 0px #000000;
 
     img {
       width: 130px;
       height: 130px;
     }
   }
-  & > span {
-    // position: absolute;
-    // top: 65%;
-    // left: 0%;
-    // transform: translate(150px, -100%);
-    // font-size: 18px;
-    // color: $white;
-  }
 
   /* --------------------------------------------------------info user------------------- */
   .contentData {
+    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    border-radius: 10px;
+    background: repeating-radial-gradient(black, transparent 5px);
+    padding: 10px;
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 80%;
+    //   left: 18%;
+    //   background: transparent;
+    //   width: 20px;
+    //   height: 20px;
+    //   z-index: 10;
+    //   border-top-left-radius: 20px;
+    //   box-shadow: -6px -6px $aqua;
+    // }
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: 1%;
+    //   left: 10%;
+    //   background: transparent;
+    //   width: 20px;
+    //   height: 20px;
+    //   z-index: 10;
+    //   border-top-left-radius: 20px;
+    //   box-shadow: -6px -6px $aqua;
+    // }
     .details {
       text-align: center;
-      width: 100%;
+      width: 95%;
       transition: 0.5s;
+      background: $black;
+      box-shadow: inset 0px 0px 30px $aqua;
 
       h2 {
         font-size: 1.25em;
@@ -73,8 +124,8 @@
       }
       .data {
         display: flex;
-        justify-content: space-between;
-        margin: 20px 0;
+        justify-content: flex-end;
+        // margin: 20px 0;
         padding: 0 0.5rem;
         & h3:nth-child(1) {
           border-bottom-left-radius: 1rem;
@@ -90,8 +141,8 @@
           font-size: 1em;
           font-weight: 600;
           color: $aqua;
-          background: $black;
-          width: 33%;
+          // background: $black;
+          width: 30%;
           padding: 0.8rem 0 0.8rem;
           position: relative;
 
@@ -242,7 +293,9 @@
       }
       .actionBtn {
         text-align: center;
-
+        a {
+          text-decoration: none;
+        }
         p {
           font-size: 20px;
           font-weight: 500;
