@@ -35,34 +35,9 @@ function JSAnimation() {
       {[...Array(150)].map((_, i) => (
         <div key={i} className="blocks" ref={(el) => (blockRefs[i] = el)}></div>
       ))}
-      <span>Submit</span>
+      <span>S’inscrire</span>
     </div>
   );
 }
 
 export default JSAnimation;
-
-// function JSAnimation() {
-//   const banner = useRef(null);
-//   const blockRefs = [];
-//   const duration = Math.random() * 5;
-//   useEffect(() => {
-//     setInterval(() => {
-//       for (let i = 0; i < 150; i++) {
-//         blockRefs.push(banner);
-
-//       }
-//     }, []);
-//   }, duration * 1000);
-
-//   return (
-//     <div className="banner" ref={banner}>
-//       {[...Array(150)].map((_, i) => (
-//         <div key={i} className="blocks" ref={blockRefs[i]} />
-//       ))}
-//       <span>Submit</span>
-//     </div>
-//   );
-// }
-
-// export default JSAnimation;

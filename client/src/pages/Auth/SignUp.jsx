@@ -115,7 +115,7 @@ function SignUp() {
                     // value={data.firstname}
                     // onChange={handleChange}
                   />
-                  <span>Firstname</span>
+                  <span>Nom</span>
                   <i></i>
                 </div>
                 <div className="inputBox">
@@ -126,7 +126,7 @@ function SignUp() {
                     // value={data.lastname}
                     // onChange={handleChange}
                   />
-                  <span>Lastname</span>
+                  <span>Prenom</span>
                   <i></i>
                 </div>
                 {/* <div className="inputBox">
@@ -159,7 +159,7 @@ function SignUp() {
                     // value={data.password}
                     // onChange={handleChange}
                   />
-                  <span>Password</span>
+                  <span>Mot de passe</span>
                   <i></i>
                 </div>
                 <div className="inputBox">
@@ -170,7 +170,7 @@ function SignUp() {
                     // value={data.confirmpass}
                     // onChange={handleChange}
                   />
-                  <span>Confirm Password</span>
+                  <span>Confirmez mot de passe</span>
                   <i></i>
                 </div>
 

@@ -17,18 +17,14 @@
   animation: animateBlocks 2s ease-in-out forwards;
 
   background: linear-gradient(144deg, $orange, $yellow, $aqua);
-  // background: linear-gradient(300deg, #f79200, rgba(0, 0, 0, 0.3));
 
   cursor: pointer;
   border-radius: 50% 50% 46% 54% / 100% 0% 100% 0%;
 }
 
 .blocks:hover {
-  // animation: animateTwoButton 5s ease-in-out forwards;
   animation: animateBlocksInverse 2s ease-in-out forwards;
   background: $black; // autre styles
-
-  // height: 2px;
 }
 .banner:hover .blocks {
   border-radius: 0px;
@@ -38,15 +34,18 @@
 
 .banner span {
   z-index: 1;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
-  animation: animeSpan 3s ease-in-out forwards;
   cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes animateBlocks {
   0% {
-    transform: translateZ(2000px); /*  il commence a 2000px en bas  */
+    transform: translateZ(2000px);
 
     background-position: center;
     background-attachment: fixed;
@@ -83,21 +82,5 @@
     background-size: cover;
     border: 1px solid rgba(0, 0, 0, 0);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-  }
-}
-
-@keyframes animeSpan {
-  0% {
-    transform: translateZ(2000px);
-  }
-
-  100% {
-    transform: translateZ(0px);
-    z-index: 1;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 5s;
   }
 }

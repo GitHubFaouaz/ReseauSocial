@@ -8,8 +8,8 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
-  flex-wrap: wrap;
+  // min-height: 100vh;
+  // flex-wrap: wrap;
 }
 
 .colorBg {
@@ -17,7 +17,6 @@
   filter: blur(150px);
 
   &:nth-child(1) {
-    /* pour les  3 couleurs des enfants de color pour le bg du body en gradiant si on enleve filter dans color on comprend mieux  */
     top: -350px;
     width: 100%;
     height: 600px;
@@ -48,23 +47,23 @@
   width: 60%;
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   .containerLogo {
     display: flex;
     justify-content: center;
   }
   h1 {
     color: $black;
-    // z-index: 10;
-    // position: absolute;
-    // background: white;
   }
 
   // -------------------------------------form
 
   .form {
     width: 700px;
-    // inset: 162px 121px; // ajuster dimension du form  inset: 162px 121px;
     position: relative;
 
     border-radius: 8px;
@@ -73,9 +72,7 @@
 
     display: flex;
     flex-wrap: wrap;
-    .inputBox:nth-child(4) {
-      width: 600px; /* Nouvelle valeur */
-    }
+
     h2 {
       color: $orange;
       font-weight: 500;
@@ -89,7 +86,7 @@
       width: 300px;
       margin-top: 35px;
       margin-left: 10px;
-
+      transition: 2s;
       input {
         position: relative;
         width: 100%;
@@ -140,6 +137,14 @@
         z-index: 9;
       }
     }
+    .inputBox:nth-child(4) {
+      width: 600px;
+    }
+    .inputBox:nth-child(6) {
+      span {
+        top: -14px;
+      }
+    }
     .square {
       display: flex;
       flex-direction: column;
@@ -179,8 +184,6 @@
         left: -85px;
         width: 120px;
         height: 120px;
-        font-weight: 700;
-
         cursor: pointer;
         z-index: 2;
         text-align: center;
@@ -188,6 +191,7 @@
         --i: 1;
         a {
           text-decoration: none;
+          color: black;
         }
       }
       &:nth-child(9) {
@@ -220,12 +224,34 @@
     }
     .animationSquare {
       animation: animateSquare 10s linear infinite;
-      animation-delay: calc(-1s * var(--i)); /*les variables du html*/
+      animation-delay: calc(-1s * var(--i));
     }
   }
 
   .box {
     margin-left: 1rem;
-    border-left: solid 1px rgba(43, 37, 3, 0.8);
+    border-left: solid 1px $black;
+  }
+}
+
+@media (max-width: 992px) {
+  .containerForm {
+    flex-direction: column;
+    .form {
+      width: 100%;
+
+      .inputBox {
+        input {
+          padding: 30px 10px 10px;
+        }
+      }
+
+      .inputBox:nth-child(4) {
+        width: 300px;
+      }
+    }
+    .box {
+      margin: 1rem 0 0;
+    }
   }
 }
