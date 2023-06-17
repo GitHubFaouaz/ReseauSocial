@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  //   background: repeating-radial-gradient(#c61dff, #fff 20px);
+  // min-height: 100vh;
   position: relative;
 }
 
@@ -66,12 +65,12 @@
 
 /* ---------------------------------formulaire */
 
-.container {
+.containerSignIn {
   position: absolute;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 10px;
+  // align-items: center;
   .drop {
     position: relative;
     width: 350px;
@@ -103,7 +102,7 @@
       content: "";
       position: absolute;
       top: 90px;
-      left: 110px;
+      left: 100px;
       width: 15px;
       height: 15px;
       border-radius: 50%;
@@ -142,17 +141,17 @@
             15px 10px 15px rgba(0, 0, 0, 0.025);
           /* autre style sans box-shadow: ; */
           border-radius: 25px;
-          &::before {
-            content: "";
-            position: absolute;
-            // top: 8px;
-            left: 50px;
-            transform: translateX(-50%);
-            width: 65px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-          }
+
+          // &::before {
+          //   content: "";
+          //   position: absolute;
+          //   left: 50px;
+          //   transform: translateX(-50%);
+          //   width: 65px;
+          //   height: 5px;
+          //   background: rgba(255, 255, 255, 0.5);
+          //   border-radius: 5px;
+          // }
 
           input {
             border: none;
@@ -167,8 +166,8 @@
             width: 80px;
           }
 
-          button {
-            width: 80%;
+          /*    button {
+            // width: 80%;
 
             color: #000000;
             text-transform: uppercase;
@@ -184,15 +183,11 @@
             border: none;
             outline: none;
             transition: 0.5s;
+
             &:hover::before {
               background: radial-gradient(#000, #000000ab, #000000, $black);
               box-shadow: 1px 2px 15px $white;
-            }
-            &:hover {
-              letter-spacing: 0.4em;
-              width: 100%;
-
-              font-weight: 700;
+              transition: 1s;
             }
 
             &::before {
@@ -205,9 +200,66 @@
               height: 100%;
               border-radius: 30px;
               padding-left: 70px;
-              box-shadow: inset 1px 2px 15px $white; // autre style
+
               background: radial-gradient(#0000, #000000ab, #000000, $white);
+              // transition: 1s;
             }
+            // &:hover::before {
+            //   box-shadow: inset 1px 2px 15px $white; // autre style
+            // }
+          } */
+          button {
+            // width: 80%;
+
+            color: #f1ecec;
+            text-transform: uppercase;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+
+            position: relative;
+            border-radius: 30px;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            outline: none;
+            transition: 0.5s;
+            background: radial-gradient(#0000, #2a2929, #000, $white);
+            // &:hover::before {
+            //   background: radial-gradient(#000, #000000ab, #000000, $black);
+            //   box-shadow: 1px 2px 15px $white;
+            //   transition: 1s;
+            // }
+
+            // &::before {
+            //   content: "";
+            //   position: absolute;
+            //   left: -35px;
+            //   top: 0;
+            //   cursor: pointer;
+            //   width: 100%;
+            //   height: 100%;
+            //   border-radius: 30px;
+            //   padding-left: 70px;
+
+            //   background: radial-gradient(#0000, #000000ab, #000000, $white);
+            //   // transition: 1s;
+            // }
+            // &::after {
+            //   content: "";
+            //   position: absolute;
+            //   left: -35px;
+            //   top: 0;
+            //   cursor: pointer;
+            //   width: 100%;
+            //   height: 100%;
+            //   border-radius: 30px;
+            //   padding-left: 70px;
+
+            //   background: radial-gradient(#0000, #000000ab, #000000, $white);
+            //   // transition: 1s;
+            // }
           }
         }
       }
@@ -271,9 +323,9 @@
   cursor: unset;
 
   &::before {
-    left: 15px;
-    width: 15px;
-    height: 15px;
+    left: 7px;
+    width: 13px;
+    height: 13px;
     background: #fff;
   }
 
@@ -285,4 +337,11 @@
 .errorMessages {
   animation: animErrorMessages 1s linear infinite;
   font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .containerSignIn {
+    flex-direction: column;
+    // align-items: flex-start;
+  }
 }

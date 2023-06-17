@@ -44,7 +44,7 @@ function SignIn() {
           <div class="color"></div>
           <div class="color"></div>
         </div>
-        <div class="container">
+        <div class="containerSignIn">
           <div className=".containerLogo">
             <img src={logo} alt="logo" />
 
@@ -52,7 +52,7 @@ function SignIn() {
           </div>
           <div class="drop">
             <div class="content">
-              <h2>Sign in</h2>
+              <h2>S'identifier</h2>
               <form action="" onSubmit={HandleSubmit}>
                 <div class="inputBox">
                   <input
@@ -73,7 +73,7 @@ function SignIn() {
                   />
                 </div>
                 <div class="inputBox">
-                  <button type="submit">login</button>
+                  <button type="submit">Connexion</button>
                 </div>
               </form>
             </div>
@@ -83,14 +83,14 @@ function SignIn() {
               <p className="errorMessages">{errorMessages}</p>
             ) : (
               <p>
-                Forgot <br />
-                Password
+                Mot de passe <br />
+                oublié?
               </p>
             )}
           </div>
 
           <div href="#" class="btns signup">
-            <Link to="/Auth">Signup </Link>
+            <Link to="/Auth">Créer nouveau compte</Link>
           </div>
         </div>
       </div>
