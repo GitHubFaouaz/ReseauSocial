@@ -34,67 +34,67 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <div id="body">
-        <div class="divColor">
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
+    // <div>
+    <div id="bodySignIn">
+      <div className="divColor">
+        <div className="color ball"></div>
+        <div className="color ball"></div>
+        <div className="color ball"></div>
+        <div className="color ball"></div>
+        <div className="color ball"></div>
+        <div className="color ball"></div>
+      </div>
+      <div className="containerSignIn">
+        <div className=".containerLogo">
+          <img src={logo} alt="logo" />
+
+          <h1>TAWHID</h1>
         </div>
-        <div class="containerSignIn">
-          <div className=".containerLogo">
-            <img src={logo} alt="logo" />
+        <div className="signIn">
+          <div className="content">
+            <h2>S'identifier</h2>
+            <form action="" onSubmit={HandleSubmit}>
+              <div className="inputBox">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={data.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="inputBox">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={data.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="inputBox">
+                <button type="submit">Connexion</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="btns">
+          {errorMessages ? (
+            <p className="errorMessages">{errorMessages}</p>
+          ) : (
+            <p>
+              Mot de passe <br />
+              oublié?
+            </p>
+          )}
+        </div>
 
-            <h1>TAWHID</h1>
-          </div>
-          <div class="drop">
-            <div class="content">
-              <h2>S'identifier</h2>
-              <form action="" onSubmit={HandleSubmit}>
-                <div class="inputBox">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={data.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div class="inputBox">
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={data.password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div class="inputBox">
-                  <button type="submit">Connexion</button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="btns">
-            {errorMessages ? (
-              <p className="errorMessages">{errorMessages}</p>
-            ) : (
-              <p>
-                Mot de passe <br />
-                oublié?
-              </p>
-            )}
-          </div>
-
-          <div href="#" class="btns signup">
-            <Link to="/Auth">Créer nouveau compte</Link>
-          </div>
+        <div href="#" className="btns signup">
+          <Link to="/Auth">Créer nouveau compte</Link>
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 

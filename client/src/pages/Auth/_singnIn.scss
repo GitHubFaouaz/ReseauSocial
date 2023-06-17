@@ -1,8 +1,4 @@
-#body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // min-height: 100vh;
+#bodySignIn {
   position: relative;
 }
 
@@ -16,49 +12,36 @@
   align-content: space-around;
   flex-wrap: wrap;
 
-  min-height: 130vh;
+  min-height: 100vh;
   filter: blur(150px);
 
-  .color:nth-child(1) {
-    background: rgb(212, 11, 231);
+  .ball {
     width: 250px;
     height: 250px;
     border-radius: 50%;
+  }
+  .color:nth-child(1) {
+    background: rgb(212, 11, 231);
     animation: animateColorBg 10s linear infinite;
   }
   .color:nth-child(2) {
     background: rgb(240, 115, 13);
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
     animation: animateColorBg 15s linear infinite;
   }
   .color:nth-child(3) {
     background: yellow;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
     animation: animateColorBg 25s linear infinite;
   }
   .color:nth-child(4) {
     background: rgb(255, 55, 0);
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
     animation: animateColorBg 30s linear infinite;
   }
   .color:nth-child(5) {
     background: lightcoral;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
     animation: animateColorBg 40s linear infinite;
   }
   .color:nth-child(6) {
     background: aqua;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
     animation: animateColorBg 50s linear infinite;
   }
 }
@@ -67,11 +50,11 @@
 
 .containerSignIn {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  // align-items: center;
-  .drop {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .signIn {
     position: relative;
     width: 350px;
     height: 350px;
@@ -139,19 +122,8 @@
             inset -2px -5px 10px rgba(255, 255, 255, 1),
             15px 15px 10px rgba(0, 0, 0, 0.05),
             15px 10px 15px rgba(0, 0, 0, 0.025);
-          /* autre style sans box-shadow: ; */
-          border-radius: 25px;
 
-          // &::before {
-          //   content: "";
-          //   position: absolute;
-          //   left: 50px;
-          //   transform: translateX(-50%);
-          //   width: 65px;
-          //   height: 5px;
-          //   background: rgba(255, 255, 255, 0.5);
-          //   border-radius: 5px;
-          // }
+          border-radius: 25px;
 
           input {
             border: none;
@@ -166,54 +138,9 @@
             width: 80px;
           }
 
-          /*    button {
-            // width: 80%;
-
-            color: #000000;
-            text-transform: uppercase;
-            font-size: 1rem;
-            cursor: pointer;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-
-            position: relative;
-            border-radius: 30px;
-            text-align: center;
-            padding: 9px 0px;
-            border: none;
-            outline: none;
-            transition: 0.5s;
-
-            &:hover::before {
-              background: radial-gradient(#000, #000000ab, #000000, $black);
-              box-shadow: 1px 2px 15px $white;
-              transition: 1s;
-            }
-
-            &::before {
-              content: "";
-              position: absolute;
-              left: -35px;
-              top: 0;
-              cursor: pointer;
-              width: 100%;
-              height: 100%;
-              border-radius: 30px;
-              padding-left: 70px;
-
-              background: radial-gradient(#0000, #000000ab, #000000, $white);
-              // transition: 1s;
-            }
-            // &:hover::before {
-            //   box-shadow: inset 1px 2px 15px $white; // autre style
-            // }
-          } */
           button {
-            // width: 80%;
-
-            color: #f1ecec;
+            color: $white;
             text-transform: uppercase;
-            font-size: 1rem;
             cursor: pointer;
             letter-spacing: 0.1em;
             font-weight: 500;
@@ -225,41 +152,32 @@
             border: none;
             outline: none;
             transition: 0.5s;
-            background: radial-gradient(#0000, #2a2929, #000, $white);
-            // &:hover::before {
-            //   background: radial-gradient(#000, #000000ab, #000000, $black);
-            //   box-shadow: 1px 2px 15px $white;
-            //   transition: 1s;
-            // }
+            background: radial-gradient(
+              rgba(255, 255, 255, 0.5),
+              #4b4b4b,
+              #000,
+              #fff
+            );
 
-            // &::before {
-            //   content: "";
-            //   position: absolute;
-            //   left: -35px;
-            //   top: 0;
-            //   cursor: pointer;
-            //   width: 100%;
-            //   height: 100%;
-            //   border-radius: 30px;
-            //   padding-left: 70px;
+            &:hover::before {
+              z-index: -1;
+              box-shadow: 0px 0px 0px 5px $black;
+              transition: 1s;
+            }
 
-            //   background: radial-gradient(#0000, #000000ab, #000000, $white);
-            //   // transition: 1s;
-            // }
-            // &::after {
-            //   content: "";
-            //   position: absolute;
-            //   left: -35px;
-            //   top: 0;
-            //   cursor: pointer;
-            //   width: 100%;
-            //   height: 100%;
-            //   border-radius: 30px;
-            //   padding-left: 70px;
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              cursor: pointer;
+              width: 100%;
+              height: 100%;
+              border-radius: 30px;
 
-            //   background: radial-gradient(#0000, #000000ab, #000000, $white);
-            //   // transition: 1s;
-            // }
+              background: radial-gradient(#0000, #000000ab, #000000, $white);
+              transition: 1s;
+            }
           }
         }
       }
@@ -340,8 +258,31 @@
 }
 
 @media (max-width: 768px) {
+  #bodySignIn {
+    .divColor {
+      .color:nth-child(1),
+      .color:nth-child(2),
+      .color:nth-child(3),
+      .color:nth-child(4) {
+        animation: none;
+      }
+      .color:nth-child(5),
+      .color:nth-child(6) {
+        display: none;
+      }
+    }
+  }
   .containerSignIn {
-    flex-direction: column;
-    // align-items: flex-start;
+    .signIn {
+      // width: 300px;
+      // height: 300px;
+    }
+    .btns {
+      bottom: -95px;
+      right: 210px;
+    }
+    .signup {
+      right: 108px;
+    }
   }
 }
