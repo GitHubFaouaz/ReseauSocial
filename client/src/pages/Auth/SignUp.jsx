@@ -181,7 +181,7 @@ function SignUp() {
                 {/* <input type="submit" value={"c"} /> */}
                 {/* </div> */}
                 <div className="square animationSquare">
-                  <Link to="/login">Vous n'avez pas de compte ?</Link>
+                  <Link to="/login">Vous avez déjà un compte ?</Link>
                 </div>
                 <div className="square animationSquare"></div>
 
