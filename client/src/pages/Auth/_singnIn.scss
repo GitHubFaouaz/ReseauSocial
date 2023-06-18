@@ -273,12 +273,24 @@
     }
   }
   .containerSignIn {
+    .signIn {
+      width: 300px;
+      height: 300px;
+      &::before {
+        top: 17px;
+        left: 48px;
+      }
+      &::after {
+        top: 62px;
+        left: 77px;
+      }
+    }
     .btns {
       bottom: -95px;
-      right: 210px;
+      right: 170px;
     }
     .signup {
-      right: 108px;
+      right: 80px;
     }
   }
 }
