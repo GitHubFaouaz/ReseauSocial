@@ -5,11 +5,14 @@ import BouttonSignUp from "../../component/utils/BouttonSignUp/BouttonSignUp";
 import { sign_Up } from "../../actions/AuthActions";
 import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleDot } from "@fortawesome/free-regular-svg-icons";
 
 function SignUp() {
   const [formSubmit, setFormSubmit] = useState(false); // sur true pour etre directement sur la page d'inscription
   // const [error, setError] = useState("");
   const errorRef = useRef("");
+  const lowerCaseRef = useRef(null);
   const dispatch = useDispatch();
   // const { error } = useSelector((state) => state.usersReducer.error);
   // const user = useSelector((state) => state.authReducer.authData);
@@ -33,13 +36,6 @@ function SignUp() {
   // Form Submission
   const HandleSubmit = async (event) => {
     event.preventDefault();
-    // const pseudoError = document.querySelector(".pseudoError");
-    // const emailError = document.querySelector(".emailError");
-    // const passwordError = document.querySelector(".passwordEerror");
-    // const passwordConfirmError = document.querySelector(
-    //   ".password-confirmError"
-    // );
-    // passwordConfirmError.innerHTML = ""; // pour reinitialiser
 
     const formData = event.currentTarget; // dans le event au debut  dans la console document.querySelector('form') c'ets la meme chose on recupere le formulaire
 
@@ -86,7 +82,22 @@ function SignUp() {
 
   //   }
   // };
+  function checkPassword(data) {
+    const lower = new RegExp("(?=.*[a-z])");
+    // const upper = new RegExp("(?=.*[A-Z])");
+    // const number = new RegExp("(?=.*[0-9])");
+    // const special = new RegExp("(?=.*[!@#\$%\^&\*])");
+    // const length = new RegExp("(?=.{8,})");
 
+    //Lower Case Validation
+    if (lower.test(data)) {
+      // on  test la data dont on recupere la valeur(this.value) avec la fonction checkPassword
+      // La méthode "test" de l'objet RegExp est utilisée pour vérifier si une correspondance est trouvée entre une expression régulière et une chaîne de caractères
+      lowerCaseRef.current.classList.add("valid"); // si lower est minuscule alors ajout la class valid
+    } else {
+      lowerCaseRef.current.classList.remove("valid"); // sinon efface
+    }
+  }
   return (
     <>
       {formSubmit ? ( // sur true
@@ -156,6 +167,7 @@ function SignUp() {
                     type="password"
                     required="required"
                     name="password"
+                    onChange={(e) => checkPassword(e.target.value)}
                     // value={data.password}
                     // onChange={handleChange}
                   />
@@ -183,7 +195,34 @@ function SignUp() {
                 <div className="square animationSquare">
                   <Link to="/login">Vous avez déjà un compte ?</Link>
                 </div>
-                <div className="square animationSquare"></div>
+                <div className="square animationSquare">
+                  <ul>
+                    <li id="lower">
+                      {lowerCaseRef ? (
+                        <FontAwesomeIcon icon={faCircleDot} />
+                      ) : (
+                        ""
+                      )}
+                      At least one lowercase character
+                    </li>
+                    <li id="upper">
+                      <FontAwesomeIcon icon={faCircleDot} />
+                      At least one uppercase character
+                    </li>
+                    <li id="number">
+                      <FontAwesomeIcon icon={faCircleDot} />
+                      At least one number
+                    </li>
+                    <li id="special">
+                      <FontAwesomeIcon icon={faCircleDot} />
+                      At least one special character
+                    </li>
+                    <li id="length">
+                      <FontAwesomeIcon icon={faCircleDot} />
+                      At least 8 characters
+                    </li>
+                  </ul>
+                </div>
 
                 <div className="square animationSquare ">
                   {/* {error !== "" && { error }} */}
