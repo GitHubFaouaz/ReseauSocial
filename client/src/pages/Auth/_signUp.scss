@@ -207,14 +207,14 @@
         ul li {
           list-style: none;
         }
-        // ul li::before {
-        //   // content: "\f192"; /*circle-dot*/
-        //   // font-family: fontAwesome; /*pour faire disparaitre le carré de fontAwesome */
-        //   width: 20px;
-        //   display: inline-flex;
-        // }
-        ul li i.valid /*s'affiche le check quand le id valid apparait */ {
-          color: #0f0;
+
+        ul li.valid {
+          i {
+            color: #0f0;
+          }
+          span {
+            color: grey;
+          }
         }
       }
       &:nth-child(10) {

@@ -6,32 +6,19 @@ import { sign_Up } from "../../actions/AuthActions";
 import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleDot } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 function SignUp() {
   const [formSubmit, setFormSubmit] = useState(false); // sur true pour etre directement sur la page d'inscription
   // const [error, setError] = useState("");
   const errorRef = useRef("");
   const lowerCaseRef = useRef(null);
+  const upperCaseRef = useRef(null);
+  const digitRef = useRef(null);
+  const specialCharRef = useRef(null);
+  const minLengthRef = useRef(null);
+
   const dispatch = useDispatch();
-  // const { error } = useSelector((state) => state.usersReducer.error);
-  // const user = useSelector((state) => state.authReducer.authData);
-  // console.log(error);
-
-  //  la data du formulaire
-  // const [data, setData] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   pseudo: "",
-  //   email: "",
-  //   password: "",
-  //   confirmpass: "",
-  // });
-
-  // Exactement, le name ici correspond à l'attribut name de l'élément HTML qui a déclenché l'événement, donc il peut être "name", "email" ou "message", selon l'élément sur lequel l'utilisateur a entré des informations
-  // const handleChange = (e) => {
-  //   setData({ ...data, [e.target.name]: e.target.value }); // il prend l'ensemble des valeur firsname Username password
-  // };
 
   // Form Submission
   const HandleSubmit = async (event) => {
@@ -40,7 +27,6 @@ function SignUp() {
     const formData = event.currentTarget; // dans le event au debut  dans la console document.querySelector('form') c'ets la meme chose on recupere le formulaire
 
     const valuesFormData = Object.fromEntries(new FormData(formData)); //La méthode Object.fromEntries() permet de transformer une liste de paires de clés/valeurs en un objet. Le constructeur FormData() crée un nouvel objet FormData.
-    // console.log(valuesFormData);
 
     useEffect(() => {
       dispatch(sign_Up(formData)).then((response) => {
@@ -84,10 +70,10 @@ function SignUp() {
   // };
   function checkPassword(data) {
     const lower = new RegExp("(?=.*[a-z])");
-    // const upper = new RegExp("(?=.*[A-Z])");
-    // const number = new RegExp("(?=.*[0-9])");
-    // const special = new RegExp("(?=.*[!@#\$%\^&\*])");
-    // const length = new RegExp("(?=.{8,})");
+    const upper = new RegExp("(?=.*[A-Z])");
+    const number = new RegExp("(?=.*[0-9])");
+    const special = new RegExp("(?=.*[!@#$%^&#*.;])");
+    const length = new RegExp("(?=.{8,})");
 
     //Lower Case Validation
     if (lower.test(data)) {
@@ -96,6 +82,31 @@ function SignUp() {
       lowerCaseRef.current.classList.add("valid"); // si lower est minuscule alors ajout la class valid
     } else {
       lowerCaseRef.current.classList.remove("valid"); // sinon efface
+    }
+    //Upper Case Validation
+    if (upper.test(data)) {
+      // La méthode test() vérifie s'il y a une correspondance entre un texte et une expression rationnelle. Elle retourne true en cas de succès et false dans le cas contraire.
+      upperCaseRef.current.classList.add("valid");
+    } else {
+      upperCaseRef.current.classList.remove("valid");
+    }
+    //Number Validation
+    if (number.test(data)) {
+      digitRef.current.classList.add("valid");
+    } else {
+      digitRef.current.classList.remove("valid");
+    }
+    //Special Charater Validation
+    if (special.test(data)) {
+      specialCharRef.current.classList.add("valid");
+    } else {
+      specialCharRef.current.classList.remove("valid");
+    }
+    //Password Minimum Length Validation
+    if (length.test(data)) {
+      minLengthRef.current.classList.add("valid");
+    } else {
+      minLengthRef.current.classList.remove("valid");
     }
   }
   return (
@@ -119,38 +130,15 @@ function SignUp() {
               <form className="form" onSubmit={HandleSubmit}>
                 <h2>S'inscrire</h2>
                 <div className="inputBox">
-                  <input
-                    type="text"
-                    required="required"
-                    name="firstname"
-                    // value={data.firstname}
-                    // onChange={handleChange}
-                  />
+                  <input type="text" required="required" name="firstname" />
                   <span>Nom</span>
                   <i></i>
                 </div>
                 <div className="inputBox">
-                  <input
-                    type="text"
-                    required="required"
-                    name="lastname"
-                    // value={data.lastname}
-                    // onChange={handleChange}
-                  />
+                  <input type="text" required="required" name="lastname" />
                   <span>Prenom</span>
                   <i></i>
                 </div>
-                {/* <div className="inputBox">
-                  <input
-                    type="text"
-                    required="required"
-                    name="pseudo"
-                    // value={data.pseudo}
-                    // onChange={handleChange}
-                  />
-                  <span>Pseudo</span>
-                  <i></i>
-                </div> */}
                 <div className="inputBox">
                   <input
                     type="text"
@@ -168,8 +156,6 @@ function SignUp() {
                     required="required"
                     name="password"
                     onChange={(e) => checkPassword(e.target.value)}
-                    // value={data.password}
-                    // onChange={handleChange}
                   />
                   <span>Mot de passe</span>
                   <i></i>
@@ -179,47 +165,50 @@ function SignUp() {
                     type="password"
                     required="required"
                     name="confirmpass"
-                    // value={data.confirmpass}
-                    // onChange={handleChange}
                   />
                   <span>Confirmez le mot de passe</span>
                   <i></i>
                 </div>
 
-                {/* <div className="square"> */}
                 <button className="square" type="submit" value={"submit"}>
                   <BouttonSignUp />
                 </button>
-                {/* <input type="submit" value={"c"} /> */}
-                {/* </div> */}
+
                 <div className="square animationSquare">
                   <Link to="/login">Vous avez déjà un compte ?</Link>
                 </div>
                 <div className="square animationSquare">
                   <ul>
-                    <li id="lower">
-                      {lowerCaseRef ? (
-                        <FontAwesomeIcon icon={faCircleDot} />
-                      ) : (
-                        ""
-                      )}
-                      At least one lowercase character
+                    <li ref={lowerCaseRef}>
+                      <i>
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                      </i>
+                      <span>1 caractère minuscule</span>
                     </li>
-                    <li id="upper">
-                      <FontAwesomeIcon icon={faCircleDot} />
-                      At least one uppercase character
+                    <li ref={upperCaseRef}>
+                      <i>
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                      </i>
+                      <span>1 caractère majuscule</span>
                     </li>
-                    <li id="number">
-                      <FontAwesomeIcon icon={faCircleDot} />
-                      At least one number
+                    <li ref={digitRef}>
+                      <i>
+                        {" "}
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                      </i>
+                      <span>1 chiffre</span>
                     </li>
-                    <li id="special">
-                      <FontAwesomeIcon icon={faCircleDot} />
-                      At least one special character
+                    <li ref={specialCharRef}>
+                      <i>
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                      </i>
+                      <span>1 caractère spécial</span>
                     </li>
-                    <li id="length">
-                      <FontAwesomeIcon icon={faCircleDot} />
-                      At least 8 characters
+                    <li ref={minLengthRef}>
+                      <i>
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                      </i>
+                      <span> 8 caractères</span>
                     </li>
                   </ul>
                 </div>
