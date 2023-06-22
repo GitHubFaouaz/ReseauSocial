@@ -7,7 +7,7 @@ import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-
+// import {checkPassword}from "../../component/utils/PasswordValidation/PasswordValidation"
 function SignUp() {
   const [formSubmit, setFormSubmit] = useState(false); // sur true pour etre directement sur la page d'inscription
   // const [error, setError] = useState("");
@@ -40,34 +40,9 @@ function SignUp() {
         }
       });
     }, [valuesFormData, formData]);
-    // if (valuesFormData.password !== valuesFormData.confirmpass) {
-    //   passwordConfirmError.innerHTML = "Les mots de passe ne correspondent pas";
-    // } else {
-    //   dispatch(sign_Up(valuesFormData)); //152
-
-    //   setFormSubmit(true);
-    // }
+  
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const pseudoError = document.querySelector(".pseudoError");
-  //   const emailError = document.querySelector(".emailError");
-  //   const passwordError = document.querySelector(".passwordEerror");
-  //   const passwordConfirmError = document.querySelector(
-  //     ".password-confirmError"
-  //   );
-  //   passwordConfirmError.innerHTML = ""; // pour reinitialiser
-
-  //   if (data.password !== data.confirmpass) {
-  //     passwordConfirmError.innerHTML = "Les mots de passe ne correspondent pas";
-  //   } else {
-  //     dispatch(sign_Up(data)); //152
-  //     // console.log(data);
-  //     setFormSubmit(true);
-
-  //   }
-  // };
   function checkPassword(data) {
     const lower = new RegExp("(?=.*[a-z])");
     const upper = new RegExp("(?=.*[A-Z])");

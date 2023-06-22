@@ -187,6 +187,7 @@
         cursor: pointer;
         z-index: 2;
         text-align: center;
+        padding: 2px;
 
         --i: 1;
         a {
@@ -197,20 +198,30 @@
       // validation form
       &:nth-child(9) {
         position: absolute;
-        top: -50px;
+        top: 70px;
         right: -60px;
-        width: 150px;
+        width: 120px;
         // height: 100px;
-        text-align: center;
+        // text-align: center;
+        padding: 3px 5px;
 
         --i: 0;
         ul li {
+          display: flex;
           list-style: none;
+          i {
+            opacity: 0;
+            visibility: hidden;
+          }
         }
 
         ul li.valid {
           i {
-            color: #0f0;
+            transition: 1s;
+            color: $orange;
+            opacity: 1;
+            margin-right: 10px;
+            visibility: inherit;
           }
           span {
             color: grey;
@@ -278,8 +289,8 @@
         &:nth-child(10) {
           position: absolute;
           bottom: -80px;
-          right: 165px;
-          left: initial;
+          // right: 0px;
+          left: 0;
         }
         &:nth-child(11) {
           position: absolute;
