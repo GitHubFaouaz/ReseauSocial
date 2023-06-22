@@ -27,6 +27,7 @@ function SignUp() {
     const formData = event.currentTarget; // dans le event au debut  dans la console document.querySelector('form') c'ets la meme chose on recupere le formulaire
 
     const valuesFormData = Object.fromEntries(new FormData(formData)); //La méthode Object.fromEntries() permet de transformer une liste de paires de clés/valeurs en un objet. Le constructeur FormData() crée un nouvel objet FormData.
+    console.log(formData);
 
     useEffect(() => {
       dispatch(sign_Up(formData)).then((response) => {
@@ -40,7 +41,6 @@ function SignUp() {
         }
       });
     }, [valuesFormData, formData]);
-  
   };
 
   function checkPassword(data) {
@@ -158,32 +158,32 @@ function SignUp() {
                       <i>
                         <FontAwesomeIcon icon={faThumbsUp} />
                       </i>
-                      <span>1 caractère minuscule</span>
+                      <span>une minuscule</span>
                     </li>
                     <li ref={upperCaseRef}>
                       <i>
                         <FontAwesomeIcon icon={faThumbsUp} />
                       </i>
-                      <span>1 caractère majuscule</span>
+                      <span>une majuscule</span>
                     </li>
                     <li ref={digitRef}>
                       <i>
                         {" "}
                         <FontAwesomeIcon icon={faThumbsUp} />
                       </i>
-                      <span>1 chiffre</span>
+                      <span>un chiffre</span>
                     </li>
                     <li ref={specialCharRef}>
                       <i>
                         <FontAwesomeIcon icon={faThumbsUp} />
                       </i>
-                      <span>1 caractère spécial</span>
+                      <span>un caractère spécial</span>
                     </li>
                     <li ref={minLengthRef}>
                       <i>
                         <FontAwesomeIcon icon={faThumbsUp} />
                       </i>
-                      <span> 8 caractères</span>
+                      <span>8 caractères</span>
                     </li>
                   </ul>
                 </div>

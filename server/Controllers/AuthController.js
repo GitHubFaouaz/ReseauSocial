@@ -17,20 +17,20 @@ export const registerUser = async (req, res) => {
   try {
     // const user = await UserModel.create({ pseudo, email, password }); // avec la function create  save est inclut
 
-    const userExiste = await UserModel.findOne({ pseudo: newUser.pseudo });
+    // const userExiste = await UserModel.findOne({ pseudo: newUser.pseudo });
 
-    if (userExiste)
-      return res.status(400).json({ message: "Ce pseudo existe déjà" });
-    else {
-      const user = await newUser.save();
+    // if (userExiste)
+    //   return res.status(400).json({ message: "Ce pseudo existe déjà" });
+    // else {
+    const user = await newUser.save();
 
-      const token = jwt.sign(
-        { pseudo: user.pseudo, id: user._id },
-        process.env.JWTKEY,
-        { expiresIn: "1h" }
-      );
-      res.status(201).json({ user: user, token: token });
-    }
+    const token = jwt.sign(
+      { pseudo: user.pseudo, id: user._id },
+      process.env.JWTKEY,
+      { expiresIn: "1h" }
+    );
+    res.status(201).json({ user: user, token: token });
+    // }
   } catch (err) {
     res.status(400).send({ err });
   }

@@ -12,7 +12,7 @@ export const sign_Up = (formData) => async (dispatch) => {
 };
 
 export const logIn = (formData) => async (dispatch) => {
-  dispatch({ type: "Auth_Start" }); // le nom du dispatch dans le store
+  dispatch({ type: "Auth_Start" });
   try {
     const { data } = await AuthApi.logIn(formData);
     dispatch({ type: "Auth_Succes", data: data });
