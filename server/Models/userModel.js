@@ -18,7 +18,6 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       require: true,
-      // validate: [isEmail],
       lowercase: true,
       trim: true, //"  hello", ou "hello ", ou "  hello ",
       unique: true,
@@ -29,11 +28,9 @@ const userSchema = mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      // default: "./public/images/defaultProfil.png",
     },
     coverPicture: {
       type: String,
-      // default: "../public/images/defaultCover.jpg",
     },
     // about: String, //bio
     relationship: String,

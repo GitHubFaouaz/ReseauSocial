@@ -7,7 +7,7 @@ import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-// import {checkPassword}from "../../component/utils/PasswordValidation/PasswordValidation"
+
 function SignUp() {
   const [formSubmit, setFormSubmit] = useState(false); // sur true pour etre directement sur la page d'inscription
   // const [error, setError] = useState("");
@@ -19,28 +19,26 @@ function SignUp() {
   const minLengthRef = useRef(null);
 
   const dispatch = useDispatch();
-
+  // console.log(e);
   // Form Submission
   const HandleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = event.currentTarget; // dans le event au debut  dans la console document.querySelector('form') c'ets la meme chose on recupere le formulaire
-
+    // const name = formData.firstname.value;
     const valuesFormData = Object.fromEntries(new FormData(formData)); //La méthode Object.fromEntries() permet de transformer une liste de paires de clés/valeurs en un objet. Le constructeur FormData() crée un nouvel objet FormData.
-    console.log(formData);
+    console.log(valuesFormData);
+    // console.log(valuesFormData.firstname);
+    dispatch(sign_Up(formData)).then((response) => {
+      if (response.type === "Auth_Fail") {
+        // setError(response.error);
+        errorRef.current = response.error;
+      } else {
+        dispatch(sign_Up(valuesFormData)); //152
 
-    useEffect(() => {
-      dispatch(sign_Up(formData)).then((response) => {
-        if (response.type === "Auth_Fail") {
-          // setError(response.error);
-          errorRef.current = response.error;
-        } else {
-          dispatch(sign_Up(valuesFormData)); //152
-
-          setFormSubmit(true);
-        }
-      });
-    }, [valuesFormData, formData]);
+        setFormSubmit(true);
+      }
+    });
   };
 
   function checkPassword(data) {
