@@ -25,7 +25,7 @@ export const getUser = async (req, res) => {
       // sinon on envoi les informations concernant le id
       const user = await UserModel.findById(id);
       res.status(200).json(user);
-      // res.status(200).json(user);  ou res.status(200).json(user._doc) res.status(200).json(user._doc.pseudo) res.status(200).json(user.pseudo);
+      // res.status(200).json(user);  ou res.status(200).json(user._doc) res.status(200).json(user._doc.fistname) res.status(200).json(user.fistname);
     }
   } catch (error) {
     res.status(500).json(error);
@@ -48,12 +48,10 @@ export const updateUser = async (req, res) => {
       const user = await UserModel.findByIdAndUpdate(id, req.body, {
         new: true, //Vous devez définir l' new option pour true renvoyer le document après avoir update été appliqué.
       });
-      //on enregistre le pseudo et le id  avec le token
-      const token = jwt.sign(
-        { pseudo: user.pseudo, id: user._id },
-        process.env.JWTKEY,
-        { expiresIn: "1" }
-      );
+      //on enregistre le fistname et le id  avec le token
+      const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
+        expiresIn: "1",
+      });
       res.status(200).json({ user, token });
     } catch (error) {
       res.status(500).json(error);
@@ -97,9 +95,11 @@ export const followUser = async (req, res) => {
         //
         await followUser.updateOne({ $push: { followers: _id } }); // on met le _id dans le tableau du user(req.params.id)
         await followingUser.updateOne({ $push: { following: paramsId } }); // aussi on met le id(req.params.id) du user dans le tableau de celui qui est suivit
-        res.status(200).json(`${followingUser.pseudo} est suivi`); // User followed!
+        res.status(200).json(`${followingUser.fistname} est suivi`); // User followed!
       } else {
-        res.status(403).json(`${followingUser.pseudo} est déjà suivi par vous`); //User is Already followed by you
+        res
+          .status(403)
+          .json(`${followingUser.fistname} est déjà suivi par vous`); //User is Already followed by you
       }
     } catch (error) {
       res.status(500).json(error);
@@ -123,9 +123,11 @@ export const UnFollowUser = async (req, res) => {
       if (followUser.followers.includes(_id)) {
         await followUser.updateOne({ $pull: { followers: _id } });
         await followingUser.updateOne({ $pull: { following: paramsId } });
-        res.status(200).json(`${followingUser.pseudo} n'est plus suivi!`);
+        res.status(200).json(`${followingUser.fistname} n'est plus suivi!`);
       } else {
-        res.status(403).json(`${followingUser.pseudo}n'est pas suivi par vous`);
+        res
+          .status(403)
+          .json(`${followingUser.fistname}n'est pas suivi par vous`);
       }
     } catch (error) {
       res.status(500).json(error);

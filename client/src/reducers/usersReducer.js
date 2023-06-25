@@ -1,5 +1,5 @@
 // const initialState = {}; //il est vide au debuts
-const usersReducer = (state = { usersData:null  }, action) => {
+/* const usersReducer = (state = { usersData:null  }, action) => {
   switch (action.type) {
     case "user_start":
       return { ...state }; // loading est true pour le chargement si necessaire
@@ -18,4 +18,4 @@ const usersReducer = (state = { usersData:null  }, action) => {
   }
 };
 
-export default usersReducer;
+export default usersReducer; */

@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema(
   {
-    // pseudo: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
     firstname: {
       type: String,
       required: true,
