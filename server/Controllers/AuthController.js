@@ -5,11 +5,11 @@ import jwt from "jsonwebtoken";
 //------------------------------------------- Registering a new User
 export const registerUser = async (req, res) => {
   // on va hasher le mots de passe avec bcrypt
-  // const salt = await bcrypt.genSalt(10);
-  // const hashedPass = await bcrypt.hash(req.body.password, salt);
-  // req.body.password = hashedPass;
-  // console.log(req.body.password);
-
+  const salt = await bcrypt.genSalt(10);
+  // console.log("avant" + req.body.password);
+  const hashedPass = await bcrypt.hash(req.body.password, salt);
+  req.body.password = hashedPass;
+  // console.log(`apres  ${req.body.password}`);
   // const newUser = new UserModel({ ...req.body });
 
   const newUser = new UserModel(req.body);
