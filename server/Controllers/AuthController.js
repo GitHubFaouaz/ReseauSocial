@@ -15,6 +15,7 @@ export const registerUser = async (req, res) => {
   const newUser = new UserModel(req.body);
 
   try {
+    // condition email a faire
     const user = await newUser.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
@@ -23,7 +24,8 @@ export const registerUser = async (req, res) => {
     res.status(201).json({ user: user, token: token });
     // }
   } catch (err) {
-    res.status(400).send({ err });
+    res.status(400).send({ error: err.message });
+    console.log(err.message);
   }
 };
 
