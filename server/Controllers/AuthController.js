@@ -13,16 +13,19 @@ export const registerUser = async (req, res) => {
   // const newUser = new UserModel({ ...req.body });
 
   const newUser = new UserModel(req.body);
-
+  const { email } = req.body;
   try {
-    // condition email a faire
+    // on cherche si le email est deja utilisé
+    const userEmail = await UserModel.findOne({ email: email });
+    if (userEmail)
+      return res.status(400).json({ message: "le email est déja utilisé" });
+
     const user = await newUser.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
       expiresIn: "1h",
     });
     res.status(201).json({ user: user, token: token });
-    // }
   } catch (err) {
     res.status(400).send({ error: err.message });
     console.log(err.message);

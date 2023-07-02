@@ -19,6 +19,7 @@ export const logIn = (formData) => async (dispatch) => {
   } catch (error) {
     // console.log(error);
     dispatch({ type: "Auth_Fail", error: error.response.data });
+    // dispatch({ type: "Auth_Fail", error: error.response.message });
   }
 };
 

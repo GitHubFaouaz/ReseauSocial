@@ -58,15 +58,15 @@ function SignUp() {
     const valuesFormData = Object.fromEntries(new FormData(formData));
 
     if (valuesFormData.password === valuesFormData.confirmPassword) {
-      dispatch(sign_Up(valuesFormData)).then((response) => {
-        if (response.type === "Auth_Fail") {
-          setError(response.error);
-          console.log(error);
-        } else {
-          dispatch(sign_Up(valuesFormData));
-          setFormSubmit(true);
-        }
-      });
+      // dispatch(sign_Up(valuesFormData)).then((response) => {
+      //   if (response.type === "Auth_Fail") {
+      //     setError(response.error);
+      //     console.log(response.error);
+      // } else {
+      dispatch(sign_Up(valuesFormData));
+      setFormSubmit(true);
+      //   }
+      // });
     } else {
       setError("La confirmation du mot de passe est incorrect");
     }
