@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
     // on cherche si le email est deja utilisé
     const userEmail = await UserModel.findOne({ email: email });
     if (userEmail)
-      return res.status(400).json({ message: "le email est déja utilisé" });
+      return res.status(400).json({ message: "Ce email est déja utilisé" });
 
     const user = await newUser.save();
 
