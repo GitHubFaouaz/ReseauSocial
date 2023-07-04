@@ -14,12 +14,12 @@ export const registerUser = async (req, res) => {
 
   const newUser = new UserModel(req.body);
   const { email } = req.body;
-  try {
-    // on cherche si le email est deja utilisé
-    const userEmail = await UserModel.findOne({ email: email });
-    if (userEmail)
-      return res.status(400).json({ message: "Ce email est déja utilisé" });
 
+  try {
+    const userEmail = await UserModel.findOne({ email: email });
+    // on cherche si le email est deja utilisé
+    if (userEmail) 
+    return res.status(400).json({ message: "Ce email est déja utilisé" });
     const user = await newUser.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
@@ -27,11 +27,31 @@ export const registerUser = async (req, res) => {
     });
     res.status(201).json({ user: user, token: token });
   } catch (err) {
-    res.status(400).send({ error: err.message });
+    res.status(500).send({ error: err.message });
     console.log(err.message);
   }
-};
+   }
 
+
+//   if (userEmail) 
+//   // on cherche si le email est deja utilisé
+//     return res.status(400).json({ message: "Ce email est déja utilisé" });
+//    else {
+//       try {
+//     const user = await newUser.save();
+
+//     const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
+//       expiresIn: "1h",
+//     });
+//     res.status(201).json({ user: user, token: token });
+//   } catch (err) {
+//     // res.status(400).send({ error: err.message });
+//     return res.status(400).json({ message: "Ce email est déja utilisé" });
+//     console.log(err.message);
+//   }
+//    }
+
+// };
 //-------------------------------------- login User
 
 export const loginUser = async (req, res) => {

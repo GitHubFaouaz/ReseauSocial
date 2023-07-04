@@ -10,7 +10,7 @@ import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import checkPassword from "../../component/utils/CheckPassword/CheckPassword";
 
 function SignUp() {
-  const [formSubmit, setFormSubmit] = useState(false); // sur true pour etre directement sur la page d'inscription
+  const [formSubmit, setFormSubmit] = useState(true); // sur true pour etre directement sur la page d'inscription
   const [error, setError] = useState("");
   const lowerCaseRef = useRef(null);
   const upperCaseRef = useRef(null);
@@ -21,25 +21,60 @@ function SignUp() {
   const errorReduce = useSelector((state) => state.authReducer.error);
 
   
-  const HandleSubmit = async (event) => {
+ /*  const HandleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = event.currentTarget;
 
     const valuesFormData = Object.fromEntries(new FormData(formData));
-
+    
     if (valuesFormData.password === valuesFormData.confirmPassword) {
-      // dispatch(sign_Up(valuesFormData));
+      dispatch(sign_Up(valuesFormData));
        if(errorReduce){
         setError(errorReduce) 
          console.log(errorReduce);
+        //  setFormSubmit(true);
        } else{
         dispatch(sign_Up(valuesFormData));
-      setFormSubmit(true);
+      setFormSubmit(false);
        }
 
     } else {
       setError("La confirmation du mot de passe est incorrect");
+    }
+  }; */
+  const HandleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = event.currentTarget;
+  
+    const valuesFormData = Object.fromEntries(new FormData(formData));
+  
+    if (valuesFormData.password === valuesFormData.confirmPassword) {
+      const passwordValidation = checkPassword(
+        valuesFormData.password,
+        lowerCaseRef,
+        upperCaseRef,
+        digitRef,
+        specialCharRef,
+        minLengthRef
+      );
+  
+      if (passwordValidation && passwordValidation.isValid) {
+        dispatch(sign_Up(valuesFormData));
+        if (errorReduce) {
+          setError(errorReduce);
+          console.log(errorReduce);
+        } else {
+          setFormSubmit(false);
+        }
+      } else {
+        const errorMessage = passwordValidation ? passwordValidation.errorMessage : "Validation du mot de passe échouée";
+        setError(errorMessage);
+      }
+    } else {
+      setError("La confirmation du mot de passe est incorrect");
+
     }
   };
   const resetError = () => {
@@ -48,9 +83,7 @@ function SignUp() {
 
   return (
     <>
-      {formSubmit ? ( // sur true
-        <SignIn />
-      ) : (
+      {formSubmit ?  (
         <div className="auth">
           <div className="colorBg"></div>
           <div className="colorBg"></div>
@@ -77,7 +110,7 @@ function SignUp() {
                   <i></i>
                 </div>
                 <div className="inputBox">
-                  <input type="text" required="required" name="email" />
+                  <input type="text" required="required" name="email" onChange={()=> setError('') } />
                   <span>Email</span>
                   <i></i>
                 </div>
@@ -163,7 +196,9 @@ function SignUp() {
             </div>
           </div>
         </div>
-      )}
+      ):(
+      <SignIn />
+    ) }
     </>
   );
 }
