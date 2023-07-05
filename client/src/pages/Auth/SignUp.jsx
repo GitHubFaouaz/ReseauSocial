@@ -19,64 +19,41 @@ function SignUp() {
   const minLengthRef = useRef(null);
   const dispatch = useDispatch();
   const errorReduce = useSelector((state) => state.authReducer.error);
-
+  console.log(lowerCaseRef.current)
   
- /*  const HandleSubmit = async (event) => {
+  const HandleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = event.currentTarget;
 
     const valuesFormData = Object.fromEntries(new FormData(formData));
     
-    if (valuesFormData.password === valuesFormData.confirmPassword) {
-      dispatch(sign_Up(valuesFormData));
+    // if(lowerCaseRef.current.classList.contains('valid')&& ...){ 
+      // ref.current fait référence à l'élément DOM réel correspondant à cette référence.
+      // ref.current === input du dom par exemple dont le useref lowerCaseRef est lié    
+     if ([lowerCaseRef, upperCaseRef, digitRef, specialCharRef, minLengthRef].every(ref => ref.current?.classList.contains('valid'))) {
+     if (valuesFormData.password === valuesFormData.confirmPassword) {
+        dispatch(sign_Up(valuesFormData));
        if(errorReduce){
         setError(errorReduce) 
          console.log(errorReduce);
         //  setFormSubmit(true);
        } else{
         dispatch(sign_Up(valuesFormData));
-      setFormSubmit(false);
+        setFormSubmit(false);
        }
-
-    } else {
-      setError("La confirmation du mot de passe est incorrect");
-    }
-  }; */
-  const HandleSubmit = async (event) => {
-    event.preventDefault();
-  
-    const formData = event.currentTarget;
-  
-    const valuesFormData = Object.fromEntries(new FormData(formData));
-  
-    if (valuesFormData.password === valuesFormData.confirmPassword) {
-      const passwordValidation = checkPassword(
-        valuesFormData.password,
-        lowerCaseRef,
-        upperCaseRef,
-        digitRef,
-        specialCharRef,
-        minLengthRef
-      );
-  
-      if (passwordValidation && passwordValidation.isValid) {
-        dispatch(sign_Up(valuesFormData));
-        if (errorReduce) {
-          setError(errorReduce);
-          console.log(errorReduce);
-        } else {
-          setFormSubmit(false);
+        }else {
+          setError("Les mots de passe ne correspondent pas");
         }
-      } else {
-        const errorMessage = passwordValidation ? passwordValidation.errorMessage : "Validation du mot de passe échouée";
-        setError(errorMessage);
-      }
-    } else {
-      setError("La confirmation du mot de passe est incorrect");
+     
 
+    } else {
+ 
+      // console.log(' Les conditions de validation du mot de passe ne sont pas valides ')
+      setError(' Les conditions de validation du mot de passe ne sont pas valides ')
     }
   };
+
   const resetError = () => {
     setError(null);
   };

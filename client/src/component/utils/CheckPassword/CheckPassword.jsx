@@ -18,6 +18,7 @@ function checkPassword(
     // on  test la data dont on recupere la valeur(this.value) avec la fonction checkPassword
     // La méthode "test" de l'objet RegExp est utilisée pour vérifier si une correspondance est trouvée entre une expression régulière et une chaîne de caractères
     lowerCaseRef.current.classList.add("valid"); // si lower est minuscule alors ajout la class valid
+    // current(cible lelement) === input du dom par exemple dont le useref lowerCaseRef est lié
   } else {
     lowerCaseRef.current.classList.remove("valid"); // sinon efface
   }
@@ -49,3 +50,10 @@ function checkPassword(
 }
 
 export default checkPassword;
+
+// const myRef = useRef(null);
+
+// // Utilisation de la référence sur un élément
+// <input ref={myRef} />
+// Dans cet exemple, myRef.current fera référence à l'élément DOM <input>.
+// vous pouvez accéder à la valeur de l'élément avec ref.current.value ou ajouter/retirer des classes avec ref.current.classList.add() ou ref.current.classList.remove().
