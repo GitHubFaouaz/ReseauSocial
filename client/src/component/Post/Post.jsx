@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
-  const [likes, setLikes] = useState(data.likes.length); // las listes des likes
+  const [likes, setLikes] = useState(data.likes.length); // la listes des likes
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   //manipulation des likes
   const handleLike = () => {

@@ -86,7 +86,7 @@ const InfoCard = () => {
           <b>Vit à </b>
           {/*L'élément HTML <b> permet d'attirer l'attention du lecteur sur un contenu qui n'a pas, pour autant, d'importance significative. Anciennement utilisé pour mettre le texte en gras */}
         </span>
-        <span>{profileUser.livesin}</span>
+        <span>{profileUser.livesIn}</span>
       </div>
       <div className="info">
         <span>
