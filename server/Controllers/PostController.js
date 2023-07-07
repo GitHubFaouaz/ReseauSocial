@@ -67,13 +67,15 @@ export const likePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
   try {
-    const post = await PostModel.findById(id);
-    if (post.likes.includes(userId)) {
+    const post = await PostModel.findById(id); // on trouve le post grace au id du post 
+    if (post.likes.includes(userId)) {   //si l'utilisateur dans le tableau des likes on l'enlève 
       await post.updateOne({ $pull: { likes: userId } });
       res.status(200).json("Message détesté");
+      // res.status(200).json({ message: "Message détesté", likes: post.likes });
     } else {
-      await post.updateOne({ $push: { likes: userId } });
+      await post.updateOne({ $push: { likes: userId } }); // sinon on on met son id dans le tableau des likes 
       res.status(200).json("Message aimé");
+      // res.status(200).json({ message: "Message aimé", likes: post.likes });
     }
   } catch (error) {
     res.status(500).json(error);
