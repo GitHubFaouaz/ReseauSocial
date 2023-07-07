@@ -26,9 +26,6 @@
   }
   .imgProfile {
     position: absolute;
-    // top: 65%;
-    // left: 0%;
-    // transform: translate(10%, -100%);
     top: 95%;
     left: 0%;
     transform: translate(0%, -100%);
@@ -37,8 +34,7 @@
     border-radius: 50%;
     border: 10px solid $blackLight;
     overflow: hidden;
-    // box-shadow: 0px 0px 0px 2px #000000, 0px 0px 0px 3px #02d6dd,
-    //   0px 0px 0px 4px #000000, 0px 0px 20px 0px #000000;
+    transition: 1s;
 
     img {
       width: 130px;
@@ -55,7 +51,7 @@
     border-radius: 10px;
     background: repeating-radial-gradient(black, transparent 5px);
     padding: 10px;
-
+    transition: 1s;
     .details {
       text-align: center;
       width: 95%;
@@ -258,4 +254,22 @@
       }
     }
   }
+}
+
+@media (max-width:991px) {
+  .cardProfilPage {
+    .imgProfile {
+    
+      top: 88%;
+      left: -2%;
+}
+.contentData {
+ 
+  width: 100%;
+
+}
+   
+ 
+  }
+  
 }

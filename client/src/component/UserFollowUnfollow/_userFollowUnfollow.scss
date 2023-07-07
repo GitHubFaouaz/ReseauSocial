@@ -3,8 +3,8 @@
   // justify-content: space-between;
   align-items: center;
   max-width: 400px;
-  gap: 20px;
-
+  gap: 3px;
+  transition: 1s;
   .followerImage {
     width: 3.2rem;
     height: 3.2rem;
@@ -27,8 +27,9 @@
 
   .fc-button {
     height: 2rem;
-    padding-left: 20px;
-    padding-right: 20px;
+
+    padding: 2px 2px;
+    width: 100px;
     transition: 0.5s;
     border-radius: 5px;
     border: 2px solid $black;
@@ -47,8 +48,33 @@
 
   .UnfollowButton {
     color: $blackLight;
-    // box-shadow: $box-shadow;
     cursor: pointer;
     background: transparent;
+  }
+}
+
+@media (max-width: 1149px) {
+  .follower {
+    display: flex;
+   .fc-button {
+ 
+      padding: 0px 1px;
+      width: 65px;
+}
+  
+   
+  }
+}
+@media (max-width: 991px) {
+  .follower {
+    display: flex;
+    flex-direction: column;
+   .fc-button {
+ 
+     
+      width: 100px;
+}
+  
+   
   }
 }
