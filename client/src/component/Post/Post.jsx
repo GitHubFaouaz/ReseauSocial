@@ -20,7 +20,7 @@ const Post = ({ data }) => {
     likePost(data._id, user._id);
     setLiked((prev) => !prev); // fais linverse de false a true ou inversement
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1); //
-    dispatch(updateLikeDislike(data._id,user._id));
+    // dispatch(updateLikeDislike(data._id,user._id));
   };
   // const handleLike = () => {
   //   const updatedLiked = !liked; // Nouvelle valeur du liked
