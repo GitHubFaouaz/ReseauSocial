@@ -1,34 +1,19 @@
 import React from 'react';
 
-const InfoWorld = () => {
-  const axios = require('axios');
-  
-  // Appel à l'API Eventbrite pour récupérer les événements
-  // axios.get('https://www.eventbriteapi.com/v3/events', {
-  axios.get('https://www.eventbriteapi.com/v3/events/faouaz', {
-    headers: {
-      // 'Authorization': 'Bearer VOTRE_JETON_D'ACCÈS' 
-      // Remplacez VOTRE_JETON_D'ACCÈS par votre jeton d'accès Eventbrite
-    },
-    params: {
-      'organizer.id': 'VOTRE_ID_ORGANISATEUR' // Remplacez VOTRE_ID_ORGANISATEUR par l'ID de l'organisateur dont vous souhaitez récupérer les événements
-    }
-  })
-    .then(response => {
-      // Traitement des données de réponse
-      const events = response.data.events;
-      console.log(events);
-    })
-    .catch(error => {
-      // Gestion des erreurs
-      console.error(error);
-    });
+// const InfoWorld = () => {
+//     //  fetch('https://sortiraujourdhui.fr/api/?u=Faouaz&k=e607f5ff4b1fe57bdfd1c552b3add021' { method: 'GET' })
+//     //   .then((response) => response.json())
+//     //   .then((data) => {
+//     //     console.log(data)
+//     //   })
+//     //    .catch((error) => { console.log('erreur' + error)})
+     
 
-  return (
-    <div>
-          
-    </div>
-  );
-};
+//   return (
+//     <div>
+//          <p>s</p>  
+//     </div>
+//   );
+// };
 
-export default InfoWorld;
+// export default InfoWorld;

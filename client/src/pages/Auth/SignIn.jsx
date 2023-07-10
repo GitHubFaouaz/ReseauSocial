@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../actions/AuthActions";
 import { useEffect } from "react";
 
-function SignIn() {
+function SignIn(event) {
   const error = useSelector((state) => state.authReducer.error);
   const [errorMessages, setErrorMessage] = useState("");
   console.log(error);
@@ -22,19 +22,39 @@ function SignIn() {
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value }); // il prend l'ensemble des valeur firsname Username password .... en meme temps au lieu de faire 1 par 1 Username"Username
   };
-  // console.log(data);
+  console.log(data);
+  // pour que le state soit a jour sans attendre le prochain render pour afficher lerreur 
   useEffect(() => {
     if (error) {
       setErrorMessage(error);
     }
   }, [error]);
-  const HandleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(logIn(data));
+ 
+  const HandleSubmit = (e) => {  
+
+    
+      e.preventDefault();
+
+     dispatch(logIn(data));
+    if (error) {
+          setErrorMessage(error);
+        }else{
+
+      dispatch(logIn(data));
+        }
+
+   
+
+
+  };
+  
+  const resetError = () => {
+    setErrorMessage(null);
   };
 
+
   return (
-    // <div>
+
     <div id="bodySignIn">
       <div className="divColor">
         <div className="color ball"></div>
@@ -59,7 +79,7 @@ function SignIn() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  value={data.email}
+          
                   onChange={handleChange}
                 />
               </div>
@@ -68,7 +88,8 @@ function SignIn() {
                   type="password"
                   name="password"
                   placeholder="password"
-                  value={data.password}
+                
+                  // onChange={(e)=>{handleChange(e) ; resetError()} }
                   onChange={handleChange}
                 />
               </div>
@@ -79,14 +100,16 @@ function SignIn() {
           </div>
         </div>
         <div className="btns">
-          {errorMessages ? (
+          {/* {errorMessages ? (
             <p className="errorMessages">{errorMessages}</p>
           ) : (
             <p>
               Mot de passe <br />
               oublié?
             </p>
-          )}
+          )} */}
+          {errorMessages ? <p className="errorMessages">{errorMessages}</p> : <p> Mot de passe <br />oublié?</p>   
+          }
         </div>
 
         <div href="#" className="btns signup">
@@ -94,7 +117,7 @@ function SignIn() {
         </div>
       </div>
     </div>
-    // </div>
+
   );
 }
 

@@ -19,7 +19,7 @@ function SignUp() {
   const minLengthRef = useRef(null);
   const dispatch = useDispatch();
   const errorReduce = useSelector((state) => state.authReducer.error);
-  console.log(lowerCaseRef.current)
+  // console.log(lowerCaseRef.current)
   
   const HandleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ function SignUp() {
         dispatch(sign_Up(valuesFormData));
        if(errorReduce){
         setError(errorReduce) 
-         console.log(errorReduce);
+        //  console.log(errorReduce);
         //  setFormSubmit(true);
        } else{
         dispatch(sign_Up(valuesFormData));
