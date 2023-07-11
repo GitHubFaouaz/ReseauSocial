@@ -33,25 +33,7 @@ export const registerUser = async (req, res) => {
    }
 
 
-//   if (userEmail) 
-//   // on cherche si le email est deja utilisé
-//     return res.status(400).json({ message: "Ce email est déja utilisé" });
-//    else {
-//       try {
-//     const user = await newUser.save();
 
-//     const token = jwt.sign({ id: user._id }, process.env.JWTKEY, {
-//       expiresIn: "1h",
-//     });
-//     res.status(201).json({ user: user, token: token });
-//   } catch (err) {
-//     // res.status(400).send({ error: err.message });
-//     return res.status(400).json({ message: "Ce email est déja utilisé" });
-//     console.log(err.message);
-//   }
-//    }
-
-// };
 //-------------------------------------- login User
 
 export const loginUser = async (req, res) => {

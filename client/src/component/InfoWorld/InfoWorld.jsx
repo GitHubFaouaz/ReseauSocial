@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
+import {infoWorldApi} from '../../api/PostsRequests'
+const InfoWorld = () => {
+  const [data, setData] = useState(null);
 
-// const InfoWorld = () => {
-//     //  fetch('https://sortiraujourdhui.fr/api/?u=Faouaz&k=e607f5ff4b1fe57bdfd1c552b3add021' { method: 'GET' })
-//     //   .then((response) => response.json())
-//     //   .then((data) => {
-//     //     console.log(data)
-//     //   })
-//     //    .catch((error) => { console.log('erreur' + error)})
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await infoWorldApi();
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
      
 
-//   return (
-//     <div>
-//          <p>s</p>  
-//     </div>
-//   );
-// };
+  return (
+    <div>
+       {/* {data ? (
+      <p>{data}</p>
+    ) : (
+      <p>Loading...</p>
+    )}  */}
+    </div>
+  );
+};
 
-// export default InfoWorld;
+export default InfoWorld;

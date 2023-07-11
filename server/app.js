@@ -10,24 +10,12 @@ import authRoutes from "./routers/AuthRoute.js";
 import userRoutes from "./routers/UserRoute.js";
 import PostRoute from "./routers/PostRoute.js";
 import UploadRoute from "./routers/UploadRoute.js";
+// import infoWorldApi from "./routers/InfoWorldApi.js"
 
 const app = express();
 // dotenv.config();
 
 app.use(cors());
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-//   );
-//   next();
-// });
 
 // permet de voir les requettes Get ,Post sur le terminal
 app.use(morgan("tiny"));
@@ -45,5 +33,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/posts", PostRoute);
 app.use("/upload", UploadRoute); // traitement de limage avec multer ainsi
+
+// Nouvelle route pour les données infoWorldApi
+app.use('/api/data',PostRoute );
 
 export default app;

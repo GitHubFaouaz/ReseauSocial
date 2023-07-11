@@ -6,23 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../actions/AuthActions";
 import { useEffect } from "react";
 
-function SignIn(event) {
+function SignIn() {
   const error = useSelector((state) => state.authReducer.error);
   const [errorMessages, setErrorMessage] = useState("");
-  console.log(error);
+  // console.log(error);
 
   const dispatch = useDispatch();
 
-  //  la data du formulaire
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value }); // il prend l'ensemble des valeur firsname Username password .... en meme temps au lieu de faire 1 par 1 Username"Username
-  };
-  console.log(data);
   // pour que le state soit a jour sans attendre le prochain render pour afficher lerreur 
   useEffect(() => {
     if (error) {
@@ -30,28 +20,24 @@ function SignIn(event) {
     }
   }, [error]);
  
-  const HandleSubmit = (e) => {  
+  const HandleSubmit =  async (e) => {  
 
     
       e.preventDefault();
+      
+    const formData = e.currentTarget;
 
-     dispatch(logIn(data));
-    if (error) {
+    const valuesFormData = Object.fromEntries(new FormData(formData));
+    // console.log(valuesFormData);
+        dispatch(logIn(valuesFormData));
+      if (error) {
           setErrorMessage(error);
         }else{
 
-      dispatch(logIn(data));
+      dispatch(logIn(valuesFormData));
         }
-
-   
-
-
-  };
+      };
   
-  const resetError = () => {
-    setErrorMessage(null);
-  };
-
 
   return (
 
@@ -79,8 +65,8 @@ function SignIn(event) {
                   type="email"
                   name="email"
                   placeholder="Email"
-          
-                  onChange={handleChange}
+                   onChange={()=> setErrorMessage('')}
+             
                 />
               </div>
               <div className="inputBox">
@@ -88,9 +74,9 @@ function SignIn(event) {
                   type="password"
                   name="password"
                   placeholder="password"
+                  onChange={()=> setErrorMessage('')}
                 
-                  // onChange={(e)=>{handleChange(e) ; resetError()} }
-                  onChange={handleChange}
+            
                 />
               </div>
               <div className="inputBox">
@@ -100,14 +86,6 @@ function SignIn(event) {
           </div>
         </div>
         <div className="btns">
-          {/* {errorMessages ? (
-            <p className="errorMessages">{errorMessages}</p>
-          ) : (
-            <p>
-              Mot de passe <br />
-              oublié?
-            </p>
-          )} */}
           {errorMessages ? <p className="errorMessages">{errorMessages}</p> : <p> Mot de passe <br />oublié?</p>   
           }
         </div>
