@@ -34,7 +34,5 @@ app.use("/api/user", userRoutes);
 app.use("/posts", PostRoute);
 app.use("/upload", UploadRoute); // traitement de limage avec multer ainsi
 
-// Nouvelle route pour les données infoWorldApi
-app.use('/api/data',PostRoute );
 
 export default app;

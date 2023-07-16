@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function JSAnimation() {
   const banner = useRef(null);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,9 @@ const InfoCard = () => {
   const profileUserId = params.id; // id de url
   const [profileUser, setProfileUser] = useState({});
   const { user } = useSelector((state) => state.authReducer.authData);
+ 
+ 
+
 
   // boutton de deconnection
   const handleLogOut = () => {
@@ -39,7 +42,7 @@ const InfoCard = () => {
   }, [user, profileUser, profileUserId]); // on observe les changements
 
   return (
-    <div className="InfoCard">
+    <div className="InfoCard" >
       <div className="infoHead">
         <h4>Informations profil</h4>
         {user._id === profileUserId ? (

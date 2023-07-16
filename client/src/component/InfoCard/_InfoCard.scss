@@ -3,13 +3,7 @@
   flex-direction: column;
   gap: 2rem;
   background-color: $blackLight;
-  // background: linear-gradient(
-  //   90deg,
-  //   rgba(2, 214, 221, 1) 40%,
-  //   rgb(8, 8, 8, 0.5),
-  //   rgb(8, 8, 8, 0.7),
-  //   rgb(0, 0, 0)
-  // );
+
   padding: 2rem 1rem 1rem;
   border-radius: 1rem;
   width: 100%;
@@ -19,6 +13,7 @@
   mix-blend-mode: luminosity;
   position: relative;
   box-shadow: $box-shadow;
+
 }
 
 .infoHead {
@@ -32,12 +27,10 @@
 }
 
 .logout-button {
-  // width: 7rem;
-  // height: 2rem;
-  // margin-top: 6rem;
-  // align-self: flex-end;
+
   position: absolute;
   bottom: 1rem;
   right: 1rem;
   border: 0;
 }
+

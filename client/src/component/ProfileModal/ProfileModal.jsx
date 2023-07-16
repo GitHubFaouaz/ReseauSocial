@@ -13,7 +13,7 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const param = useParams();
-  console.log(other);
+  // console.log(other);
   // const { user } = useSelector((state) => state.authReducer.authData);
 
   // Fonction qui prend toutes les informations des inputs pour les traités
