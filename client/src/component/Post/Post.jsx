@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; //Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
@@ -11,33 +11,38 @@ import { updateLikeDislike } from "../../actions/PostsAction";
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
-  const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
+/*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // la listes des likes
+  const [likes, setLikes] = useState([data.likes.length]); // la listes des likes
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  // const dispatch = useDispatch();
-  //manipulation des likes
+  const dispatch = useDispatch();
+  // manipulation des likes
   const handleLike = () => {
+    console.log( data);
     likePost(data._id, user._id);
     setLiked((prev) => !prev); // fais linverse de false a true ou inversement
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1); //
-    // dispatch(updateLikeDislike(data._id,user._id));
-  };
-  // const handleLike = () => {
-  //   const updatedLiked = !liked; // Nouvelle valeur du liked
-  //   setLiked(updatedLiked);
-  //   setLikes((prevLikes) => (updatedLiked ? prevLikes + 1 : prevLikes - 1)); // Mise à jour des likes
-  //   // likePost(data._id, user._id);
-  //   // setLiked((prev) => !prev); // fais linverse de false a true ou inversement
-  //   // liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1); //
-  
-  //   // likePost(data._id, user._id)
-  //   //   .then((response) => {
-  //   //     dispatch(updateLikeDislike(data._id, user._id)); // Mise à jour du tableau des likes dans le state global
-  //   //   })
-  //   //   .catch((error) => {
-  //   //     console.log(error);
-  //   //   });
-  // };
+
+  }; */
+
+  // --------------------------------------------
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+   const [liked , setLiked] = useState(false)
+    const [likes, setLikes] = useState([data.likes.length]);
+   useEffect(()=> {
+    console.log( data);
+    data.likes.includes(user._id) ? setLiked(true): setLiked(false)
+   },[data, data.likes,user._id]) 
+   
+
+  const Like  = ()=> {
+    updateLikeDislike(data._id, user._id) 
+    setLiked(true)
+
+  }
+  const unLike  = ()=> {
+    
+  }
   return (
     <div className="Post">
       <img // si image on l'affiche dans la page au centre
@@ -48,10 +53,25 @@ const Post = ({ data }) => {
       <div className="postReact">
         <div
           className="container-like"
-          onClick={handleLike}
+          // onClick={handleLike}
+          onClick={Like}
           style={{ cursor: "pointer" }}
         >
-          {liked ? (
+          {liked === false ? (
+              
+            <FontAwesomeIcon
+            onClick={Like}
+            icon={regularHeart}
+            style={{ fontSize: "30px", color: "#000" }}
+          />
+          ) : (
+            <FontAwesomeIcon
+            onClick={unLike}
+            icon={solidHeart}
+            style={{ fontSize: "30px", color: "#02d6dd" }}
+          />
+          )}
+        {/*   {liked ? (
             <FontAwesomeIcon
               icon={solidHeart}
               style={{ fontSize: "30px", color: "#02d6dd" }}
@@ -61,7 +81,7 @@ const Post = ({ data }) => {
               icon={regularHeart}
               style={{ fontSize: "30px", color: "#000" }}
             />
-          )}
+          )} */}
         </div>
         <FontAwesomeIcon
           icon={faComment}

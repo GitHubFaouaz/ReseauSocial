@@ -26,8 +26,11 @@ const postReducer = (
     case "LIKE_START": 
       return { ...state, loading: true, error: false };
     case "LIKE_SUCCESS":
+      // return { ...state, posts: state.posts.map((post) =>
+      //   post._id === action.postId ? { ...post, likes: action.likes } : post
+      // ),
       return { ...state, posts: state.posts.map((post) =>
-        post._id === action.postId ? { ...post, likes: action.likes } : post
+        post._id === action.data.userId ? { ...post, likes: action.data.likes } : post
       ),
          loading: false, error: false };
     case "LIKE_FAIL":

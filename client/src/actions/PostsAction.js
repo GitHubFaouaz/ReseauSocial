@@ -18,6 +18,7 @@ export const updateLikeDislike = (id,userId) => async (dispatch) => {
 dispatch({type:'LIKE_START'});
 try{
   const datalike = await PostsApi.likePost(id,userId);
+  console.log(datalike);
   dispatch({type:'LIKE_SUCCESS' , data: datalike.likes   })     
 }catch(error){
    dispatch({type:'LIKE_FAIL' , error : error  })
