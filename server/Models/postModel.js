@@ -10,6 +10,7 @@ const postSchema = mongoose.Schema(
       default: new Date(),
     },
     image: String,
+    video: String, 
   },
   {
     timestamps: true,

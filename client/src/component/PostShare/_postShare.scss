@@ -100,5 +100,14 @@
         width: 100%;
       }
     }
+    .previewVideo{
+      display: flex;
+      position: relative;
+      justify-content: center;
+      
+      video{
+        width: 100%;
+      }
+    }
   }
 }
