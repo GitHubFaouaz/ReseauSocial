@@ -1,0 +1,42 @@
+
+.containe-inputComments{
+  .btnSubmitComments{
+    position: relative;
+    width: 100px;
+    padding: 5px;
+    align-self: flex-end;
+    font-weight: 600;
+    overflow: hidden;
+ 
+}  
+.btnSubmitComments::before ,.btnSubmitComments::after {
+  content: '';
+position: absolute;
+width: 25px;
+height: 5px;
+background: #2f363e;
+border-radius: 15px;
+transition: 0.5s;
+}
+.btnSubmitComments::before  {
+
+top: 0px;
+right: -10px;
+
+}
+.btnSubmitComments::after{
+   
+      bottom: 0px;
+      left: -10px;
+   
+  
+ 
+  
+    }
+  .btnSubmitComments:hover::before  {
+    box-shadow: 5px 10px $aqua , 0px 20px #2f3e3c;
+    }
+  .btnSubmitComments:hover::after  {
+    box-shadow: -5px -10px $aqua , 0px -20px #2f363e;
+    }
+}

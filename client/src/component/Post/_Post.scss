@@ -6,9 +6,10 @@
   border-radius: 1rem;
   gap: 1rem;
   box-shadow: $box-shadow;
-  span {
-    font-size: 18px;
-  }
+  //   span {
+  //   font-size: 18px;
+  // }
+ 
 }
 
 .Post > img {
@@ -19,12 +20,14 @@
 
 .postReact {
   display: flex;
-  align-items: flex-start;
+  // align-items: flex-start;
+  justify-content: space-between;
   gap: 1.5rem;
   img {
     cursor: pointer;
   }
 }
+
 
 .container-Img-details {
   display: flex;
@@ -42,9 +45,7 @@
     span {
       letter-spacing: 2px;
       // color: $white;
-      i {
-        color: $aqua;
-      }
+     
     }
     span:first-child {
       font-weight: 700;
@@ -56,5 +57,55 @@
       margin-top: 10px;
       color: $white;
     }
+  }
+}
+
+.containe-postComment{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  img {
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+  }
+  .commentsLength{
+
+  
+  }
+  .containe-imgName{
+    display: flex;
+    margin-bottom: 5px;
+    gap: 10px;
+    box-shadow: 1px 1px 15px inset black;
+    padding: 10px;
+    color: white;
+    // background: red ;
+    span{
+      font-weight: 700;
+    }
+  }
+  .containe-inputComments{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+   
+    input[type='text']{
+     padding: 15px;
+     border-radius: 5px;
+     border: none;
+     outline: none;
+    }
+
+  }
+ 
+}
+
+.container-like{
+  
+  span{
+    color: $aqua;
+    margin-left: 5px;
   }
 }

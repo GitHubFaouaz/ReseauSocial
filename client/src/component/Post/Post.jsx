@@ -8,9 +8,11 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLikeDislike } from "../../actions/PostsAction";
+import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
+  const [comment,setComment] = useState(false)
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // la listes des likes
   const [likes, setLikes] = useState([data.likes.length]); // la listes des likes
@@ -45,12 +47,37 @@ const Post = ({ data }) => {
   }
   return (
     <div className="Post">
+       <div className="container-Img-details">
+        <img
+          src={
+            user.profilePicture
+              ? serverPublic + user.profilePicture
+              : serverPublic + "defaultProfile.png"
+          }
+          alt="imgUser"
+        />
+        <div className="details">
+          <div>
+            <span>{user.lastname} </span>
+            {/* <span>{user.firstname}</span> */}
+          </div>
+          {/* <span>
+            <i>{likes}</i> likes
+          </span> */}
+          <span>{data.desc}</span>
+        </div>
+      </div>
       <img // si image on l'affiche dans la page au centre
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
       />
 
       <div className="postReact">
+      <FontAwesomeIcon
+          icon={faComment}
+          style={{ fontSize: "30px", cursor: "pointer" }}
+          onClick={()=> setComment(!comment)}
+        />
         <div
           className="container-like"
           // onClick={handleLike}
@@ -82,37 +109,57 @@ const Post = ({ data }) => {
               style={{ fontSize: "30px", color: "#000" }}
             />
           )} */}
+            <span>
+            {likes}
+          </span>
         </div>
-        <FontAwesomeIcon
-          icon={faComment}
-          style={{ fontSize: "30px", cursor: "pointer" }}
-        />
+       
         <FontAwesomeIcon
           icon={faShare}
           style={{ fontSize: "30px", cursor: "pointer" }}
         />
       </div>
 
-      <div className="container-Img-details">
-        <img
-          src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
-              : serverPublic + "defaultProfile.png"
-          }
-          alt="imgUser"
-        />
-        <div className="details">
-          <div>
-            <span>{user.lastname} </span>
-            <span>{user.firstname}</span>
+     
+      
+      {comment ?(
+        
+        <div className="containe-postComment" >
+          <div className="commentsLength"> 
+          <div className="containe-imgName">
+             <img  src={
+              user.profilePicture
+                ? serverPublic + user.profilePicture
+                : serverPublic + "defaultProfile.png"
+            }  alt=""/> 
+            <div> 
+            <span> nom</span> 
+            <p className="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, necessitatibus quidem? Illum, sunt repellendus. Quos reiciendis vitae ex, ipsam harum architecto perferendis optio ab debitis deserunt officiis adipisci eius odio!</p> </div>
+           
           </div>
-          <span>
-            <i>{likes}</i> likes
-          </span>
-          <span>{data.desc}</span>
-        </div>
-      </div>
+          <div className="containe-imgName">
+             <img  src={
+              user.profilePicture
+                ? serverPublic + user.profilePicture
+                : serverPublic + "defaultProfile.png"
+            }  alt=""/> 
+            <div> 
+            <span>mounir</span> 
+            <p className="comment">il abuse la </p> </div>
+           
+          </div>
+        
+          </div>
+   
+          <div className="containe-inputComments">   
+          <input type='text' placeholder="Laissez un commentaire"/>
+          <ButtonSubmitComments/>
+         
+          </div>
+       
+        </div>  
+      ) : ('') }
+
     </div>
   );
 };

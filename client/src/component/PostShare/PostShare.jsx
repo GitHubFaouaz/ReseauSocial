@@ -11,13 +11,13 @@ const PostShare = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const loading = useSelector((state) => state.postReducer.uploading);
   const [image, setImage] = useState(null);
-  const [video, setVideo] = useState(null);
+  // const [video, setVideo] = useState(null);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const descRef = useRef(); //Le useRefcrochet vous permet de conserver des valeurs entre les rendus.
   //Il peut être utilisé pour stocker une valeur modifiable qui ne provoque pas de nouveau rendu lors de la mise à jour.
   //useRef()ne renvoie qu'un seul élément. Il renvoie un objet appelé current https://www.w3schools.com/react/react_useref.asp
   const imageRef = useRef();
-  const  videoRef = useRef();
+  // const  videoRef = useRef();
 
   // handle Image Change
   const onImageChange = (event) => {
@@ -30,12 +30,12 @@ const PostShare = () => {
     }
   };
   // hanlde video change
-  const onVideoChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let vid = event.target.files[0];
-      setVideo(vid);
-    }
-  };
+  // const onVideoChange = (event) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     let vid = event.target.files[0];
+  //     setVideo(vid);
+  //   }
+  // };
 
   // handle post upload
   const handleUpload = async (e) => {
@@ -64,20 +64,20 @@ const PostShare = () => {
       }
     }
       // if there is a video with the post
-  if (video) {
-    const data = new FormData();
-    const fileName = Date.now() + video.name;
-    data.append("name", fileName);
-    data.append("file", video);
-    newPost.video = fileName; // Mettez à jour la propriété video de l'objet newPost avec le nom de fichier généré (fileName)
-    console.log(newPost);
-    try {
-      // Reste du code pour envoyer la vidéo à Redux
-      dispatch(uploadImage(data));
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // if (video) {
+  //   const data = new FormData();
+  //   const fileName = Date.now() + video.name;
+  //   data.append("name", fileName);
+  //   data.append("file", video);
+  //   newPost.video = fileName; // Mettez à jour la propriété video de l'objet newPost avec le nom de fichier généré (fileName)
+  //   console.log(newPost);
+  //   try {
+  //     // Reste du code pour envoyer la vidéo à Redux
+  //     dispatch(uploadImage(data));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
     
     dispatch(uploadPost(newPost)); // on poste
     resetShare();
@@ -115,7 +115,8 @@ const PostShare = () => {
             <UilScenery />
             Photo
           </div>
-          <div className="option" onClick={()=> videoRef.current.click() }>
+          {/* <div className="option" onClick={()=> videoRef.current.click() }> */}
+          <div className="option" >
             <UilPlayCircle />
             Video
           </div>
@@ -134,8 +135,9 @@ const PostShare = () => {
           {/* // A REVOIRE a comprendre la liaison avec button photo  */}
           <div style={{ display: "none" }} className="fileChange">
            <input type="file" ref={imageRef} onChange={onImageChange} />
-           <input type="file" ref={videoRef} onChange={onVideoChange} accept="video/*" />  {/*accept="video/*" indique que seuls les fichiers vidéo seront acceptés */}
-           {/* <input type="text" placeholder="URL de la vidéo" ref={videoRef} /> */}
+
+           {/* <input type="file" ref={videoRef} onChange={onVideoChange} accept="video/*" />  accept="video/*" indique que seuls les fichiers vidéo seront acceptés */}
+        
 
           </div>
         </div>
@@ -157,7 +159,7 @@ const PostShare = () => {
           </div>
         )}
             {/* si on a une video elle s'affiche avant detre publier */}
-        {video && (
+      {/*   {video && (
         <div className="previewVideo">
           <UilTimes
             style={{
@@ -169,10 +171,10 @@ const PostShare = () => {
           />
           <video controls>
             <source src={URL.createObjectURL(video)} type="video/mp4" />
-            {/* Votre navigateur ne prend pas en charge la vidéo. */}
+           
           </video>
         </div>
-          )}
+          )} */}
       </div>
     </div>
   );
