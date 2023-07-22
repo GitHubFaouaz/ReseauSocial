@@ -34,7 +34,7 @@
   font-size: 18px;
   gap: 1rem;
   img {
-    width: 3.2rem;
+    width: 4.2rem;
     height: 4.2rem;
     cursor: pointer;
     // border-radius: 50%;
@@ -80,6 +80,8 @@
     box-shadow: 1px 1px 15px inset black;
     padding: 10px;
     color: white;
+    letter-spacing: 3px;
+    line-height: 20px;
     // background: red ;
     span{
       font-weight: 700;
