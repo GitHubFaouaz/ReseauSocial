@@ -12,6 +12,7 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
+  // console.log(user);
   const [comment,setComment] = useState(false)
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // la listes des likes
@@ -32,6 +33,7 @@ const Post = ({ data }) => {
    const [liked , setLiked] = useState(false)
     const [likes, setLikes] = useState([data.likes.length]);
    useEffect(()=> {
+    // data du post 
     console.log( data);
     data.likes.includes(user._id) ? setLiked(true): setLiked(false)
    },[data, data.likes,user._id]) 
