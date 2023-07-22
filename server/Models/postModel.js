@@ -11,6 +11,17 @@ const postSchema = mongoose.Schema(
     },
     image: String,
     video: String, 
+    comments: { // pour les commentaires ont fait un sous base de donnée
+      type: [
+        {
+          commenterId:String,
+          commenterPseudo: String,
+          text: String,
+          timestamp: Number,
+        }
+      ],
+      required: true,// true pour que le tableau soit créé de base 
+    },
   },
   {
     timestamps: true,
