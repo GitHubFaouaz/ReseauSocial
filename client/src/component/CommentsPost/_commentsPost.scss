@@ -1,0 +1,43 @@
+.containe-postComment{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  img {
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+  }
+  // .commentsLength{
+
+  
+  // }
+  .containe-imgName{
+    display: flex;
+    margin-bottom: 5px;
+    gap: 10px;
+    box-shadow: 1px 1px 15px inset black;
+    padding: 10px;
+    color: white;
+    letter-spacing: 3px;
+    line-height: 20px;
+    // background: red ;
+    span{
+      font-weight: 700;
+    }
+  }
+  .containe-inputComments{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+   
+    input[type='text']{
+     padding: 15px;
+     border-radius: 5px;
+     border: none;
+     outline: none;
+    }
+
+  }
+ 
+}

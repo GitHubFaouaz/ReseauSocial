@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; //Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
+import { faHeart as solidHeart, faPenNib } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLikeDislike } from "../../actions/PostsAction";
-import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
+import CommentsPost from "../CommentsPost/CommentsPost";
+
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -60,20 +62,26 @@ const Post = ({ data }) => {
         />
         <div className="details">
           <div>
-            <span>{user.lastname} </span>
-            {/* <span>{user.firstname}</span> */}
+            {/* <span>{user.lastname} </span> */}
+            <span>{user.firstname}</span>
           </div>
           {/* <span>
             <i>{likes}</i> likes
           </span> */}
           <span>{data.desc}</span>
         </div>
+     
       </div>
       <img // si image on l'affiche dans la page au centre
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
       />
-
+      <div className="containe-updateDelecteComment">
+        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} />
+      <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
+      />
+      </div>
+       
       <div className="postReact">
       <FontAwesomeIcon
           icon={faComment}
@@ -121,46 +129,13 @@ const Post = ({ data }) => {
           style={{ fontSize: "30px", cursor: "pointer" }}
         />
       </div>
-
+    
      
-      
-      {comment ?(
-        
-        <div className="containe-postComment" >
-          <div className="commentsLength"> 
-          <div className="containe-imgName">
-             <img  src={
-              user.profilePicture
-                ? serverPublic + user.profilePicture
-                : serverPublic + "defaultProfile.png"
-            }  alt=""/> 
-            <div> 
-            <span> nom</span> 
-            <p className="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, necessitatibus quidem? Illum, sunt repellendus. Quos reiciendis vitae ex, ipsam harum architecto perferendis optio ab debitis deserunt officiis adipisci eius odio!</p> </div>
-           
-          </div>
-          <div className="containe-imgName">
-             <img  src={
-              user.profilePicture
-                ? serverPublic + user.profilePicture
-                : serverPublic + "defaultProfile.png"
-            }  alt=""/> 
-            <div> 
-            <span>mounir</span> 
-            <p className="comment">il abuse la </p> </div>
-           
-          </div>
-        
-          </div>
-   
-          <div className="containe-inputComments">   
-          <input type='text' placeholder="Laissez un commentaire"/>
-          <ButtonSubmitComments/>
-         
-          </div>
-       
-        </div>  
-      ) : ('') }
+      {/* pour afficher les commantaires du post */}
+      {comment && (
+        <CommentsPost/>
+    
+      )  }
 
     </div>
   );
