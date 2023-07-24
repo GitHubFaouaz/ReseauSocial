@@ -35,7 +35,7 @@ const CommentsPost = () => {
 
     <div className="containe-inputComments">   
     <input type='text' placeholder="Laissez un commentaire"/>
-    <ButtonSubmitComments/>
+    <ButtonSubmitComments texte={'Envoyer'}/>
    
     </div>
  

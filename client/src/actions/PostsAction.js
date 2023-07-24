@@ -26,3 +26,13 @@ try{
 
 }
 
+export const updatePost = (id,userId,desc) => async (dispatch) => {
+  dispatch({type:'LIKE_START'});
+  try {
+    const newPost = await PostsApi.updatePost(id,userId,desc);
+    dispatch({type:'LIKE_SUCCESS' , data: newPost.desc , newPost: { userId, desc } }) 
+  }catch (error) {
+    dispatch({type:'LIKE_FAIL' , error : error  })
+  }
+
+}

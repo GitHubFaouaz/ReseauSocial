@@ -10,12 +10,15 @@ import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLikeDislike } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
+import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
-  // console.log(user);
+  console.log(user);
   const [comment,setComment] = useState(false)
+  const [isUpdate , setIsUpdate] = useState(false)
+  const [updateTexte , setUpdateTexte] = useState('')
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // la listes des likes
   const [likes, setLikes] = useState([data.likes.length]); // la listes des likes
@@ -49,6 +52,10 @@ const Post = ({ data }) => {
   const unLike  = ()=> {
     
   }
+
+  const updateItem = async()=> {
+
+  }
   return (
     <div className="Post">
        <div className="container-Img-details">
@@ -68,7 +75,16 @@ const Post = ({ data }) => {
           {/* <span>
             <i>{likes}</i> likes
           </span> */}
-          <span>{data.desc}</span>
+          {isUpdate? (<span>{data.desc}</span>) :(
+           <>
+          <textarea 
+          defaultValue={data.desc}
+          onChange={(e)=> setUpdateTexte(e.target.value) }
+          />
+         <ButtonSubmitComments texte={'Valider'} onClick={updateItem} />  {/*  validation de la mise a jour */}
+          </> 
+          ) }
+          
         </div>
      
       </div>
@@ -76,12 +92,15 @@ const Post = ({ data }) => {
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
       />
-      <div className="containe-updateDelecteComment">
-        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} />
+        {user._id === data.userId && ( 
+          <div className="containe-updateDelecteComment">
+        {/* le button update n'apparait que pour celui qui a posté  */}
+       <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
       <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
       />
       </div>
-       
+       )}
+   
       <div className="postReact">
       <FontAwesomeIcon
           icon={faComment}

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ButtonSubmitComments = () => {
+const ButtonSubmitComments = ({texte}) => {
   return (
   <>
-  <button  type="submit" className='btnSubmitComments'>Envoyer</button>
+   <button  type="submit" className='btnSubmitComments'>{texte}</button>
   </>
        
 

@@ -1,8 +1,9 @@
 
-.containe-inputComments{
+
   .btnSubmitComments{
     position: relative;
     width: 100px;
+    height: 30px;
     padding: 5px;
     align-self: flex-end;
     font-weight: 600;
@@ -39,4 +40,4 @@ right: -10px;
   .btnSubmitComments:hover::after  {
     box-shadow: -5px -10px $aqua , 0px -20px #2f363e;
     }
-}
+
