@@ -35,7 +35,19 @@ const postReducer = (
          loading: false, error: false };
     case "LIKE_FAIL":
       return { ...state, loading: false, error: true };
-  
+      
+      case "UPDATEPOST_START": 
+      return { ...state, loading: true, error: false };
+       
+      case "UPDATEPOST_SUCCESS":
+      
+        return { ...state, posts: state.posts.map((post) =>
+          post._id === action.data.userId ? { ...post, likes: action.data.desc } : post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
+        ),
+        loading: false, error: false };
+        case "UPDATEPOST_FAIL":
+          return { ...state, loading: false, error: true };
+
       default:
       return state;
   }

@@ -8,7 +8,7 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLikeDislike } from "../../actions/PostsAction";
+import { updateLikeDislike, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
@@ -19,11 +19,12 @@ const Post = ({ data }) => {
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(false)
   const [updateTexte , setUpdateTexte] = useState('')
+  const dispatch = useDispatch();
+  
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
   const [likes, setLikes] = useState(data.likes.length); // la listes des likes
   const [likes, setLikes] = useState([data.likes.length]); // la listes des likes
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const dispatch = useDispatch();
   // manipulation des likes
   const handleLike = () => {
     console.log( data);
@@ -54,7 +55,10 @@ const Post = ({ data }) => {
   }
 
   const updateItem = async()=> {
-
+    if(updateTexte){
+      await dispatch(updatePost(data.userId, user._id)) 
+    }
+    setIsUpdate(false)
   }
   return (
     <div className="Post">
