@@ -30,7 +30,7 @@ try{
 export const updatePost = (id,userId,desc) => async (dispatch) => {
   dispatch({type:'UPDATEPOST_START'});
   try {
-    const newPost = await PostsApi.updatePost(id,userId,desc);
+    const newPost = await PostsApi.ApiUpdatePost(id,userId,desc);
     dispatch({type:'UPDATEPOST_SUCCESS' , data: newPost.desc , newPost: { userId, desc } }) 
   }catch (error) {
     dispatch({type:'UPDATEPOST_FAIL' , error : error  })

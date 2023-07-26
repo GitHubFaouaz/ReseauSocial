@@ -17,8 +17,9 @@ const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   console.log(user);
   const [comment,setComment] = useState(false)
-  const [isUpdate , setIsUpdate] = useState(false)
+  const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
+  console.log( 'updateTexte' + updateTexte);
   const dispatch = useDispatch();
   
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
@@ -46,7 +47,7 @@ const Post = ({ data }) => {
    
 
   const Like  = ()=> {
-    updateLikeDislike(data._id, user._id) 
+    updateLikeDislike(data._id, user._id ,data.desc) 
     setLiked(true)
 
   }
@@ -55,10 +56,12 @@ const Post = ({ data }) => {
   }
 
   const updateItem = async()=> {
-    if(updateTexte){
-      await dispatch(updatePost(data.userId, user._id)) 
-    }
-    setIsUpdate(false)
+    // if(updateTexte){
+    //   await dispatch(updatePost(data.userId, user._id , updateTexte)) 
+    // await dispatch(updatePost(data._id, user._id, updateTexte));
+    // }
+    console.log('abdallah');
+    // setIsUpdate(true)
   }
   return (
     <div className="Post">
