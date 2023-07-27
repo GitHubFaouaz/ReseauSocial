@@ -47,7 +47,7 @@ const Post = ({ data }) => {
    
 
   const Like  = ()=> {
-    updateLikeDislike(data._id, user._id ,data.desc) 
+    updateLikeDislike(data.userId, user._id ,data.desc) 
     setLiked(true)
 
   }
@@ -58,10 +58,10 @@ const Post = ({ data }) => {
   const updateItem = async()=> {
     // if(updateTexte){
     //   await dispatch(updatePost(data.userId, user._id , updateTexte)) 
-    // await dispatch(updatePost(data._id, user._id, updateTexte));
+    await dispatch(updatePost(data.userId, user._id, updateTexte));
     // }
     console.log('abdallah');
-    // setIsUpdate(true)
+    setIsUpdate(true)
   }
   return (
     <div className="Post">
@@ -88,7 +88,8 @@ const Post = ({ data }) => {
           defaultValue={data.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
-         <ButtonSubmitComments texte={'Valider'} onClick={updateItem} />  {/*  validation de la mise a jour */}
+         <ButtonSubmitComments texte={'Valider'}  />  {/*  validation de la mise a jour */}
+         <button onClick={updateItem}>rrr</button>
           </> 
           ) }
           
