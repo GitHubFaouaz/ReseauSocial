@@ -41,10 +41,11 @@ const postReducer = (
        
       case "UPDATEPOST_SUCCESS":
       
-        return { ...state, posts: state.posts.map((post) =>
-          post._id === action.data.userId ? { ...post, likes: action.data.desc } : post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
-        ),
-        loading: false, error: false };
+        // return { ...state, posts: state.posts.map((post) =>
+        //   post._id === action.data.userId ? { ...post, likes: action.data.desc } : post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
+        // ),}
+        return { ...state,updatedPost: action.data, loading: false, error: false };
+
         case "UPDATEPOST_FAIL":
           return { ...state, loading: false, error: true };
 

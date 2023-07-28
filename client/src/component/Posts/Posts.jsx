@@ -12,7 +12,7 @@ const Posts = () => {
   let { posts, loading } = useSelector((state) => state.postReducer);
   useEffect(() => {
     dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
-  }, []);
+  }, [ dispatch,user._id]);
   //si pas de posts
   if (!posts) return "No Posts";
   //si posts

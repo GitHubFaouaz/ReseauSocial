@@ -15,11 +15,13 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
+  const postReducer = useSelector((state) => state.postReducer.posts)
+  console.log(postReducer);
   console.log(user);
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  console.log( 'updateTexte' + updateTexte);
+  // console.log( 'updateTexte '+' ' + updateTexte);
   const dispatch = useDispatch();
   
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
@@ -41,26 +43,31 @@ const Post = ({ data }) => {
     const [likes, setLikes] = useState([data.likes.length]);
    useEffect(()=> {
     // data du post 
-    console.log( data);
+   
     data.likes.includes(user._id) ? setLiked(true): setLiked(false)
    },[data, data.likes,user._id]) 
    
 
   const Like  = ()=> {
-    updateLikeDislike(data.userId, user._id ,data.desc) 
-    setLiked(true)
+    // updateLikeDislike(data.userId, user._id ,data.desc) 
+    // setLiked(true)
 
   }
   const unLike  = ()=> {
     
   }
-
+  const post = postReducer.find((post) => post._id === user._id );
+  console.log(post);
   const updateItem = async()=> {
     // if(updateTexte){
     //   await dispatch(updatePost(data.userId, user._id , updateTexte)) 
-    await dispatch(updatePost(data.userId, user._id, updateTexte));
+    console.log('user._id: ', user._id);
+    console.log('updateTexte: ', updateTexte);
+    console.log( 'data._id' , data._id);
+    await dispatch(updatePost(data._id, user._id, updateTexte));
     // }
-    console.log('abdallah');
+
+
     setIsUpdate(true)
   }
   return (

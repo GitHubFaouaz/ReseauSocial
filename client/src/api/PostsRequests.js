@@ -14,4 +14,4 @@ API.interceptors.request.use((req) => {
 
 export const getTimelinePosts = (id) => API.get(`/posts/${id}/timeline`); //obtenir des publications sur la chronologie
 export const likePost = (id, userId) =>API.put(`posts/${id}/like`, { userId: userId });
-export const  ApiUpdatePost = (id ,userId,desc) => API.put(`posts/${id}`,{ desc :desc } )
+export const  ApiUpdatePost = (id ,userId,desc) => API.put(`posts/${id}`,{ userId,  desc } ) //id  = postId

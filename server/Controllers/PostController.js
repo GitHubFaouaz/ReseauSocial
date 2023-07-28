@@ -31,18 +31,22 @@ export const getPost = async (req, res) => {
 
 // update post
 export const updatePost = async (req, res) => {
-  const postId = req.params.id;
+  const postId = req.params.id; // id du post 
   const { userId } = req.body;
+  console.log('userId'+ userId);
+  console.log('postId' + postId);
 
   try {
     const post = await PostModel.findById(postId);
     if (post.userId === userId) {
       await post.updateOne({ $set: req.body });
-      res.status(200).json("Message mis à jour !");
+      res.status(200).json("Message mis à jour !" );
     } else {
       res.status(403).json("Authentification échouée");
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 // delete a post
