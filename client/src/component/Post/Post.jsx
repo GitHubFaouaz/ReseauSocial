@@ -15,13 +15,14 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
-  const postReducer = useSelector((state) => state.postReducer.posts)
-  console.log(postReducer);
+  // const postReducer = useSelector((state) => state.postReducer.Posts)
+  const post = useSelector((state) => state.postReducer.updatedPost)
+  // console.log(postReducer);
   console.log(user);
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  // console.log( 'updateTexte '+' ' + updateTexte);
+  console.log( 'updateTexte '+' ' + updateTexte);
   const dispatch = useDispatch();
   
 /*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
@@ -56,19 +57,22 @@ const Post = ({ data }) => {
   const unLike  = ()=> {
     
   }
-  // const post = postReducer.find((post) => post._id === user._id );
-  // console.log(post);
+  // dans le tablea des post on cherche le userId qui correspond au id de l'utilisateur   
+  // const post = postReducer.find((post) => post.userId === user._id );
+  // const post = postReducer.find((post) => post.userId === user._id );
+  console.log('post', post);
   const updateItem = async()=> {
     // if(updateTexte){
   
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
-    console.log( 'data._id' , data._id);
-    await dispatch(updatePost(data._id, user._id, updateTexte));
+    console.log( 'data._id' , post._id);
+    await dispatch(updatePost(post._id, user._id, updateTexte));
     // }
 
 
     setIsUpdate(true)
+    // setUpdateTexte('')
   }
   return (
     <div className="Post">
@@ -89,10 +93,10 @@ const Post = ({ data }) => {
           {/* <span>
             <i>{likes}</i> likes
           </span> */}
-          {isUpdate? (<span>{data.desc}</span>) :(
+          {isUpdate? (<span>{post.desc}</span>) :(
            <>
           <textarea 
-          defaultValue={data.desc}
+          defaultValue={post.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
          <ButtonSubmitComments texte={'Valider'}  />  {/*  validation de la mise a jour */}

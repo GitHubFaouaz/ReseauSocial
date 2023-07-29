@@ -40,7 +40,10 @@ export const updatePost = async (req, res) => {
     const post = await PostModel.findById(postId);
     if (post.userId === userId) {
       await post.updateOne({ $set: req.body });
-      res.status(200).json("Message mis à jour !" );
+      // const updatedPost = await PostModel.findById(postId);
+
+      res.status(200).json(post);
+      // res.status(200).json("Message mis à jour !" );
     } else {
       res.status(403).json("Authentification échouée");
     }
