@@ -56,11 +56,11 @@ const Post = ({ data }) => {
   const unLike  = ()=> {
     
   }
-  const post = postReducer.find((post) => post._id === user._id );
-  console.log(post);
+  // const post = postReducer.find((post) => post._id === user._id );
+  // console.log(post);
   const updateItem = async()=> {
     // if(updateTexte){
-    //   await dispatch(updatePost(data.userId, user._id , updateTexte)) 
+  
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
     console.log( 'data._id' , data._id);
