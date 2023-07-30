@@ -31,8 +31,9 @@ export const updatePost = (id,userId,desc) => async (dispatch) => {
   dispatch({type:'UPDATEPOST_START'});
   try {
     const newPost = await PostsApi.ApiUpdatePost(id,userId,desc);
-    console.log('newPost' + newPost.data);
+    console.log('newPost' + JSON.stringify( newPost.data,null,2));
     dispatch({type:'UPDATEPOST_SUCCESS' , data: newPost.data }) // newPost: { userId, desc } 
+    return newPost.data;
   }catch (error) {
     // console.log(error.response.message);
     dispatch({type:'UPDATEPOST_FAIL' , error : error.response.message  })

@@ -41,10 +41,13 @@ const postReducer = (
        
       case "UPDATEPOST_SUCCESS":
       
-        // return { ...state, posts: state.posts.map((post) =>
-        //   post.userId === action.data._id ? { ...post, desc: action.data.desc } : post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
-        // ),}
-        return { ...state,updatedPost: action.data, loading: false, error: false };
+        return { ...state, posts: state.posts.map((post) =>
+        //nous utilisons map pour parcourir tous les posts dans le tableau posts du state et trouver celui qui correspond à l'ID du post que nous venons de mettre à jour dans la base de données
+          post._id === action.data._id ? { ...post, desc: action.data.desc } : post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
+         
+          ),}
+
+          // return { ...state,posts: action.data, loading: false, error: false };
 
         case "UPDATEPOST_FAIL":
           return { ...state, loading: false, error: true };

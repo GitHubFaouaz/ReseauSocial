@@ -14,4 +14,4 @@ API.interceptors.request.use((req) => {
 
 export const getTimelinePosts = (id) => API.get(`/posts/${id}/timeline`); //obtenir des publications sur la chronologie
 export const likePost = (id, userId) =>API.put(`posts/${id}/like`, { userId: userId });
-export const  ApiUpdatePost = (id ,userId,desc) => API.put(`posts/${id}`,{ userId,  desc } ) //id  = postId
+export const  ApiUpdatePost = (id ,userId,desc) => API.put(`posts/${id}`,  {id, userId , desc}) //id  = postId  C'est une forme de décomposition  userId: userId,desc: desc,  les paramètres id, userId, et desc représentent les valeurs que nous souhaitons mettre à jour dans le post

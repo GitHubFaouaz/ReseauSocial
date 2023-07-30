@@ -15,60 +15,36 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
-  // const postReducer = useSelector((state) => state.postReducer.Posts)
-  const post = useSelector((state) => state.postReducer.updatedPost)
-  // console.log(postReducer);
-  console.log(user);
+  const { posts } = useSelector((state) => state.postReducer);
+  // console.log('posts' , posts);
+  // console.log(user);
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  console.log( 'updateTexte '+' ' + updateTexte);
+  const [updatedPost, setUpdatedPost] = useState(data);
   const dispatch = useDispatch();
   
-/*   const [liked, setLiked] = useState(data.likes.includes(user._id)); // on verifier deja si le user id est est deja dans le tableau des likes
-  const [likes, setLikes] = useState(data.likes.length); // la listes des likes
-  const [likes, setLikes] = useState([data.likes.length]); // la listes des likes
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  // manipulation des likes
-  const handleLike = () => {
-    console.log( data);
-    likePost(data._id, user._id);
-    setLiked((prev) => !prev); // fais linverse de false a true ou inversement
-    liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1); //
 
-  }; */
 
   // --------------------------------------------
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-   const [liked , setLiked] = useState(false)
-    const [likes, setLikes] = useState([data.likes.length]);
-   useEffect(()=> {
-    // data du post 
-   
-    data.likes.includes(user._id) ? setLiked(true): setLiked(false)
-   },[data, data.likes,user._id]) 
-   
+  
+  useEffect(()=> {
+    //  const updatedPost = posts.find((post) => post.userId === user._id ); 
+     setUpdatedPost(posts.find((post) => post.userId === user._id )); 
+      console.log('updatedPost', updatedPost);
+  },[setUpdatedPost,updatedPost,posts,user._id])
+ 
+  
 
-  const Like  = ()=> {
-    // updateLikeDislike(data.userId, user._id ,data.desc) 
-    // setLiked(true)
-
-  }
-  const unLike  = ()=> {
-    
-  }
-  // dans le tablea des post on cherche le userId qui correspond au id de l'utilisateur   
-  // const post = postReducer.find((post) => post.userId === user._id );
-  // const post = postReducer.find((post) => post.userId === user._id );
-  console.log('post', post);
   const updateItem = async()=> {
     // if(updateTexte){
   
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
-    console.log( 'data._id' , post._id);
-    await dispatch(updatePost(post._id, user._id, updateTexte));
-    // }
+    console.log( ' updatedPost._id(postId)' , updatedPost._id);
+    await dispatch(updatePost(updatedPost._id, user._id, updateTexte)); 
+    
 
 
     setIsUpdate(true)
@@ -93,10 +69,10 @@ const Post = ({ data }) => {
           {/* <span>
             <i>{likes}</i> likes
           </span> */}
-          {isUpdate? (<span>{post.desc}</span>) :(
+          {isUpdate? (<span>{updatedPost.desc}</span>) :(
            <>
           <textarea 
-          defaultValue={post.desc}
+          defaultValue={updatedPost.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
          <ButtonSubmitComments texte={'Valider'}  />  {/*  validation de la mise a jour */}
@@ -126,7 +102,7 @@ const Post = ({ data }) => {
           style={{ fontSize: "30px", cursor: "pointer" }}
           onClick={()=> setComment(!comment)}
         />
-        <div
+       {/*   <div
           className="container-like"
           // onClick={handleLike}
           onClick={Like}
@@ -146,7 +122,7 @@ const Post = ({ data }) => {
             style={{ fontSize: "30px", color: "#02d6dd" }}
           />
           )}
-        {/*   {liked ? (
+         {liked ? (
             <FontAwesomeIcon
               icon={solidHeart}
               style={{ fontSize: "30px", color: "#02d6dd" }}
@@ -156,11 +132,11 @@ const Post = ({ data }) => {
               icon={regularHeart}
               style={{ fontSize: "30px", color: "#000" }}
             />
-          )} */}
+          )} 
             <span>
             {likes}
           </span>
-        </div>
+        </div>*/}
        
         <FontAwesomeIcon
           icon={faShare}

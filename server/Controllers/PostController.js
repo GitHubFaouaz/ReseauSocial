@@ -32,17 +32,21 @@ export const getPost = async (req, res) => {
 // update post
 export const updatePost = async (req, res) => {
   const postId = req.params.id; // id du post 
-  const { userId } = req.body;
-  console.log('userId'+ userId);
-  console.log('postId' + postId);
+  const { userId } = req.body; // l'ID de l'utilisateur à partir du corps de la requête req.body
+
+  // console.log('userId'+ userId);
+  // console.log('postId' + postId);
 
   try {
     const post = await PostModel.findById(postId);
-    if (post.userId === userId) {
+    if (post.userId === userId) {// 64bc584b948147daea3313c5 === 64bc584b948147daea3313c5
       await post.updateOne({ $set: req.body });
-      // const updatedPost = await PostModel.findById(postId);
+       // Récupérer les nouvelles données du post après la mise à jour
+      const updatedPost = await PostModel.findById(postId);
+      //  console.log('updatedPost server', updatedPost);
 
-      res.status(200).json(post);
+
+      res.status(200).json(updatedPost);
       // res.status(200).json("Message mis à jour !" );
     } else {
       res.status(403).json("Authentification échouée");
