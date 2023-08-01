@@ -12,6 +12,7 @@ import { updateLikeDislike, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
+// refaire la condition pour afiicher la modif du post concerné 
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -21,7 +22,7 @@ const Post = ({ data }) => {
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  const [updatedPost, setUpdatedPost] = useState(data);
+  const [updatedPost, setUpdatedPost] = useState('');
   const dispatch = useDispatch();
   
 
@@ -35,12 +36,12 @@ const Post = ({ data }) => {
 // dateObject : Un objet Date ou une valeur de temps numérique (timestamp) que vous souhaitez formater.
 // locales (facultatif) : Une chaîne de caractères qui indique la locale ou une liste de locales pour laquelle vous souhaitez obtenir une représentation locale. Par exemple, "fr-FR" pour le français de France.
 // options (facultatif) : Un objet contenant des options supplémentaires pour le formatage. Cela peut inclure des options pour personnaliser le style de la date (court, moyen, long), le format des nombres, etc.
-  console.log(formattedDate);
+  // console.log(formattedDate);
   useEffect(()=> {
     //  const updatedPost = posts.find((post) => post.userId === user._id ); 
      setUpdatedPost(posts.find((post) => post.userId === user._id )); 
-      console.log('updatedPost', updatedPost);
-  },[setUpdatedPost,updatedPost,posts,user._id])
+      // console.log('updatedPost', updatedPost);
+  },[setUpdatedPost,updatedPost,posts,user._id,])
  
   
 
@@ -50,11 +51,16 @@ const Post = ({ data }) => {
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
     console.log( ' updatedPost._id(postId)' , updatedPost._id);
+    try{
     await dispatch(updatePost(updatedPost._id, user._id, updateTexte)); 
+    setIsUpdate(true)
+    }catch(error){
+   console.log(error);
+    }
+
     
 
 
-    setIsUpdate(true)
     // setUpdateTexte('')
   }
   return (
@@ -82,8 +88,7 @@ const Post = ({ data }) => {
           defaultValue={updatedPost.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
-         <ButtonSubmitComments texte={'Valider'}  />  {/*  validation de la mise a jour */}
-         <button onClick={updateItem}>rrr</button>
+         <ButtonSubmitComments texte={'Valider'}  onClick={updateItem} />  {/*  validation de la mise a jour */}
           </> 
           ) }
           
