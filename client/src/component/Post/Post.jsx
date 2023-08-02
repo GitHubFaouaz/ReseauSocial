@@ -14,7 +14,7 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 
 // refaire la condition pour afiicher la modif du post concerné 
 
-const Post = ({ data }) => {
+const Post = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const { posts } = useSelector((state) => state.postReducer);
   // console.log('posts' , posts);
@@ -37,12 +37,18 @@ const Post = ({ data }) => {
 // locales (facultatif) : Une chaîne de caractères qui indique la locale ou une liste de locales pour laquelle vous souhaitez obtenir une représentation locale. Par exemple, "fr-FR" pour le français de France.
 // options (facultatif) : Un objet contenant des options supplémentaires pour le formatage. Cela peut inclure des options pour personnaliser le style de la date (court, moyen, long), le format des nombres, etc.
   // console.log(formattedDate);
+  const post = posts.find((post) => post.userId === user._id ) // on cherche le post qui correspond parmi tous les posts
+  console.log(post);
+
   useEffect(()=> {
-    //  const updatedPost = posts.find((post) => post.userId === user._id ); 
-     setUpdatedPost(posts.find((post) => post.userId === user._id )); 
-      // console.log('updatedPost', updatedPost);
-  },[setUpdatedPost,updatedPost,posts,user._id,])
  
+    //  setUpdatedPost(posts.find((post) => post.userId === user._id )); 
+     setUpdatedPost(post); 
+     setIsUpdate(true)
+      console.log('updatedPost', updatedPost);
+  },[posts,user._id,])
+   
+  
   
 
   const updateItem = async()=> {
@@ -52,19 +58,24 @@ const Post = ({ data }) => {
     console.log('updateTexte: ', updateTexte);
     console.log( ' updatedPost._id(postId)' , updatedPost._id);
     try{
+      if (updatedPost) {
     await dispatch(updatePost(updatedPost._id, user._id, updateTexte)); 
     setIsUpdate(true)
+      }
     }catch(error){
    console.log(error);
     }
-
+    
     
 
 
-    // setUpdateTexte('')
+
   }
   return (
-    <div className="Post">
+    <>
+    {/* {updatedPost._id === post._id && ( */}
+   <div className="Post">
+      
        <div className="container-Img-details">
         <img
           src={
@@ -76,13 +87,12 @@ const Post = ({ data }) => {
         />
         <div className="details">
           <div>
-            {/* <span>{user.lastname} </span> */}
             <span>{user.firstname}</span>
           </div>
-          {/* <span>
-            <i>{likes}</i> likes
-          </span> */}
-          {isUpdate? ( <div> <span>{updatedPost.desc}</span> <span>{formattedDate}</span></div>  )  :(
+      
+          
+          {isUpdate  ? ( <div> <span>{updatedPost.desc}</span> <span>{formattedDate}</span></div>  )  :(
+          
            <>
           <textarea 
           defaultValue={updatedPost.desc}
@@ -91,17 +101,22 @@ const Post = ({ data }) => {
          <ButtonSubmitComments texte={'Valider'}  onClick={updateItem} />  {/*  validation de la mise a jour */}
           </> 
           ) }
+        
+          
           
         </div>
      
       </div>
       <img // si image on l'affiche dans la page au centre
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
+        // src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
+        src={updatedPost.image ? process.env.REACT_APP_PUBLIC_FOLDER + updatedPost.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
-      />
-        {user._id === data.userId && ( 
+      /> 
+       {/* le button update n'apparait que pour celui qui a posté  */}
+      
+        {post && ( 
           <div className="containe-updateDelecteComment">
-        {/* le button update n'apparait que pour celui qui a posté  */}
+      
        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
       <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
       />
@@ -164,6 +179,9 @@ const Post = ({ data }) => {
       )  }
 
     </div>
+     {/* ) }  */}
+  
+    </>
   );
 };
 
