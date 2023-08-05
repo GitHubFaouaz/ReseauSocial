@@ -9,6 +9,7 @@ const Posts = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
+  console.log('user' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
   useEffect(() => {
     dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
@@ -22,7 +23,7 @@ const Posts = () => {
       {loading
         ? "Chargement..." // pendant le chargement
         : posts.map((post, id) => {
-            return <Post data={post} key={id} />; // on affiche tous les post avec le id
+            return <Post data={post} key={id} user = {user} />; // on affiche tous les post avec le id
           })}
     </div>
   );

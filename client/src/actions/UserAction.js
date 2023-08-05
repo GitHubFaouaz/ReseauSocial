@@ -1,17 +1,18 @@
 import * as UserApi from "../api/UserRequests";
 // import React from "react";
 
-// export const getAllUser = (users) => async (dispatch) => {
-//   // const dispatch = useDispatch();
-//   dispatch({ type: "user_start" });
-//   try {
-//     const { data } = await UserApi.getAllUser(users);
-//     dispatch({ type: "user_Succes", data });
-//   } catch (error) {
-//     console.log(error);
-//     dispatch({ type: "user_Fail" });
-//   }
-// };
+export const getAllUser = (users) => async (dispatch) => {
+  // const dispatch = useDispatch();
+  dispatch({ type: "user_start" });
+  try {
+    const { data } = await UserApi.getAllUser(users);
+    dispatch({ type: "user_Succes",data: data });
+    console.log('userData' ,  data);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "user_Fail" });
+  }
+};
 // pour le  ProfilModal mise des information de l'user
 export const updateUser = (id, formData) => async (dispatch) => {
   dispatch({ type: "UPDATING_START" });

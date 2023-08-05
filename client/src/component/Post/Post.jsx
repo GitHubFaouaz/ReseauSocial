@@ -12,24 +12,19 @@ import { updateLikeDislike, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
-// refaire la condition pour afiicher la modif du post concerné 
+// je recupère en props les informations envoyées du composants Posts 
+const Post = ({data,user}) => {
 
-const Post = () => {
-  const { user } = useSelector((state) => state.authReducer.authData);
-  const { posts } = useSelector((state) => state.postReducer);
-  // console.log('posts' , posts);
-  // console.log(user);
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  const [updatedPost, setUpdatedPost] = useState('');
   const dispatch = useDispatch();
   
 
 
   // --------------------------------------------
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const date =new Date(updatedPost.updatedAt) 
+  const date =new Date(data.updatedAt) 
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
   const formattedDate = date.toLocaleString('fr-FR', options);//toLocaleString() est une méthode intégrée en JavaScript qui permet de formater les dates et les nombres en fonction des paramètres régionaux spécifiés
   //dateObject.toLocaleString([locales[, options]])
@@ -37,33 +32,30 @@ const Post = () => {
 // locales (facultatif) : Une chaîne de caractères qui indique la locale ou une liste de locales pour laquelle vous souhaitez obtenir une représentation locale. Par exemple, "fr-FR" pour le français de France.
 // options (facultatif) : Un objet contenant des options supplémentaires pour le formatage. Cela peut inclure des options pour personnaliser le style de la date (court, moyen, long), le format des nombres, etc.
   // console.log(formattedDate);
-  const post = posts.find((post) => post.userId === user._id ) // on cherche le post qui correspond parmi tous les posts
-  console.log(post);
+
+  console.log('data', data);
 
   useEffect(()=> {
- 
-    //  setUpdatedPost(posts.find((post) => post.userId === user._id )); 
-     setUpdatedPost(post); 
      setIsUpdate(true)
-      console.log('updatedPost', updatedPost);
-  },[posts,user._id,])
+     
+  },[user._id,])
    
   
   
 
   const updateItem = async()=> {
-    // if(updateTexte){
+
   
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
-    console.log( ' updatedPost._id(postId)' , updatedPost._id);
+    console.log( ' updatedPost._id(postId)' , data._id);
     try{
-      if (updatedPost) {
-    await dispatch(updatePost(updatedPost._id, user._id, updateTexte)); 
+      if (data) {
+    await dispatch(updatePost(data._id, user._id, updateTexte)); 
     setIsUpdate(true)
       }
     }catch(error){
-   console.log(error);
+   console.error(error);
     }
     
     
@@ -73,8 +65,7 @@ const Post = () => {
   }
   return (
     <>
-    {/* {updatedPost._id === post._id && ( */}
-   <div className="Post">
+ <div className="Post">
       
        <div className="container-Img-details">
         <img
@@ -86,16 +77,21 @@ const Post = () => {
           alt="imgUser"
         />
         <div className="details">
-          <div>
+             {/* {data.userId === user._id &&     */}
+             <div>
+       
             <span>{user.firstname}</span>
-          </div>
-      
+            <span>{user.lastname}</span>
           
-          {isUpdate  ? ( <div> <span>{updatedPost.desc}</span> <span>{formattedDate}</span></div>  )  :(
+          </div>
+      {/* } */}
+          
+         {isUpdate  ? ( <div> <span>{data.desc}</span> <span>{formattedDate}</span></div>  )  :( 
+
           
            <>
           <textarea 
-          defaultValue={updatedPost.desc}
+          defaultValue={data.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
          <ButtonSubmitComments texte={'Valider'}  onClick={updateItem} />  {/*  validation de la mise a jour */}
@@ -108,13 +104,12 @@ const Post = () => {
      
       </div>
       <img // si image on l'affiche dans la page au centre
-        // src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
-        src={updatedPost.image ? process.env.REACT_APP_PUBLIC_FOLDER + updatedPost.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
+        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt=""
       /> 
        {/* le button update n'apparait que pour celui qui a posté  */}
       
-        {post && ( 
+        { data.userId === user._id && ( 
           <div className="containe-updateDelecteComment">
       
        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
@@ -179,7 +174,12 @@ const Post = () => {
       )  }
 
     </div>
-     {/* ) }  */}
+
+
+
+
+  
+
   
     </>
   );
