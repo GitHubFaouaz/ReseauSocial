@@ -3,14 +3,14 @@ import * as UserApi from "../api/UserRequests";
 
 export const getAllUser = (users) => async (dispatch) => {
   // const dispatch = useDispatch();
-  dispatch({ type: "user_start" });
+  dispatch({ type: "USERS_START" });
   try {
     const { data } = await UserApi.getAllUser(users);
-    dispatch({ type: "user_Succes",data: data });
-    console.log('userData' ,  data);
+    dispatch({ type: "USERS_SUCESS", data: data });
+    console.log('USERS_Data' ,  data);
   } catch (error) {
     console.log(error);
-    dispatch({ type: "user_Fail" });
+    dispatch({ type: "USERS_FAIL" });
   }
 };
 // pour le  ProfilModal mise des information de l'user

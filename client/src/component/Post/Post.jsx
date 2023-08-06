@@ -78,12 +78,15 @@ const Post = ({data,user}) => {
         />
         <div className="details">
              {/* {data.userId === user._id &&     */}
-             <div>
+             {/* {data.userId === user._id && ( */}
+            <div>
        
             <span>{user.firstname}</span>
             <span>{user.lastname}</span>
           
           </div>
+             {/* )} */}
+          
       {/* } */}
           
          {isUpdate  ? ( <div> <span>{data.desc}</span> <span>{formattedDate}</span></div>  )  :( 
