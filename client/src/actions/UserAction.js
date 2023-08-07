@@ -1,7 +1,7 @@
 import * as UserApi from "../api/UserRequests";
 // import React from "react";
 
-export const getAllUser = (users) => async (dispatch) => {
+export const getUsers = (users) => async (dispatch) => {
   // const dispatch = useDispatch();
   dispatch({ type: "USERS_START" });
   try {
