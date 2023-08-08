@@ -9,9 +9,9 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-// store.dispatch(sign_Up(),getAllUser());
+
 store.dispatch(getUsers());
-// store.getState();
+
 
 export default store;
 // import {

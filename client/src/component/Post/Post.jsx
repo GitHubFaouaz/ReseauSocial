@@ -13,7 +13,7 @@ import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 // je recupère en props les informations envoyées du composants Posts 
-const Post = ({data,user}) => {
+const Post = ({data,user ,id}) => {
 
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
@@ -65,7 +65,7 @@ const Post = ({data,user}) => {
   }
   return (
     <>
- <div className="Post">
+ <div className="Post"   >
       
        <div className="container-Img-details">
         <img

@@ -1,5 +1,5 @@
 //  const initialState = {}; //il est vide au debuts
- const usersReducer = (state = { usersData:null  }, action) => {
+ const usersReducer = (state = { users:null  }, action) => {
   switch (action.type) {
     case "USERS_START":
       return { ...state }; // loading est true pour le chargement si necessaire
@@ -8,7 +8,7 @@
       //La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON
       return {
         ...state, // retourn deja le state pour ne pas ecrasé les donnée de l'utilisateur , que l'on est pas que la photo on recupere ceux qu'il y a deja
-        usersData: action.data, // data: data que l'on reçois dans action
+        users: action.data, // data: data que l'on reçois dans action
       };
     case "USERS_FAIL":
       return { ...state };
