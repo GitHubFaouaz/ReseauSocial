@@ -38,11 +38,11 @@ const Post = ({data,user ,id}) => {
   useEffect(()=> {
      setIsUpdate(true)
      
-  },[user._id,])
+  },[])
    
   
   
-
+   // mise a jour du projet 
   const updateItem = async()=> {
 
   
@@ -63,6 +63,13 @@ const Post = ({data,user ,id}) => {
 
 
   }
+  // button suppression du post
+  const buttonDelete = ()=> {
+
+    console.log('allo');
+  }
+
+
   return (
     <>
  <div className="Post"   >
@@ -78,16 +85,14 @@ const Post = ({data,user ,id}) => {
         />
         <div className="details">
              {/* {data.userId === user._id &&     */}
-             {/* {data.userId === user._id && ( */}
+
             <div>
        
             <span>{user.firstname}</span>
-            <span>{user.lastname}</span>
+            <span>{user.lastname}</span> 
           
           </div>
-             {/* )} */}
-          
-      {/* } */}
+ 
           
          {isUpdate  ? ( <div> <span>{data.desc}</span> <span>{formattedDate}</span></div>  )  :( 
 
@@ -108,7 +113,7 @@ const Post = ({data,user ,id}) => {
       </div>
       <img // si image on l'affiche dans la page au centre
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
-        alt=""
+        alt="imgPost"
       /> 
        {/* le button update n'apparait que pour celui qui a posté  */}
       
@@ -116,7 +121,7 @@ const Post = ({data,user ,id}) => {
           <div className="containe-updateDelecteComment">
       
        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
-      <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
+      <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}  } onClick= {buttonDelete} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
       />
       </div>
        )}
