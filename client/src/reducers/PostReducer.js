@@ -47,12 +47,15 @@ const postReducer = (
           post._id === action.data._id ? {...post, desc : action.data.desc }: post // on retourne toujours les valeurs de base si on ne rentre pas dans la condition
           // ...post, desc : action.data.desc on modifi desc dans du nouveau post  
           ),loading: false, error: false }
-
-         
-
-        case "UPDATEPOST_FAIL":
+      case "UPDATEPOST_FAIL":
           return { ...state, loading: false, error: true };
-
+       
+       case "DELETEPOST_START" : 
+       return { ...state, loading: true, error: false };
+       case "DELETEPOST_SUCCESS":
+           return {...state ,posts: state.filter((post) => post._id !== action.data._id)}// comparaison des id des posts du tableau a celui que l'on veut supprimer
+        case "DELETEPOST_FAIL":
+          return { ...state, loading: false, error: true };   
       default:
       return state;
   }

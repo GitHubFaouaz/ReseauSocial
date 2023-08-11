@@ -7,7 +7,7 @@ export const getUsers = (users) => async (dispatch) => {
   try {
     const { data } = await UserApi.getAllUser(users);
     dispatch({ type: "USERS_SUCESS", data: data });
-    console.log('USERS_Data' ,  data);
+    // console.log('USERS_Data' ,  data);
   } catch (error) {
     console.log(error);
     dispatch({ type: "USERS_FAIL" });
@@ -18,7 +18,7 @@ export const updateUser = (id, formData) => async (dispatch) => {
   dispatch({ type: "UPDATING_START" });
   try {
     const { data } = await UserApi.updateUser(id, formData);
-    console.log("Action recevoir: ", data);
+    // console.log("Action recevoir: ", data);
     dispatch({ type: "UPDATING_SUCCESS", data: data });
   } catch (error) {
     dispatch({ type: "UPDATING_FAIL" });

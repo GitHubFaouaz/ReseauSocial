@@ -8,12 +8,12 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLikeDislike, updatePost } from "../../actions/PostsAction";
+import { deletePost, updateLikeDislike, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 // je recupère en props les informations envoyées du composants Posts 
-const Post = ({data,user ,id}) => {
+const Post = ({data,user}) => {
 
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
@@ -33,26 +33,27 @@ const Post = ({data,user ,id}) => {
 // options (facultatif) : Un objet contenant des options supplémentaires pour le formatage. Cela peut inclure des options pour personnaliser le style de la date (court, moyen, long), le format des nombres, etc.
   // console.log(formattedDate);
 
-  console.log('data', data);
+
 
   useEffect(()=> {
      setIsUpdate(true)
      
-  },[])
+  },[data])
    
   
-  
+ 
    // mise a jour du projet 
   const updateItem = async()=> {
 
   
     console.log('user._id: ', user._id);
     console.log('updateTexte: ', updateTexte);
-    console.log( ' updatedPost._id(postId)' , data._id);
+    // console.log( ' updatedPost._id(postId)' , data._id);
+   
     try{
       if (data) {
     await dispatch(updatePost(data._id, user._id, updateTexte)); 
-    setIsUpdate(true)
+    // setIsUpdate(true)
       }
     }catch(error){
    console.error(error);
@@ -65,14 +66,18 @@ const Post = ({data,user ,id}) => {
   }
   // button suppression du post
   const buttonDelete = ()=> {
+    dispatch(deletePost(data._id,user._id))
+     
 
-    console.log('allo');
   }
 
+   console.log( 'userProps' ,user);// data du user 
+   console.log('dataProps', data); // data du post 
+  //  console.log('IdProps', data._id); // id de la data  
 
   return (
     <>
- <div className="Post"   >
+ <div className="Post"  key={data._id}  >
       
        <div className="container-Img-details">
         <img
@@ -84,12 +89,12 @@ const Post = ({data,user ,id}) => {
           alt="imgUser"
         />
         <div className="details">
-             {/* {data.userId === user._id &&     */}
+         
 
             <div>
        
             <span>{user.firstname}</span>
-            <span>{user.lastname}</span> 
+        
           
           </div>
  

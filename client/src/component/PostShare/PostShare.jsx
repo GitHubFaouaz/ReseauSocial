@@ -56,7 +56,7 @@ const PostShare = () => {
       data.append("name", fileName); // clée name : date et nom de limage  Une fois que vous avez créé l'instance de FormData, vous pouvez utiliser sa méthode append() pour ajouter des paires clé-valeur au formulaire. La méthode append() prend deux arguments : la clé et la valeur
       data.append("file", image); // clée file : valeur image  ici on a simplement l'image
       newPost.image = fileName; //Vous mettez à jour la propriété image de l'objet newPost avec le nom de fichier généré (fileName)
-      console.log(newPost);
+      // console.log(newPost);
       try {
         dispatch(uploadImage(data)); // on envoi limage a redux pour la mise a jour
       } catch (err) {
