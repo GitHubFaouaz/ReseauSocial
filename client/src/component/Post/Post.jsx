@@ -67,6 +67,7 @@ const Post = ({data,user}) => {
   // button suppression du post
   const buttonDelete = ()=> {
     dispatch(deletePost(data._id,user._id))
+    // dispatch(deletePost(data._id,data.userId))
      
 
   }

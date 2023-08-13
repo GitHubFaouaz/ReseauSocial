@@ -49,7 +49,7 @@ export const deletePost = (postId,userId) => async (dispatch) => {
     dispatch({type:'DELETEPOST_SUCCESS' , data: deletePost.data }) // deletePost: { userId, desc } 
 
   }catch (error) {
-
+     console.error('error',error);
     dispatch({type:'DELETEPOST_FAIL' , error : error  })
   }
 
