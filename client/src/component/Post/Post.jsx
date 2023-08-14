@@ -13,7 +13,7 @@ import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 // je recupère en props les informations envoyées du composants Posts 
-const Post = ({data,user}) => {
+const Post = ({data,user,key}) => {
 
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
@@ -74,11 +74,12 @@ const Post = ({data,user}) => {
 
    console.log( 'userProps' ,user);// data du user 
    console.log('dataProps', data); // data du post 
+   console.log('keyPropos', key);
   //  console.log('IdProps', data._id); // id de la data  
 
   return (
     <>
- <div className="Post"  key={data._id}  >
+ <div className="Post"  key={data._id}   >
       
        <div className="container-Img-details">
         <img

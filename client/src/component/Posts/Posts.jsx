@@ -37,7 +37,7 @@ const Posts = () => {
           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
          const userPosted = users.find((user) => user._id === post.userId);
           
-            return <  Post data={post} user = {userPosted}  key={post.id}/>; // on affiche tous les post avec le id
+            return <  Post data={post} user = {userPosted}  key={post._id}/>; // on affiche tous les post avec le id
             
           })}
     </div>
