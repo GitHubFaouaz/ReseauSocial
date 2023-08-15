@@ -34,11 +34,11 @@ const Post = ({data,user,key}) => {
   // console.log(formattedDate);
 
 
-
+// POUR LE REERENDER DE TOUS LES POSTS A VOIR PLUS TARD 
   useEffect(()=> {
      setIsUpdate(true)
      
-  },[data])
+  },[])
    
   
  
@@ -46,8 +46,8 @@ const Post = ({data,user,key}) => {
   const updateItem = async()=> {
 
   
-    console.log('user._id: ', user._id);
-    console.log('updateTexte: ', updateTexte);
+    // console.log('user._id: ', user._id);
+    // console.log('updateTexte: ', updateTexte);
     // console.log( ' updatedPost._id(postId)' , data._id);
    
     try{
@@ -65,16 +65,17 @@ const Post = ({data,user,key}) => {
 
   }
   // button suppression du post
-  const buttonDelete = ()=> {
-    dispatch(deletePost(data._id,user._id))
-    // dispatch(deletePost(data._id,data.userId))
+  const buttonDelete = async ()=> {
+    await    dispatch(deletePost(data._id,user._id))
+    console.log('data._idDelete' , data._id ); 
+    console.log('user._idDelete', user._id);
      
 
   }
 
-   console.log( 'userProps' ,user);// data du user 
-   console.log('dataProps', data); // data du post 
-   console.log('keyPropos', key);
+   console.log( 'userProps' , user._id);// data du user 
+   console.log('dataProps',  data._id); // data du post 
+  //  console.log('keyPropos', key);
   //  console.log('IdProps', data._id); // id de la data  
 
   return (

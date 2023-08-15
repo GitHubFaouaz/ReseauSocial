@@ -12,7 +12,7 @@ const Posts = () => {
   const {users} = useSelector((state)=> state.usersReducer )
   // console.log('users' , users);
   // console.log('user' , user);
-  let { posts, loading } = useSelector((state) => state.postReducer);
+  const { posts, loading } = useSelector((state) => state.postReducer);
   // const idUsers = users.map((user) => user._id )
 //  console.log('idUsers' ,idUsers);  
   useEffect(() => {
