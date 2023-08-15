@@ -73,8 +73,10 @@ const Post = ({data,user,key}) => {
 
   }
 
-   console.log( 'userProps' , user._id);// data du user 
-   console.log('dataProps',  data._id); // data du post 
+  //  console.log( 'userProps' , user._id);// data du user 
+   console.log( 'userProps' , user);// data du user 
+  //  console.log('dataProps',  data._id); // data du post 
+   console.log('dataProps',  data); // data du post 
   //  console.log('keyPropos', key);
   //  console.log('IdProps', data._id); // id de la data  
 

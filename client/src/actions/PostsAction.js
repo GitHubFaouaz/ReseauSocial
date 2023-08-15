@@ -40,16 +40,17 @@ export const updatePost = (id,userId,desc) => async (dispatch) => {
   }
 
 }
-export const deletePost = (postId,userId) => async (dispatch) => {
+export const deletePost = (id,userId) => async (dispatch) => {
   dispatch({type:'DELETEPOST_START'});
 
   try {
-    const deletePost = await PostsApi.ApiDeletePost(postId,userId);
-    console.log('deletePost' + JSON.stringify( deletePost.data,null,2));
+    const deletePost = await PostsApi.ApiDeletePost(id,userId);
+    console.log('deletePostRedux' + JSON.stringify( deletePost.data,null,2));
+    // dispatch({type:'DELETEPOST_SUCCESS' , data: deletePost.data }) // deletePost: { userId, desc } 
     dispatch({type:'DELETEPOST_SUCCESS' , data: deletePost.data }) // deletePost: { userId, desc } 
-
+    
   }catch (error) {
-    console.log(' postId ' , postId  + ' userId ',userId )
+    // console.log(' id ' , id  + ' userId ',userId )
      console.error('error',error.response.data);
     dispatch({type:'DELETEPOST_FAIL' , error : error  })
   }

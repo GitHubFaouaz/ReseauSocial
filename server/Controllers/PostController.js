@@ -60,13 +60,15 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
+
   
   
   try {
     const post = await PostModel.findById(id);
     console.log('postIdBack ' ,id);
     console.log('userIdBack' , userId);
-  console.log(post);
+
+  console.log('postBack' + post);
     if (post.userId === userId) {
       await post.deleteOne();
       res.status(200).json("Message supprimé");
