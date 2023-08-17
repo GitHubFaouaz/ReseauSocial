@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getTimelinePosts } from "../../actions/PostsAction";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ const Posts = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const {users} = useSelector((state)=> state.usersReducer )
+  const [filteredPosts, setFilteredPosts] = useState([]);
   // console.log('users' , users);
   // console.log('user' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
@@ -20,11 +21,21 @@ const Posts = () => {
 
   }, [ dispatch,user._id]);
   //si pas de posts
+  
+  useEffect(() => {
+    // Filtrez les posts en fonction de params.id (si disponible)
+    if (params.id) {
+      const filtered = posts.filter((post) => post.userId === params.id);// comparaison pour trouver le user qui correspond a l'url (params.id) 
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [params.id, posts,]);
+  // if (!posts)  return "No Posts";
+  if (!filteredPosts) return "No Posts";
 
-  if (!posts)  return "No Posts";
-
-  //si posts
- if (params.id) posts = posts.filter((post) => post.userId === params.id); // userId de celui qui a posté  = id de url
+  //si posts  comparaison pour trouver le user qui correspond a l'url (params.id)
+//  if (params.id) posts = posts.filter((post) => post.userId === params.id); // userId de celui qui a posté  = id de url
  
 
 
@@ -32,7 +43,8 @@ const Posts = () => {
     <div className="Posts">
       {loading
         ? "Chargement..." // pendant le chargement
-        : posts.map((post ) => {
+        // : posts.map((post ) => {
+        : filteredPosts.map((post ) => {
     
           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
          const userPosted = users.find((user) => user._id === post.userId);

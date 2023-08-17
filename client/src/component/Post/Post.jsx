@@ -65,8 +65,8 @@ const Post = ({data,user,key}) => {
 
   }
   // button suppression du post
-  const buttonDelete = async ()=> {
-    await    dispatch(deletePost(data._id,user._id))
+  const buttonDelete =  ()=> {
+    dispatch(deletePost(data._id,user._id))
     console.log('data._idDelete' , data._id ); 
     console.log('user._idDelete', user._id);
      
