@@ -53,12 +53,11 @@ const postReducer = (
        case "DELETEPOST_START" : 
        return { ...state, loading: true, error: false };
        case "DELETEPOST_SUCCESS":
-           return {...state ,posts: state.posts.filter((post) => post._id !== action.data._id)}// comparaison des id des posts du tableau a celui que l'on veut supprimer
-           // return {...state , posts : state.posts.map((posts) => posts._id !== action.data._id )}
+           return {...state ,posts: state.posts.filter((post) => post._id !== action.data.postId), // comparaison des id des posts du tableau a celui que l'on veut supprimer
+            loading: false, error: false }
         case "DELETEPOST_FAIL":
           return { ...state, loading: false, error: true };   
-          case "UPDATE_POSTS":
-            return { ...state, posts: action.data };
+         
       default:
       return state;
   }

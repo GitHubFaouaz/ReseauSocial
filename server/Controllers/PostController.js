@@ -65,13 +65,17 @@ export const deletePost = async (req, res) => {
   
   try {
     const post = await PostModel.findById(id);
-    console.log('postIdBack ' ,id);
-    console.log('userIdBack' , userId);
+    // besoin du id pour mettre a jour le store grace filter en front end 
+    const  deletedPostId = post._id 
 
-  console.log('postBack' + post);
+  
+    // console.log('postIdBack ' ,id);
+    // console.log('userIdBack' , userId);
+    // console.log('postBack' + post);
+
     if (post.userId === userId) {
       await post.deleteOne();
-      res.status(200).json("Message supprimé");
+      res.status(200).json({ message : " Message supprimé" , postId : deletedPostId} ); 
     } else {
       res.status(403).json("Action interdite");
     }

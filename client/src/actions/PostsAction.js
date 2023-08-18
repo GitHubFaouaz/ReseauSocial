@@ -26,7 +26,7 @@ try{
 
 }
 
-// modifaiction d'un post
+
 export const updatePost = (id,userId,desc) => async (dispatch) => {
   dispatch({type:'UPDATEPOST_START'});
   try {
@@ -40,22 +40,21 @@ export const updatePost = (id,userId,desc) => async (dispatch) => {
   }
 
 }
-export const deletePost = (id,userId) => async (dispatch,getState) => {
+export const deletePost = (id,userId) => async (dispatch) => {
   dispatch({type:'DELETEPOST_START'});
 
   try {
+
     const deletePost = await PostsApi.ApiDeletePost(id,userId);
-    console.log('deletePostRedux' + JSON.stringify( deletePost.data,null,2));
-    dispatch({type:'DELETEPOST_SUCCESS' , data: deletePost.data  }) 
-      // Mettre à jour les posts dans le store avec les données mises à jour
-    const updatedPosts = getState().postReducer.posts.filter(post => post._id !== id);
-    dispatch({ type: 'UPDATE_POSTS', data: updatedPosts });
+    // console.log('deletePostRedux' + JSON.stringify( deletePost,null,2));
+    // s'assurer qu'il y a bien un id dans la data 
+    dispatch({type:'DELETEPOST_SUCCESS' , data: deletePost.data  })
+
+    
+    }catch (error) { 
    
-    return 
-  }catch (error) {
-   
-     console.error('error',error.response.data);
-    dispatch({type:'DELETEPOST_FAIL' , error : error  })
+     console.error('error',error.response);
+     dispatch({type:'DELETEPOST_FAIL' , error : error  })
   }
 
 }

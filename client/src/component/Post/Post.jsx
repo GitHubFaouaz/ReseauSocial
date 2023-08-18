@@ -13,11 +13,12 @@ import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
 // je recupère en props les informations envoyées du composants Posts 
-const Post = ({data,user,key}) => {
+const Post = ({data,user}) => {
 
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
+  const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
   const dispatch = useDispatch();
   
 
@@ -42,7 +43,7 @@ const Post = ({data,user,key}) => {
    
   
  
-   // mise a jour du projet 
+   // mise a jour du post 
   const updateItem = async()=> {
 
   
@@ -58,31 +59,24 @@ const Post = ({data,user,key}) => {
     }catch(error){
    console.error(error);
     }
-    
-    
-
-
-
-  }
-  // button suppression du post
-  const buttonDelete =  ()=> {
+}
+  
+  const buttonDeletePost =  ()=> {
     dispatch(deletePost(data._id,user._id))
-    console.log('data._idDelete' , data._id ); 
-    console.log('user._idDelete', user._id);
-     
+   //  console.log( 'userProps' , user);// data du user 
+ //  console.log('dataProps',  data); // data du post 
+}
 
-  }
+const like = ()=> {
 
-  //  console.log( 'userProps' , user._id);// data du user 
-   console.log( 'userProps' , user);// data du user 
-  //  console.log('dataProps',  data._id); // data du post 
-   console.log('dataProps',  data); // data du post 
-  //  console.log('keyPropos', key);
-  //  console.log('IdProps', data._id); // id de la data  
+}
 
+const unLike = ()=> {
+
+}
   return (
     <>
- <div className="Post"  key={data._id}   >
+ <div className="Post"     >
       
        <div className="container-Img-details">
         <img
@@ -131,7 +125,7 @@ const Post = ({data,user,key}) => {
           <div className="containe-updateDelecteComment">
       
        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
-      <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}  } onClick= {buttonDelete} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
+      <FontAwesomeIcon icon={faTrashCan}  style={{ cursor:"pointer"}  } onClick= {buttonDeletePost} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
       />
       </div>
        )}
@@ -142,16 +136,16 @@ const Post = ({data,user,key}) => {
           style={{ fontSize: "30px", cursor: "pointer" }}
           onClick={()=> setComment(!comment)}
         />
-       {/*   <div
+         <div
           className="container-like"
           // onClick={handleLike}
-          onClick={Like}
+          onClick={like}
           style={{ cursor: "pointer" }}
         >
           {liked === false ? (
               
             <FontAwesomeIcon
-            onClick={Like}
+            onClick={like}
             icon={regularHeart}
             style={{ fontSize: "30px", color: "#000" }}
           />
@@ -162,7 +156,7 @@ const Post = ({data,user,key}) => {
             style={{ fontSize: "30px", color: "#02d6dd" }}
           />
           )}
-         {liked ? (
+         {/* {liked ? (
             <FontAwesomeIcon
               icon={solidHeart}
               style={{ fontSize: "30px", color: "#02d6dd" }}
@@ -172,11 +166,12 @@ const Post = ({data,user,key}) => {
               icon={regularHeart}
               style={{ fontSize: "30px", color: "#000" }}
             />
-          )} 
+          )}  */}
             <span>
-            {likes}
+            {/* {likes} */}
+            11
           </span>
-        </div>*/}
+        </div>
        
         <FontAwesomeIcon
           icon={faShare}

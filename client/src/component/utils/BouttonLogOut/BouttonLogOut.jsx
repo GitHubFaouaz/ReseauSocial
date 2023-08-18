@@ -3,7 +3,7 @@ import React from "react";
 const BouttonLogOut = () => {
   return (
     <>
-      <button className="bouttonLogOut">
+      <div className="bouttonLogOut">
         <span>D</span>
         <span>e</span>
         <span>c</span>
@@ -15,7 +15,7 @@ const BouttonLogOut = () => {
         <span>i</span>
         <span>o</span>
         <span>n</span>
-      </button>
+      </div>
     </>
   );
 };
