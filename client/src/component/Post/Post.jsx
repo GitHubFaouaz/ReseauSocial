@@ -18,7 +18,8 @@ const Post = ({data,user}) => {
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
+  // const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
+  const [liked, setLiked] = useState(false);// on verifier deja si le user id est est deja dans le tableau des likes   
   const dispatch = useDispatch();
   
 
@@ -38,8 +39,9 @@ const Post = ({data,user}) => {
 // POUR LE REERENDER DE TOUS LES POSTS A VOIR PLUS TARD 
   useEffect(()=> {
      setIsUpdate(true)
+     if(data.likes.includes(user._id)) setLiked(true)
      
-  },[])
+  },[data.likes,user._id])
    
   
  
@@ -119,8 +121,8 @@ const unLike = ()=> {
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt="imgPost"
       /> 
-       {/* le button update n'apparait que pour celui qui a posté  */}
       
+      {/* le button update n'apparait que pour celui qui a posté  */}
         { data.userId === user._id && ( 
           <div className="containe-updateDelecteComment">
       
@@ -156,17 +158,7 @@ const unLike = ()=> {
             style={{ fontSize: "30px", color: "#02d6dd" }}
           />
           )}
-         {/* {liked ? (
-            <FontAwesomeIcon
-              icon={solidHeart}
-              style={{ fontSize: "30px", color: "#02d6dd" }}
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={regularHeart}
-              style={{ fontSize: "30px", color: "#000" }}
-            />
-          )}  */}
+        
             <span>
             {/* {likes} */}
             11
