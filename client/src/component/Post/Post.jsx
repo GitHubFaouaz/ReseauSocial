@@ -8,7 +8,7 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, updateLikeDislike, updatePost } from "../../actions/PostsAction";
+import { deletePost, LikePost, updateLikeDislike, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
@@ -70,7 +70,8 @@ const Post = ({data,user}) => {
 }
 
 const like = ()=> {
-
+   dispatch(LikePost(data._id,user._id))
+   setLiked(true)
 }
 
 const unLike = ()=> {

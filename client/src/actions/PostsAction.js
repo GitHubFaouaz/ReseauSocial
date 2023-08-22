@@ -28,7 +28,7 @@ try{
 export const LikePost = (id,userId) => async (dispatch) => { // postId et userId
 dispatch({type:'LIKE_START'});
 try{
-  const datalike = await PostsApi.likePost(id,userId);
+  const datalike = await PostsApi.ApiLikePost(id,userId);
   console.log(datalike);
   dispatch({type:'LIKE_SUCCESS' , data: datalike.likes , id ,userId    })     
 }catch(error){
