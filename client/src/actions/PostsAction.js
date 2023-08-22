@@ -14,12 +14,23 @@ export const getTimelinePosts = (id) => async (dispatch) => {
   }
 };
 
-export const updateLikeDislike = (id,userId) => async (dispatch) => {
+/* export const updateLikeDislike = (id,userId) => async (dispatch) => { // postId et userId
 dispatch({type:'LIKE_START'});
 try{
   const datalike = await PostsApi.likePost(id,userId);
   console.log(datalike);
   dispatch({type:'LIKE_SUCCESS' , data: datalike.likes   })     
+}catch(error){
+   dispatch({type:'LIKE_FAIL' , error : error  })
+}
+
+} */
+export const LikePost = (id,userId) => async (dispatch) => { // postId et userId
+dispatch({type:'LIKE_START'});
+try{
+  const datalike = await PostsApi.likePost(id,userId);
+  console.log(datalike);
+  dispatch({type:'LIKE_SUCCESS' , data: datalike.likes , id ,userId    })     
 }catch(error){
    dispatch({type:'LIKE_FAIL' , error : error  })
 }
