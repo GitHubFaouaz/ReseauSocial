@@ -88,16 +88,21 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
+  // console.log( 'userIdBack', userId );
+  // console.log('PostIdBack ' , id );
   try {
     const post = await PostModel.findById(id); // on trouve le post grace au id du post 
+    console.log( 'post' , post);
     if (post.likes.includes(userId)) {   //si l'utilisateur dans le tableau des likes on l'enlève 
       await post.updateOne({ $pull: { likes: userId } });
-      res.status(200).json("Message détesté");
-      // res.status(200).json({ message: "Message détesté", likes: post.likes });
+      res.status(200).json({message : "Message détesté" ,userId :userId , id : id    });
+      // res.status(200).json({message : "Message détesté"  postId : post._id , userId : post.userId    });
+
     } else {
       await post.updateOne({ $push: { likes: userId } }); // sinon on on met son id dans le tableau des likes 
-      res.status(200).json("Message aimé");
-      // res.status(200).json({ message: "Message aimé", likes: post.likes });
+      res.status(200).json({message : "Message aimé", id : post._id , userId : post.userId});
+      // res.status(200).json({message :"Message aimé", userId :userId , id : id });
+
     }
   } catch (error) {
     res.status(500).json(error);

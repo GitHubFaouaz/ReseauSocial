@@ -30,7 +30,7 @@ dispatch({type:'LIKE_START'});
 try{
   const datalike = await PostsApi.ApiLikePost(id,userId);
   console.log(datalike);
-  dispatch({type:'LIKE_SUCCESS' , data: datalike.likes , id ,userId    })     
+  dispatch({type:'LIKE_SUCCESS' , data: datalike   })     
 }catch(error){
    dispatch({type:'LIKE_FAIL' , error : error  })
 }
