@@ -43,6 +43,7 @@ const Post = ({data,user}) => {
      
   },[data.likes,user._id])
    
+    console.log('dataProps',  data); // data du post 
   
  
    // mise a jour du post 
@@ -70,7 +71,8 @@ const Post = ({data,user}) => {
 }
 
 const like = ()=> {
-   dispatch(LikePost(data._id,user._id))
+  //  dispatch(LikePost(data._id,user._id))
+   dispatch(LikePost(data._id,data.userId))
    setLiked(true)
 }
 
