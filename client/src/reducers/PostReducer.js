@@ -28,7 +28,7 @@ const postReducer = (
     case "LIKE_SUCCESS":
    
       return { ...state, posts: state.posts.map((post) =>
-        // post._id === action.data.id ? { ...post, likes:[action.data.userdId, ...post.likes]   } : post
+
         post._id === action.data.id ? { ...post, likes:[action.data.userId, ...post.likes]   } : post
       ),
          loading: false, error: false };

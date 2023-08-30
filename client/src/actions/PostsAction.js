@@ -32,6 +32,7 @@ try{
   console.log(datalike);
   dispatch({type:'LIKE_SUCCESS' , data: datalike   })     
 }catch(error){
+  console.log(error);
    dispatch({type:'LIKE_FAIL' , error : error  })
 }
 
