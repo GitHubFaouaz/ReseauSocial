@@ -22,16 +22,31 @@ const postReducer = (
       return { ...state, posts: action.data, loading: false, error: false };
     case "RETREIVING_FAIL":
       return { ...state, loading: false, error: true };
-      // like et dislike
+
     case "LIKE_START": 
       return { ...state, loading: true, error: false };
-    case "LIKE_SUCCESS":
+  /*   case "LIKE_SUCCESS":
    
       return { ...state, posts: state.posts.map((post) =>
 
         post._id === action.data.id ? { ...post, likes:[action.data.userId, ...post.likes]   } : post
       ),
-         loading: false, error: false };
+         loading: false, error: false }; */
+      case "LIKE_SUCCESS":
+          return {
+            ...state,
+            posts: state.posts.map((post) => {
+              if (post._id === action.data.id) {
+                console.log("Matching post found! Post ID:", action.data.id);
+                return { ...post, likes: [action.data.userId, ...post.likes] };
+              } else {
+                return post;
+              }
+            }),
+            loading: false,
+            error: false
+          };
+
     case "LIKE_FAIL":
       return { ...state, loading: false, error: true };
       
