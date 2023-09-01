@@ -29,11 +29,23 @@ export const LikePost = (id,userId) => async (dispatch) => { // postId et userId
 dispatch({type:'LIKE_START'});
 try{
   const datalike = await PostsApi.ApiLikePost(id,userId);
-  console.log(datalike);
-  dispatch({type:'LIKE_SUCCESS' , data: datalike   })     
+  console.log('datalike' , datalike.data);
+  dispatch({type:'LIKE_SUCCESS' , data: datalike.data   })     
 }catch(error){
   console.log(error);
    dispatch({type:'LIKE_FAIL' , error : error  })
+}
+
+}
+export const unLikePost = (id,userId) => async (dispatch) => { // postId et userId
+dispatch({type:'UNLIKE_START'});
+try{
+  const datalike = await PostsApi.ApiLikePost(id,userId);
+  console.log('dataUnLike' , datalike.data);
+  dispatch({type:'UNLIKE_SUCCESS' , data: datalike.data   })     
+}catch(error){
+  console.log(error);
+   dispatch({type:'UNLIKE_FAIL' , error : error  })
 }
 
 }

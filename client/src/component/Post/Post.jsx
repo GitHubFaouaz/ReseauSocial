@@ -6,9 +6,9 @@ import { faHeart as solidHeart, faPenNib } from "@fortawesome/free-solid-svg-ico
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { likePost } from "../../api/PostsRequests";
+// import { likePost } from "../../api/PostsRequests";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, LikePost, updateLikeDislike, updatePost } from "../../actions/PostsAction";
+import { deletePost, LikePost,unLikePost, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
@@ -40,7 +40,7 @@ const Post = ({data,user}) => {
   useEffect(()=> {
      setIsUpdate(true)
      if(data.likes.includes(user._id)) setLiked(true)
-     
+     else setLiked(false) 
   },[data.likes,user._id])
    
     // console.log('dataProps',  data); // data du post 
@@ -77,7 +77,8 @@ const like = ()=> {
 }
 
 const unLike = ()=> {
-
+  dispatch(unLikePost(data._id,user._id))
+  setLiked(false) 
 }
   return (
     <>
