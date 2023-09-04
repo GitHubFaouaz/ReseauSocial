@@ -7,6 +7,7 @@ export const getTimelinePosts = (id) => async (dispatch) => {
   try {
     // const { data } = await PostsApi.getTimelinePosts(id);
     const dataPost = await PostsApi.getTimelinePosts(id);
+    console.log('dataPostGet' ,  dataPost);
     dispatch({ type: "RETREIVING_SUCCESS", data: dataPost.data });
   } catch (error) {
     // console.log(error);
@@ -14,22 +15,12 @@ export const getTimelinePosts = (id) => async (dispatch) => {
   }
 };
 
-/* export const updateLikeDislike = (id,userId) => async (dispatch) => { // postId et userId
-dispatch({type:'LIKE_START'});
-try{
-  const datalike = await PostsApi.likePost(id,userId);
-  console.log(datalike);
-  dispatch({type:'LIKE_SUCCESS' , data: datalike.likes   })     
-}catch(error){
-   dispatch({type:'LIKE_FAIL' , error : error  })
-}
 
-} */
 export const LikePost = (id,userId) => async (dispatch) => { // postId et userId
 dispatch({type:'LIKE_START'});
 try{
   const datalike = await PostsApi.ApiLikePost(id,userId);
-  console.log('datalike' , datalike.data);
+  // console.log('datalike' , datalike.data);
   dispatch({type:'LIKE_SUCCESS' , data: datalike.data   })     
 }catch(error){
   console.log(error);
@@ -41,7 +32,7 @@ export const unLikePost = (id,userId) => async (dispatch) => { // postId et user
 dispatch({type:'UNLIKE_START'});
 try{
   const datalike = await PostsApi.ApiLikePost(id,userId);
-  console.log('dataUnLike' , datalike.data);
+  // console.log('dataUnLike' , datalike.data);
   dispatch({type:'UNLIKE_SUCCESS' , data: datalike.data   })     
 }catch(error){
   console.log(error);

@@ -10,7 +10,7 @@ const Posts = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const {users} = useSelector((state)=> state.usersReducer )
-  // const [filteredPosts, setFilteredPosts] = useState([]);
+
   // console.log('users' , users);
   // console.log('user' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
@@ -18,7 +18,7 @@ const Posts = () => {
   //  console.log('idUsers' ,idUsers);  
   // lorsque le composant est monté ou lorsque la valeur de dispatch ou user._id change. En d'autres termes, chaque fois que l'ID de l'utilisateur change ou que vous avez besoin de déclencher la récupération des publications de la chronologie
   useEffect(() => {
-    dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
+     dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
 
   }, [ dispatch,user._id]);
 

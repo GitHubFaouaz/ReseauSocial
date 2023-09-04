@@ -92,7 +92,7 @@ export const likePost = async (req, res) => {
   // console.log('PostIdBack ' , id );
   try {
     const post = await PostModel.findById(id); // on trouve le post grace au id du post 
-    console.log( 'post' , post);
+    // console.log( 'post' , post);
     if (post.likes.includes(userId)) {   //si l'utilisateur dans le tableau des likes on l'enlève 
       await post.updateOne({ $pull: { likes: userId } });
       res.status(200).json({message : "Message détesté" , id : post._id , userId : post.userId});
