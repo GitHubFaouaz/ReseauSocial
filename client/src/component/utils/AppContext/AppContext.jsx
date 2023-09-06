@@ -14,7 +14,7 @@ export function UserContextProvider({ children }) {
   // Mettez à jour 'user' en utilisant useSelector ici, par exemple :
   //  const userStore = useSelector((state) => state.authReducer.authData);
   //  setUser(userStore)
-  //  console.log('user',  user);
+
   const userStore = useSelector((state) => state.authReducer.authData);
   useEffect(() => {
     setUser(userStore);
