@@ -8,13 +8,12 @@ import { useUserContext } from "../utils/AppContext/AppContext";
 // Récupération de tous les posts ....
 const Posts = () => {
   const params = useParams();
-  const {user} =  useUserContext();
   const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.authReducer.authData);
+  const {user} =  useUserContext();
   const {users} = useSelector((state)=> state.usersReducer )
 
   // console.log('users' , users);
-  console.log('userPost' , user);
+  // console.log('userPost' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
   // const idUsers = users.map((user) => user._id )
   //  console.log('idUsers' ,idUsers);  

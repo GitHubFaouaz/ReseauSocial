@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import FollowersModal from "../FollowersModal/FollowersModal";
 import { getAllUser } from "../../api/UserRequests";
 import User from "../UserFollowUnfollow/UserFollowUnfollow";
-import { useSelector } from "react-redux";
+import { useUserContext } from "../utils/AppContext/AppContext";
 const FollowersCard = ({ location }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [persons, setPersons] = useState([]);
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchPersons = async () => {

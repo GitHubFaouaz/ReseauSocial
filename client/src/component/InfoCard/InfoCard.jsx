@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequests.js";
 import { logout } from "../../actions/AuthActions";
 import BouttonLogOut from "../utils/BouttonLogOut/BouttonLogOut.jsx";
-
+import { useUserContext } from "../utils/AppContext/AppContext";
 // info card la partie profil  ( profil info  status lives in works at )
 const InfoCard = () => {
   const dispatch = useDispatch(); // https://react-redux.js.org/api/hooks
@@ -14,7 +14,7 @@ const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const profileUserId = params.id; // id de url
   const [profileUser, setProfileUser] = useState({});
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } =useUserContext ();
  
  
 

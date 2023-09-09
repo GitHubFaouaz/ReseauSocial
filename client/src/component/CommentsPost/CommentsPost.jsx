@@ -1,9 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
-
+import { useUserContext } from "../utils/AppContext/AppContext";
 const CommentsPost = () => {
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } = useUserContext();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="containe-postComment" >

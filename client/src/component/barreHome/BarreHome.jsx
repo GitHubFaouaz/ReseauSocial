@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useUserContext } from "../utils/AppContext/AppContext";
 
 const BarreHome = () => {
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } = useUserContext();
   return (
     <div className="containeBarre">
       <p className="welcom">bienvenue {user.lastname}</p>
