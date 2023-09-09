@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/AuthActions";
+import { useUserContext } from "../utils/AppContext/AppContext";
 const Nav = () => {
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const {user} = useUserContext()
+  // const { user } = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch();
   // boutton de deconnection
   const handleLogOut = () => {

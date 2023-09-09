@@ -5,8 +5,6 @@ import Home from "./pages/Home/Home";
 import { useSelector } from "react-redux";
 import ToogleBg from "./component/ToogleBg/ToogleBg";
 import Profile from "./pages/Profil/ProfileUser";
-import { UserContext } from "./component/utils/AppContext/AppContext";
-import { useContext } from "react";
 import { UserContextProvider} from "./component/utils/AppContext/AppContext";
 
 function App() {

@@ -18,8 +18,9 @@ export function UserContextProvider({ children }) {
   const userStore = useSelector((state) => state.authReducer.authData);
   useEffect(() => {
     setUser(userStore);
-  }, [userStore]); // Le tableau de dépendances est vide, ce qui signifie que cet effet s'exécute une seule fois
-
+    // console.log('userContext' , user);
+  }, [userStore,user]); // Le tableau de dépendances est vide, ce qui signifie que cet effet s'exécute une seule fois
+  
   return (
     <UserContext.Provider value={user}>
       {children}

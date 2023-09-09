@@ -12,8 +12,10 @@ import { deletePost, LikePost,unLikePost, updatePost } from "../../actions/Posts
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 
+
 // je recupère en props les informations envoyées du composants Posts 
 const Post = ({data,user}) => {
+
 
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
@@ -21,6 +23,7 @@ const Post = ({data,user}) => {
   // const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
   const [liked, setLiked] = useState(false);// on verifier deja si le user id est est deja dans le tableau des likes   
   const dispatch = useDispatch();
+
   
 
 
@@ -43,7 +46,7 @@ const Post = ({data,user}) => {
      else setLiked(false) 
   },[data.likes,user._id])
    
-    console.log('dataProps',  data); // data du post 
+    // console.log('dataProps',  data); // data du post 
   
  
    // mise a jour du post 

@@ -3,16 +3,18 @@ import { getTimelinePosts } from "../../actions/PostsAction";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useUserContext } from "../utils/AppContext/AppContext";
 
 // Récupération de tous les posts ....
 const Posts = () => {
   const params = useParams();
+  const {user} =  useUserContext();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer.authData);
+  // const { user } = useSelector((state) => state.authReducer.authData);
   const {users} = useSelector((state)=> state.usersReducer )
 
   // console.log('users' , users);
-  // console.log('user' , user);
+  console.log('userPost' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
   // const idUsers = users.map((user) => user._id )
   //  console.log('idUsers' ,idUsers);  
