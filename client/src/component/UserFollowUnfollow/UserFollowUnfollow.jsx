@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { followUser, unfollowUser } from "../../actions/UserAction";
+import { useUserContext } from "../utils/AppContext/AppContext";
 
 const User = ({ person }) => {
   // person en pros
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } = useUserContext();
   const dispatch = useDispatch();
 
   // console.log(user);

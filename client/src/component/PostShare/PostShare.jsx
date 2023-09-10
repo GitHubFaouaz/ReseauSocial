@@ -5,10 +5,11 @@ import { UilTimes } from "@iconscout/react-unicons";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage, uploadPost } from "../../actions/UploadAction";
+import { useUserContext } from "../utils/AppContext/AppContext";
 
 const PostShare = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer.authData);
+  const { user } = useUserContext();
   const loading = useSelector((state) => state.postReducer.uploading);
   const [image, setImage] = useState(null);
   // const [video, setVideo] = useState(null);

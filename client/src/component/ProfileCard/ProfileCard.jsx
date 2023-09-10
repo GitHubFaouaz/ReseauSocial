@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../utils/AppContext/AppContext";
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
 function ProfileCard({ location }) {
-  const { user } = useSelector((state) => state.authReducer.authData);
-  // const posts = useSelector((state) => state.postReducer.posts);
+  const { user } = useUserContext();
   const { posts } = useSelector((state) => state.postReducer);
   // console.log(user);
 
