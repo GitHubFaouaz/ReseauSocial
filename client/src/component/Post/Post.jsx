@@ -182,6 +182,7 @@ const unLike = ()=> {
       {/* pour afficher les commantaires du post */}
       {comment && (
         <CommentsPost/>
+        // <CommentsPost post={post}/>
     
       )  }
 
