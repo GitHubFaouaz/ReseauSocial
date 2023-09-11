@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , memo, useMemo } from "react";
 import { getTimelinePosts } from "../../actions/PostsAction";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,34 +15,38 @@ const Posts = () => {
   // console.log('users' , users);
   // console.log('userPost' , user);
   let { posts, loading } = useSelector((state) => state.postReducer);
-  // const idUsers = users.map((user) => user._id )
-  //  console.log('idUsers' ,idUsers);  
+ 
+
+  
+  
   // lorsque le composant est monté ou lorsque la valeur de dispatch ou user._id change. En d'autres termes, chaque fois que l'ID de l'utilisateur change ou que vous avez besoin de déclencher la récupération des publications de la chronologie
-  useEffect(() => {
+   useEffect(() => {
      dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
 
   }, [ dispatch,user._id]);
 
-   if (!posts)  return "No Posts";
+   if (!posts )  return "No Posts";
 
 
   //si posts  comparaison pour trouver le user qui correspond a l'url (params.id)
-  if (params.id) posts = posts.filter((post) => post.userId === params.id); // userId de celui qui a posté  = id de url
+  if (params.id) posts = posts.filter((posts) => posts.userId === params.id); // userId de celui qui a posté  = id de url
  
-
+   
+  
 
  return (
     <div className="Posts">
       {loading
         ? "Chargement..." // pendant le chargement
-        : posts.map((post ) => {
-          // console.log( "keyPost" ,post._id);
+        : posts.map((posts, index ) => {
+        // console.log( "keyPost" ,posts._id);
            
           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
-         const userPosted = users.find((user) => user._id === post.userId);
+         const userPosted = users.find((user) => user._id === posts.userId);
           
       
-         return <  Post data={post} user = {userPosted}   key={post._id}/>; // on affiche tous les post avec le id
+         return <  Post data={posts} user = {userPosted}   key={posts._id}/>; // on affiche tous les posts avec le id
+        
      
           })}
     </div>
