@@ -23,7 +23,10 @@ const Post = ({data,user}) => {
   // const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
   const [liked, setLiked] = useState(false);// on verifier deja si le user id est est deja dans le tableau des likes   
   const dispatch = useDispatch();
-
+  
+    // // Utilisation de useMemo pour créer des versions stables des props
+    // const memoizedData = useMemo(() => data, [data]);
+    // const memoizedUser = useMemo(() => user, [user]);
   
 
 

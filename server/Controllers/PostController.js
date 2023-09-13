@@ -111,6 +111,15 @@ export const likePost = async (req, res) => {
 
 // Get timeline posts  A REVOIRE.............
 export const getTimelinePosts = async (req, res) => {
+  // lesture de la base de donné
+  PostModel.find((err, docs) => {
+      //envoi moi le docs (la data) ou s'il ya erreur envoi
+      if (!err) res.send(docs);
+      else console.log("Error to get data : " + err);
+    })
+    .sort({ createdAt: -1 }); //.sort({createdAt: -1 }); permet d'afficher la liste du plus recent au plus ancien
+};
+/* export const getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
   try {
     const currentUserPosts = await PostModel.find({ userId: userId });
@@ -147,6 +156,6 @@ export const getTimelinePosts = async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-};
+}; */
 
 

@@ -2,7 +2,19 @@
 import * as PostsApi from "../api/PostsRequests";
 
 // obtenir des publications(posts) sur la chronologie
-export const getTimelinePosts = (id) => async (dispatch) => {
+export const getTimelinePosts = () => async (dispatch) => {
+  dispatch({ type: "RETREIVING_START" });
+  try {
+    // const { data } = await PostsApi.getTimelinePosts(id);
+    const dataPost = await PostsApi.getTimelinePosts();
+    console.log('dataPostGet' ,  dataPost);
+    dispatch({ type: "RETREIVING_SUCCESS", data: dataPost.data });
+  } catch (error) {
+    // console.log(error);
+    dispatch({ type: "RETREIVING_FAIL" });
+  }
+};
+/* export const getTimelinePosts = (id) => async (dispatch) => {
   dispatch({ type: "RETREIVING_START" });
   try {
     // const { data } = await PostsApi.getTimelinePosts(id);
@@ -13,7 +25,7 @@ export const getTimelinePosts = (id) => async (dispatch) => {
     // console.log(error);
     dispatch({ type: "RETREIVING_FAIL" });
   }
-};
+}; */
 
 
 export const LikePost = (id,userId) => async (dispatch) => { // postId et userId
