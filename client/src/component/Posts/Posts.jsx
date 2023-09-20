@@ -7,10 +7,11 @@ import { useUserContext } from "../utils/AppContext/AppContext";
 
 // Récupération de tous les posts ....
 const Posts = () => {
+  // const [loadPost, setloadPost] = useState(true); 
   // const params = useParams();
   const dispatch = useDispatch();
   // const {user} =  useUserContext();
-  const {users} = useSelector((state)=> state.usersReducer )
+  // const {users} = useSelector((state)=> state.usersReducer )
 
   // console.log('users' , users);
   // console.log('userPost' , user);
@@ -26,9 +27,12 @@ const Posts = () => {
 
   }, [ dispatch,user._id]); */
    useEffect(() => {
+    // if (loadPost) {
      dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
-
-  }, [ dispatch]);
+    //  setloadPost(false);
+    // }
+  // }, [loadPost, dispatch]);
+  }, [dispatch]);
 
    if (!posts )  return "No Posts";
 
@@ -43,14 +47,15 @@ const Posts = () => {
     <div className="Posts">
       {loading
         ? "Chargement..." // pendant le chargement
-        : posts.map((posts ) => {
-        // console.log( "keyPost" ,posts._id);
+        : posts.map((post ) => {
+        // console.log( "keyPost" ,post._id);
            
           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
-         const userPosted = users.find((user) => user._id === posts.userId);
+        //  const userPosted = users.find((user) => user._id === post.userId);
           
       
-         return <  Post data={posts} user = {userPosted}   key={posts._id}/>; // on affiche tous les posts avec le id
+        //  return <  Post post={post} user = {userPosted}   key={post._id}/>; // on affiche tous les posts avec le id
+         return <  Post post={post}    key={post._id}/>; // on affiche tous les posts avec le id
         
      
           })}

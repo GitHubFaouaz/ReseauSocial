@@ -1,38 +1,42 @@
 import React, { memo, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; //Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
-import { faHeart as solidHeart, faPenNib } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
+ //Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
+import { faHeart as  faPenNib } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 // import { likePost } from "../../api/PostsRequests";
-import { useDispatch, useSelector } from "react-redux";
-import { deletePost, LikePost,unLikePost, updatePost } from "../../actions/PostsAction";
+import { useDispatch} from "react-redux";
+import { deletePost, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
+import { useUserContext } from "../utils/AppContext/AppContext";
+
+import LikeButton from "./LikeButton";
 
 
 // je recupère en props les informations envoyées du composants Posts 
-const Post = ({data,user}) => {
+// const Post = ({post,user}) => {
+const Post = ({post}) => {
 
-
+   const {user} =  useUserContext();
   const [comment,setComment] = useState(false)
   const [isUpdate , setIsUpdate] = useState(true)
   const [updateTexte , setUpdateTexte] = useState('')
-  // const [liked, setLiked] = useState(data.likes.includes(user._id));// on verifier deja si le user id est est deja dans le tableau des likes   
-  const [liked, setLiked] = useState(false);// on verifier deja si le user id est est deja dans le tableau des likes   
+ 
+  
+  
   const dispatch = useDispatch();
   
     // // Utilisation de useMemo pour créer des versions stables des props
-    // const memoizedData = useMemo(() => data, [data]);
+    // const memoizedData = useMemo(() => post, [post]);
     // const memoizedUser = useMemo(() => user, [user]);
   
 
 
   // --------------------------------------------
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const date =new Date(data.updatedAt) 
+  const date =new Date(post.updatedAt) 
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
   const formattedDate = date.toLocaleString('fr-FR', options);//toLocaleString() est une méthode intégrée en JavaScript qui permet de formater les dates et les nombres en fonction des paramètres régionaux spécifiés
   //dateObject.toLocaleString([locales[, options]])
@@ -43,13 +47,14 @@ const Post = ({data,user}) => {
 
 
 // POUR LE REERENDER DE TOUS LES POSTS A VOIR PLUS TARD 
-  useEffect(()=> {
-     setIsUpdate(true)
-     if(data.likes.includes(user._id)) setLiked(true)
-     else setLiked(false) 
-  },[data.likes,user._id])
+  // useEffect(()=> {
+  //   //  setIsUpdate(true)
+  //    if(post.likes.includes(user._id)) setLiked(true)
+  //    else setLiked(false) 
+  // },[post.likes,user._id])
    
-    // console.log('dataProps',  data); // data du post 
+
+    // console.log('dataProps',  post); // post du post 
   
  
    // mise a jour du post 
@@ -58,11 +63,11 @@ const Post = ({data,user}) => {
   
     // console.log('user._id: ', user._id);
     // console.log('updateTexte: ', updateTexte);
-    // console.log( ' updatedPost._id(postId)' , data._id);
+    // console.log( ' updatedPost._id(postId)' , post._id);
    
     try{
-      if (data) {
-    await dispatch(updatePost(data._id, user._id, updateTexte)); 
+      if (post) {
+    await dispatch(updatePost(post._id, user._id, updateTexte)); 
     // setIsUpdate(true)
       }
     }catch(error){
@@ -71,21 +76,12 @@ const Post = ({data,user}) => {
 }
   
   const buttonDeletePost =  ()=> {
-    dispatch(deletePost(data._id,user._id))
-   //  console.log( 'userProps' , user);// data du user 
- //  console.log('dataProps',  data); // data du post 
+    dispatch(deletePost(post._id,user._id))
+   //  console.log( 'userProps' , user);// post du user 
+ //  console.log('dataProps',  post); // post du post 
 }
 
-const like = ()=> {
-   dispatch(LikePost(data._id,user._id))
 
-   setLiked(true)
-}
-
-const unLike = ()=> {
-  dispatch(unLikePost(data._id,user._id))
-  setLiked(false) 
-}
   return (
     <>
  <div className="Post"     >
@@ -110,12 +106,12 @@ const unLike = ()=> {
           </div>
  
           
-         {isUpdate  ? ( <div> <span>{data.desc}</span> <span>{formattedDate}</span></div>  )  :( 
+         {isUpdate  ? ( <div> <span>{post.desc}</span> <span>{formattedDate}</span></div>  )  :( 
 
           
            <>
           <textarea 
-          defaultValue={data.desc}
+          defaultValue={post.desc}
           onChange={(e)=> setUpdateTexte(e.target.value) }
           />
          <ButtonSubmitComments texte={'Valider'}  onClick={updateItem} />  {/*  validation de la mise a jour */}
@@ -128,12 +124,12 @@ const unLike = ()=> {
      
       </div>
       <img // si image on l'affiche dans la page au centre
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
+        src={post.image ? process.env.REACT_APP_PUBLIC_FOLDER + post.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
         alt="imgPost"
       /> 
       
       {/* le button update n'apparait que pour celui qui a posté  */}
-        { data.userId === user._id && ( 
+        { post.userId === user._id && ( 
           <div className="containe-updateDelecteComment">
       
        <FontAwesomeIcon icon={faPenNib} style={{cursor:"pointer"}} onClick={()=> setIsUpdate(!isUpdate)} /> 
@@ -148,40 +144,16 @@ const unLike = ()=> {
           style={{ fontSize: "30px", cursor: "pointer" }}
           onClick={()=> setComment(!comment)}
         />
-         <div
-          className="container-like"
-          // onClick={handleLike}
-          // onClick={like}
-          style={{ cursor: "pointer" }}
-        >
-          {liked === false ? (
-              
-            <FontAwesomeIcon
-            onClick={like}
-            icon={regularHeart}
-            style={{ fontSize: "30px", color: "#000" }}
-          />
-          ) : (
-            <FontAwesomeIcon
-            onClick={unLike}
-            icon={solidHeart}
-            style={{ fontSize: "30px", color: "#02d6dd" }}
-          />
-          )}
-        
-            <span>
-          
-            {data.likes.length}
-          </span>
-        </div>
+      
        
         <FontAwesomeIcon
           icon={faShare}
           style={{ fontSize: "30px", cursor: "pointer" }}
         />
       </div>
-    
-     
+        
+      <LikeButton post={post} user={user} />
+       
       {/* pour afficher les commantaires du post */}
       {comment && (
         <CommentsPost/>
