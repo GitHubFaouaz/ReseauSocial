@@ -6,9 +6,9 @@ import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { LikePost, unLikePost } from "../../actions/PostsAction";
 
-// const LikeButton = ({ post, user, initialLiked }) => {
+
 const LikeButton = ({ post, user}) => {
-  // const [liked, setLiked] = useState(initialLiked);
+
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
 
