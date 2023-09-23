@@ -41,7 +41,7 @@ const Post = ({ post }) => {
         // setIsUpdate(true)
       }
     } catch (error) {
-      //  console.error(error);
+      console.error(error);
     }
   }
 
@@ -70,7 +70,9 @@ const Post = ({ post }) => {
               <span>{user.firstname}</span>
             </div>
 
-            {isUpdate ? (<div> <span>{post.desc}</span><FormattedData post={post} /></div>) : (
+            {isUpdate ? (
+            <div> 
+              <span>{post.desc}</span><FormattedData post={post} /></div>) : (
               <>
                 <textarea
                   defaultValue={post.desc}
