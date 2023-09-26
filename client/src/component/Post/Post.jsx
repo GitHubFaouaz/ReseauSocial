@@ -13,6 +13,7 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 import { useUserContext } from "../utils/AppContext/AppContext";
 import LikeButton from "./LikeButton";
 import FormattedData from "../utils/FormattedData/FormattedData";
+import UpdatePost from "./UpdatePost";
 
 
 // je recupère en props les informations envoyées du composants Posts 
@@ -30,6 +31,9 @@ const Post = ({ post }) => {
   // const memoizedUser = useMemo(() => user, [user]);
   // console.log('dataProps',  post); // post du post 
   // mise a jour du post 
+  const toggleIsUpdate = () => {
+    setIsUpdate(!isUpdate);
+  };
   const updateItem = async () => {
     // console.log('user._id: ', user._id);
     // console.log('updateTexte: ', updateTexte);
@@ -71,16 +75,17 @@ const Post = ({ post }) => {
             </div>
 
             {isUpdate ? (
-            <div> 
-              <span>{post.desc}</span><FormattedData post={post} /></div>) : (
+              <div>
+                <span>{post.desc}</span><FormattedData post={post} /></div>) : (
               <>
                 <textarea
                   defaultValue={post.desc}
                   onChange={(e) => setUpdateTexte(e.target.value)}
                 />
-                <ButtonSubmitComments texte={'Valider'} onClick={updateItem} />  {/*  validation de la mise a jour */}
+                <ButtonSubmitComments texte={'Valider'} onClick={updateItem} />
               </>
             )}
+            {/* <UpdatePost post={post} user={user} isUpdate={isUpdate} toggleIsUpdate={toggleIsUpdate} /> */}
 
 
 

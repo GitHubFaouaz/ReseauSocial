@@ -4,8 +4,8 @@ import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitCom
 import FormattedData from "../utils/FormattedData/FormattedData";
 import { updatePost } from "../../actions/PostsAction";
 
-const UpdatePost = ({ post, user }) => {
-  const [isUpdate, setIsUpdate] = useState(true)
+const UpdatePost = ({ post, user, isUpdate, toggleIsUpdate }) => {
+  // const [isUpdate, setIsUpdate] = useState(true)
   const [updateTexte, setUpdateTexte] = useState('')
   const dispatch = useDispatch();
   const updateItem = async () => {
@@ -14,6 +14,7 @@ const UpdatePost = ({ post, user }) => {
     try {
       if (post) {
         await dispatch(updatePost(post._id, user._id, updateTexte));
+        toggleIsUpdate();
         // setIsUpdate(true)
       }
     } catch (error) {
