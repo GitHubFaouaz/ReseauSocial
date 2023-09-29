@@ -1,60 +1,22 @@
 import React, { memo, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// Le fait de renommer un import, comme dans l'exemple précédent, est couramment appelé "aliasing" ou "renommage d'importation
-import { faHeart as solidHeart, faPenNib } from "@fortawesome/free-solid-svg-icons"; // vous pouvez renommer l'un des imports afin d'éviter les conflits de noms
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-// import { likePost } from "../../api/PostsRequests";
-import { useDispatch } from "react-redux";
-import { deletePost, updatePost } from "../../actions/PostsAction";
 import CommentsPost from "../CommentsPost/CommentsPost";
-import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 import { useUserContext } from "../utils/AppContext/AppContext";
 import LikeButton from "./LikeButton";
-import FormattedData from "../utils/FormattedData/FormattedData";
 import UpdatePost from "./UpdatePost";
+import DeletePost from "./DeletePost";
 
 
 // je recupère en props les informations envoyées du composants Posts 
-// const Post = ({post,user}) => {
-const Post = ({ post }) => {
 
+const Post = ({ post }) => {
   const { user } = useUserContext();
   const [comment, setComment] = useState(false)
   const [isUpdate, setIsUpdate] = useState(true)
-  const [updateTexte, setUpdateTexte] = useState('')
-  const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  // // Utilisation de useMemo pour créer des versions stables des props
-  // const memoizedData = useMemo(() => post, [post]);
-  // const memoizedUser = useMemo(() => user, [user]);
   // console.log('dataProps',  post); // post du post 
-  // mise a jour du post 
-  const toggleIsUpdate = () => {
-    setIsUpdate(!isUpdate);
-  };
-  const updateItem = async () => {
-    // console.log('user._id: ', user._id);
-    // console.log('updateTexte: ', updateTexte);
-    // console.log( ' updatedPost._id(postId)' , post._id);
-
-    try {
-      if (post) {
-        await dispatch(updatePost(post._id, user._id, updateTexte));
-        // setIsUpdate(true)
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const buttonDeletePost = () => {
-    dispatch(deletePost(post._id, user._id))
-    //  console.log( 'userProps' , user);// post du user 
-    //  console.log('dataProps',  post); // post du post 
-  }
-
 
   return (
     <>
@@ -73,22 +35,7 @@ const Post = ({ post }) => {
             <div>
               <span>{user.firstname}</span>
             </div>
-
-            {isUpdate ? (
-              <div>
-                <span>{post.desc}</span><FormattedData post={post} /></div>) : (
-              <>
-                <textarea
-                  defaultValue={post.desc}
-                  onChange={(e) => setUpdateTexte(e.target.value)}
-                />
-                <ButtonSubmitComments texte={'Valider'} onClick={updateItem} />
-              </>
-            )}
-            {/* <UpdatePost post={post} user={user} isUpdate={isUpdate} toggleIsUpdate={toggleIsUpdate} /> */}
-
-
-
+            <UpdatePost post={post} user={user} isUpdate={isUpdate} />
           </div>
 
         </div>
@@ -98,14 +45,7 @@ const Post = ({ post }) => {
         />
 
         {/* le button update n'apparait que pour celui qui a posté  */}
-        {post.userId === user._id && (
-          <div className="containe-updateDelecteComment">
-
-            <FontAwesomeIcon icon={faPenNib} style={{ cursor: "pointer" }} onClick={() => setIsUpdate(!isUpdate)} />
-            <FontAwesomeIcon icon={faTrashCan} style={{ cursor: "pointer" }} onClick={buttonDeletePost} /*on click sur la croix limage disparait elle est nul  */// onClick={() => setImage(null)} />
-            />
-          </div>
-        )}
+        <DeletePost post={post} user={user} isUpdate={isUpdate} setIsUpdate={setIsUpdate} />
 
         <div className="postReact">
           <FontAwesomeIcon
