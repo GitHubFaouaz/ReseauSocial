@@ -119,43 +119,31 @@ export const getTimelinePosts = async (req, res) => {
     })
     .sort({ createdAt: -1 }); //.sort({createdAt: -1 }); permet d'afficher la liste du plus recent au plus ancien
 };
-/* export const getTimelinePosts = async (req, res) => {
-  const userId = req.params.id;
+
+export const commentPost = (req, res) => {
+  const { userId } = req.body;
+  // if (!ObjectID.isValid(req.params.id))
+  //   return res.status(400).send("ID unknown : " + req.params.id);
+
   try {
-    const currentUserPosts = await PostModel.find({ userId: userId });
-
-    const followingPosts = await UserModel.aggregate([
+    return PostModel.findByIdAndUpdate(
+      req.params.id,
       {
-        $match: {
-          _id: new mongoose.Types.ObjectId(userId),
+        $push: {
+          comments: {
+            commenterId: req.body.commenterId,
+            commenterPseudo: req.body.commenterPseudo,
+            text: req.body.text,
+            timestamp: new Date().getTime(),
+          },
         },
       },
-      {
-        $lookup: {
-          from: "posts",
-          localField: "following",
-          foreignField: "userId",
-          as: "followingPosts",
-        },
-      },
-      {
-        $project: {
-          followingPosts: 1,
-          _id: 0,
-        },
-      },
-    ]);
-
-    res.status(200).json(
-      currentUserPosts
-        .concat(...followingPosts[0].followingPosts)
-        .sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        })
-    );
-  } catch (error) {
-    res.status(500).json(error);
-  }
-}; */
+      { new: true })
+            .then((data) => res.send(data))
+            .catch((err) => res.status(500).send({ message: err }));
+    } catch (err) {
+        return res.status(400).send(err);
+    }
+};
 
 

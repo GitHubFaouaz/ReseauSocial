@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
-import CommentsPost from "../CommentsPost/CommentsPost";
+import CommentsPost from "./CommentsPost";
 import { useUserContext } from "../utils/AppContext/AppContext";
 import LikeButton from "./LikeButton";
 import UpdatePost from "./UpdatePost";
@@ -65,6 +65,7 @@ const Post = ({ post }) => {
         {comment && (
           <CommentsPost />
           // <CommentsPost post={post}/>
+          // <p>abdallah</p>
 
         )}
 
