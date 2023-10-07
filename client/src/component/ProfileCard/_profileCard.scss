@@ -157,12 +157,14 @@
     overflow: hidden;
     background: $blackLight;
     border-radius: 1rem;
-
+    box-shadow: $box-shadow;
     .imgCover {
       width: 100%;
+      box-shadow: $box-shadow;
       img {
         height: 50%; //height: 50%  ou 100%;
         width: 100%;
+        box-shadow:25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5);
       }
     }
     .imgProfile {
@@ -176,6 +178,7 @@
       background: $black;
       border-radius: 50%;
       overflow: hidden;
+
 
       &::before {
         content: "";

@@ -3,7 +3,7 @@ import PostModel from "../models/postModel.js";
 import mongoose from "mongoose";
 import axios from 'axios';
 
-// creating a post
+
 
 export const createPost = async (req, res) => {
   const newPost = new PostModel(req.body);
@@ -16,7 +16,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-// get a post
+
 
 export const getPost = async (req, res) => {
   const id = req.params.id;
@@ -24,12 +24,13 @@ export const getPost = async (req, res) => {
   try {
     const post = await PostModel.findById(id); // _id du post 
     res.status(200).json(post);
+    // res.status(200).json(post).sort({createdAt : -1});// pour afficher les plus rescent post ou inverser en css lordre 
   } catch (error) {
     res.status(500).json(error);
   }
 };
 
-// update post
+
 export const updatePost = async (req, res) => {
   const postId = req.params.id; // id du post 
   const { userId } = req.body; // l'ID de l'utilisateur à partir du corps de la requête req.body
@@ -56,7 +57,7 @@ export const updatePost = async (req, res) => {
   }
 };
 
-// delete a post
+
 export const deletePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
@@ -121,20 +122,22 @@ export const getTimelinePosts = async (req, res) => {
 };
 
 export const commentPost = (req, res) => {
-  const { userId } = req.body;
+  // const { userId } = req.body;
+  const postId = req.params.id; 
+  // console.log('userId' ,  userId);
   // if (!ObjectID.isValid(req.params.id))
   //   return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     return PostModel.findByIdAndUpdate(
       req.params.id,
-      {
-        $push: {
+      // postId
+       {$push: {
           comments: {
             commenterId: req.body.commenterId,
             commenterPseudo: req.body.commenterPseudo,
             text: req.body.text,
-            timestamp: new Date().getTime(),
+            timestamp: new Date().getTime(),// qui sera convertie en front 
           },
         },
       },
@@ -144,6 +147,53 @@ export const commentPost = (req, res) => {
     } catch (err) {
         return res.status(400).send(err);
     }
+};
+
+export const editCommentPost = (req, res) => {
+  // if (!ObjectID.isValid(req.params.id))
+  //   return res.status(400).send("ID unknown : " + req.params.id);
+  // const postId = req.params.id;  
+
+  try {
+    return PostModel.findById(req.params.id, (err, docs) => {
+      // on recupere le commentaire qui correspond 
+      const theComment = docs.comments.find((comment) =>
+        comment._id.equals(req.body.commentId) // on cherche le id(user) qui correspond a commentId 
+      );
+
+      if (!theComment) return res.status(404).send("Comment not found");
+      theComment.text = req.body.text;
+
+      return docs.save((err) => {
+        if (!err) return res.status(200).send(docs);
+        return res.status(500).send(err);
+      });
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+};
+
+export const  deleteCommentPost = (req, res) => {
+  // if (!ObjectID.isValid(req.params.id))
+  //   return res.status(400).send("ID unknown : " + req.params.id);
+
+  // try {
+  //   return PostModel.findByIdAndUpdate(
+  //     req.params.id,
+  //     {
+  //       $pull: {
+  //         comments: {
+  //           _id: req.body.commentId,
+  //         },
+  //       },
+  //     },
+  //     { new: true })
+  //           .then((data) => res.send(data))
+  //           .catch((err) => res.status(500).send({ message: err }));
+  //   } catch (err) {
+  //       return res.status(400).send(err);
+  //   }
 };
 
 
