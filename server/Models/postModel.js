@@ -10,7 +10,7 @@ const postSchema = mongoose.Schema(
       default: new Date(),
     },
     image: String,
-    video: String, 
+    // video: String, 
     comments: { // pour les commentaires ont fait un sous base de donnée
       type: [
         {

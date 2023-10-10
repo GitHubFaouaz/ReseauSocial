@@ -123,7 +123,9 @@ export const getTimelinePosts = async (req, res) => {
 
 export const commentPost = (req, res) => {
   // const { userId } = req.body;
-  const postId = req.params.id; 
+  const postId = req.params.id; //id du post et non du commentaire
+  const bodyCorps =  req.body
+  console.log('bodyCorps' ,bodyCorps);
   // console.log('userId' ,  userId);
   // if (!ObjectID.isValid(req.params.id))
   //   return res.status(400).send("ID unknown : " + req.params.id);
@@ -131,13 +133,14 @@ export const commentPost = (req, res) => {
   try {
     return PostModel.findByIdAndUpdate(
       req.params.id,
+   
       // postId
        {$push: {
           comments: {
-            commenterId: req.body.commenterId,
+            commenterId: req.body.commenterId,//id de celui qui post  comme dans le model
             commenterPseudo: req.body.commenterPseudo,
             text: req.body.text,
-            timestamp: new Date().getTime(),// qui sera convertie en front 
+            timestamp: new Date().getTime(),//qui sera convertie en front 
           },
         },
       },
@@ -152,13 +155,15 @@ export const commentPost = (req, res) => {
 export const editCommentPost = (req, res) => {
   // if (!ObjectID.isValid(req.params.id))
   //   return res.status(400).send("ID unknown : " + req.params.id);
-  // const postId = req.params.id;  
+  // const postId = req.params.id; 
+  const bodyCorps =  req.body
+  console.log('bodyCorps' ,bodyCorps); 
 
   try {
     return PostModel.findById(req.params.id, (err, docs) => {
       // on recupere le commentaire qui correspond 
       const theComment = docs.comments.find((comment) =>
-        comment._id.equals(req.body.commentId) // on cherche le id(user) qui correspond a commentId 
+        comment._id.equals(req.body.commentId) // on cherche le id du commentaire a editer(commentId en front end) qui est equal a comment._id(._id:objectId) dans les posts
       );
 
       if (!theComment) return res.status(404).send("Comment not found");
