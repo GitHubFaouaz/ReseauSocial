@@ -122,17 +122,15 @@ export const getTimelinePosts = async (req, res) => {
 };
 
 export const commentPost = (req, res) => {
-  // const { userId } = req.body;
+  
   const postId = req.params.id; //id du post et non du commentaire
-  const bodyCorps =  req.body
-  console.log('bodyCorps' ,bodyCorps);
-  // console.log('userId' ,  userId);
-  // if (!ObjectID.isValid(req.params.id))
-  //   return res.status(400).send("ID unknown : " + req.params.id);
-
+  // const bodyCorps =  req.body
+  // console.log('bodyCorps' ,bodyCorps);
+  
   try {
-    return PostModel.findByIdAndUpdate(
-      req.params.id,
+    return PostModel.findByIdAndUpdate( 
+   // on point dabord sur le post
+   postId,
    
       // postId
        {$push: {
@@ -153,15 +151,13 @@ export const commentPost = (req, res) => {
 };
 
 export const editCommentPost = (req, res) => {
-  // if (!ObjectID.isValid(req.params.id))
-  //   return res.status(400).send("ID unknown : " + req.params.id);
-  // const postId = req.params.id; 
-  const bodyCorps =  req.body
-  console.log('bodyCorps' ,bodyCorps); 
+  
+  const postId = req.params.id; 
+  // const bodyCorps =  req.body
+  // console.log('bodyCorps' ,bodyCorps); 
 
   try {
-    return PostModel.findById(req.params.id, (err, docs) => {
-      // on recupere le commentaire qui correspond 
+    return PostModel.findById(postId, (err, docs) => {
       const theComment = docs.comments.find((comment) =>
         comment._id.equals(req.body.commentId) // on cherche le id du commentaire a editer(commentId en front end) qui est equal a comment._id(._id:objectId) dans les posts
       );
@@ -180,25 +176,26 @@ export const editCommentPost = (req, res) => {
 };
 
 export const  deleteCommentPost = (req, res) => {
-  // if (!ObjectID.isValid(req.params.id))
-  //   return res.status(400).send("ID unknown : " + req.params.id);
+    
+  const postId = req.params.id; //id du post et non du commentaire
 
-  // try {
-  //   return PostModel.findByIdAndUpdate(
-  //     req.params.id,
-  //     {
-  //       $pull: {
-  //         comments: {
-  //           _id: req.body.commentId,
-  //         },
-  //       },
-  //     },
-  //     { new: true })
-  //           .then((data) => res.send(data))
-  //           .catch((err) => res.status(500).send({ message: err }));
-  //   } catch (err) {
-  //       return res.status(400).send(err);
-  //   }
+  try {
+    return PostModel.findByIdAndUpdate(
+         // on point dabord sur post pour supprimer un commentaire dans le post
+     postId,
+      {
+        $pull: {
+          comments: {
+            _id: req.body.commentId,// on retire le commentaire qui a l'id 
+          },
+        },
+      },
+      { new: true })
+            .then((data) => res.send(data))
+            .catch((err) => res.status(500).send({ message: err }));
+    } catch (err) {
+        return res.status(400).send(err);
+    }
 };
 
 
