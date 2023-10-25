@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
 import { useUserContext } from "../utils/AppContext/AppContext";
 import { useDispatch, useSelector } from 'react-redux';
-const CommentsPost = () => {
+const CommentsPost = ({ post }) => {
   const [text, setText] = useState();
   const { user } = useUserContext();
-  const { posts } = useSelector((state) => state.postReducer);
+  // const { posts } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -20,14 +20,16 @@ const CommentsPost = () => {
               : serverPublic + "defaultProfile.png"
           } alt="" />
           <div>
-            <span> nom</span>
-            <p className="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, necessitatibus quidem? Illum, sunt repellendus. Quos reiciendis vitae ex, ipsam harum architecto perferendis optio ab debitis deserunt officiis adipisci eius odio!</p> </div>
-          {/* {posts.comments.map((comment) => {
-            return (
-              <p>{comment}</p>
-            )
-          })} */}
-
+            <span>nom photo</span>
+            <p className="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, necessitatibus quidem? Illum, sunt repellendus. Quos reiciendis vitae ex, ipsam harum architecto perferendis optio ab debitis deserunt officiis adipisci eius odio!</p>
+          </div>
+          {/* {posts.comments.text.map((comment) => {
+              console.log("text", comment);
+              return (
+                <p>{comment}</p>
+              )
+          
+            })} */}
         </div>
         <div className="containe-imgName">
           <img src={
@@ -36,8 +38,16 @@ const CommentsPost = () => {
               : serverPublic + "defaultProfile.png"
           } alt="" />
           <div>
-            <span>mounir</span>
-            <p className="comment">il abuse la </p> </div>
+            <span>mounirrrrr</span>
+            {/* <p className="comment">il abuse la </p> */}
+            {post.desc.map((comment) => {
+              console.log("text", comment);
+              return (
+                <p>{comment}</p>
+              )
+
+            })}
+          </div>
 
         </div>
 

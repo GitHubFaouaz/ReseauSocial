@@ -63,9 +63,9 @@ const Post = ({ post }) => {
         </div>
         {/* pour afficher les commantaires du post */}
         {comment && (
-          <CommentsPost />
-          // <CommentsPost post={post}/>
-          // <p>abdallah</p>
+          // <CommentsPost />
+          // <CommentsPost post={post} />
+          <p>abdallah</p>
 
         )}
 

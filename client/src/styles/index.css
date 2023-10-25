@@ -90,15 +90,18 @@ body {
 
 .banner span {
   z-index: 1;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
-  animation: animeSpan 3s ease-in-out forwards;
   cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes animateBlocks {
   0% {
-    transform: translateZ(2000px); /*  il commence a 2000px en bas  */
+    transform: translateZ(2000px);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -131,20 +134,6 @@ body {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
   }
 }
-@keyframes animeSpan {
-  0% {
-    transform: translateZ(2000px);
-  }
-  100% {
-    transform: translateZ(0px);
-    z-index: 1;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 5s;
-  }
-}
 * {
   margin: 0;
   padding: 0;
@@ -154,9 +143,6 @@ body {
 .auth {
   display: flex;
   justify-content: center;
-  align-content: center;
-  min-height: 100vh;
-  flex-wrap: wrap;
 }
 
 .colorBg {
@@ -164,7 +150,6 @@ body {
   filter: blur(150px);
 }
 .colorBg:nth-child(1) {
-  /* pour les  3 couleurs des enfants de color pour le bg du body en gradiant si on enleve filter dans color on comprend mieux  */
   top: -350px;
   width: 100%;
   height: 600px;
@@ -192,7 +177,11 @@ body {
 .containerForm {
   width: 60%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .containerForm .containerLogo {
   display: flex;
@@ -223,6 +212,7 @@ body {
   width: 300px;
   margin-top: 35px;
   margin-left: 10px;
+  transition: 2s;
 }
 .containerForm .form .inputBox input {
   position: relative;
@@ -268,6 +258,12 @@ body {
   pointer-events: none;
   z-index: 9;
 }
+.containerForm .form .inputBox:nth-child(4) {
+  width: 600px;
+}
+.containerForm .form .inputBox:nth-child(6) span {
+  top: -14px;
+}
 .containerForm .form .square {
   display: flex;
   flex-direction: column;
@@ -285,7 +281,7 @@ body {
 .containerForm .form .square p {
   margin-bottom: 5px;
 }
-.containerForm .form .square:nth-child(8) {
+.containerForm .form .square:nth-child(7) {
   position: absolute;
   bottom: -55px;
   right: 0px;
@@ -295,31 +291,48 @@ body {
   --i: 2;
   border-radius: 50px;
 }
-.containerForm .form .square:nth-child(9) {
+.containerForm .form .square:nth-child(8) {
   position: absolute;
   top: 150px;
   left: -85px;
   width: 120px;
   height: 120px;
-  font-weight: 700;
   cursor: pointer;
   z-index: 2;
   text-align: center;
+  padding: 2px;
   --i: 1;
 }
-.containerForm .form .square:nth-child(9) a {
+.containerForm .form .square:nth-child(8) a {
   text-decoration: none;
+  color: black;
 }
-.containerForm .form .square:nth-child(10) {
+.containerForm .form .square:nth-child(9) {
   position: absolute;
-  top: -50px;
+  top: 70px;
   right: -60px;
-  width: 100px;
-  height: 100px;
-  text-align: center;
+  padding: 3px;
   --i: 0;
 }
-.containerForm .form .square:nth-child(11) {
+.containerForm .form .square:nth-child(9) ul li {
+  display: flex;
+  list-style: none;
+}
+.containerForm .form .square:nth-child(9) ul li i {
+  opacity: 0;
+  visibility: hidden;
+}
+.containerForm .form .square:nth-child(9) ul li.valid i {
+  transition: 1s;
+  color: #e65c00;
+  opacity: 1;
+  margin-right: 10px;
+  visibility: inherit;
+}
+.containerForm .form .square:nth-child(9) ul li.valid span {
+  color: #3d3d3d;
+}
+.containerForm .form .square:nth-child(10) {
   position: absolute;
   bottom: -80px;
   left: 100px;
@@ -328,7 +341,7 @@ body {
   text-align: center;
   --i: 3;
 }
-.containerForm .form .square:nth-child(12) {
+.containerForm .form .square:nth-child(11) {
   position: absolute;
   top: -80px;
   right: 140px;
@@ -338,18 +351,65 @@ body {
 }
 .containerForm .form .animationSquare {
   animation: animateSquare 10s linear infinite;
-  animation-delay: calc(-1s * var(--i)); /*les variables du html*/
+  animation-delay: calc(-1s * var(--i));
 }
 .containerForm .box {
   margin-left: 1rem;
-  border-left: solid 1px rgba(43, 37, 3, 0.8);
+  border-left: solid 1px black;
 }
 
-#body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+@media (max-width: 992px) {
+  .containerForm {
+    flex-direction: column;
+  }
+  .containerForm .form {
+    width: 100%;
+  }
+  .containerForm .form .inputBox input {
+    padding: 30px 10px 10px;
+  }
+  .containerForm .form .inputBox:nth-child(4) {
+    width: 300px;
+  }
+  .containerForm .form .square {
+    /* --------------------------------------les carrés  */
+  }
+  .containerForm .form .square:nth-child(8) {
+    position: absolute;
+    top: 150px;
+    left: -70px;
+  }
+  .containerForm .form .square:nth-child(9) {
+    position: absolute;
+    top: -50px;
+    right: -60px;
+  }
+  .containerForm .form .square:nth-child(10) {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+  }
+  .containerForm .form .square:nth-child(11) {
+    position: absolute;
+    top: -80px;
+    left: -90px;
+  }
+  .containerForm .box {
+    margin: 1rem 0 0;
+  }
+}
+@media (max-width: 470px) {
+  .containerForm .form .inputBox:nth-child(2) span {
+    top: 20px;
+  }
+  .containerForm .form .inputBox:nth-child(3) span {
+    top: 20px;
+  }
+  .containerForm .form .inputBox:nth-child(4) span {
+    top: 20px;
+  }
+}
+#bodySignIn {
   position: relative;
 }
 
@@ -361,60 +421,47 @@ body {
   justify-content: space-around;
   align-content: space-around;
   flex-wrap: wrap;
-  min-height: 130vh;
+  min-height: 100vh;
   filter: blur(150px);
 }
-.divColor .color:nth-child(1) {
-  background: rgb(212, 11, 231);
+.divColor .ball {
   width: 250px;
   height: 250px;
   border-radius: 50%;
+}
+.divColor .color:nth-child(1) {
+  background: rgb(212, 11, 231);
   animation: animateColorBg 10s linear infinite;
 }
 .divColor .color:nth-child(2) {
   background: rgb(240, 115, 13);
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
   animation: animateColorBg 15s linear infinite;
 }
 .divColor .color:nth-child(3) {
   background: yellow;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
   animation: animateColorBg 25s linear infinite;
 }
 .divColor .color:nth-child(4) {
   background: rgb(255, 55, 0);
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
   animation: animateColorBg 30s linear infinite;
 }
 .divColor .color:nth-child(5) {
   background: lightcoral;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
   animation: animateColorBg 40s linear infinite;
 }
 .divColor .color:nth-child(6) {
   background: aqua;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
   animation: animateColorBg 50s linear infinite;
 }
 
 /* ---------------------------------formulaire */
-.container {
+.containerSignIn {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.container .drop {
+.containerSignIn .signIn {
   position: relative;
   width: 350px;
   height: 350px;
@@ -425,10 +472,10 @@ body {
   align-items: center;
   border-radius: 33% 67% 28% 72%/46% 32% 68% 54%; /*https://9elements.github.io/fancy-border-radius/#46.33.32.72--.*/
 }
-.container .drop:hover {
+.containerSignIn .signIn:hover {
   border-radius: 50%;
 }
-.container .drop::before {
+.containerSignIn .signIn::before {
   content: "";
   position: absolute;
   top: 50px;
@@ -439,18 +486,18 @@ body {
   background: #fff;
   opacity: 0.9;
 }
-.container .drop::after {
+.containerSignIn .signIn::after {
   content: "";
   position: absolute;
   top: 90px;
-  left: 110px;
+  left: 100px;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   background: #fff;
   opacity: 0.9;
 }
-.container .drop .content {
+.containerSignIn .signIn .content {
   position: relative;
   display: flex;
   justify-content: center;
@@ -460,13 +507,13 @@ body {
   padding: 40px;
   gap: 15px;
 }
-.container .drop .content h2 {
+.containerSignIn .signIn .content h2 {
   position: relative;
   -moz-columns: #333;
        columns: #333;
   font-size: 1.5em;
 }
-.container .drop .content form {
+.containerSignIn .signIn .content form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -474,24 +521,13 @@ body {
   justify-content: center;
   align-items: center;
 }
-.container .drop .content form .inputBox {
+.containerSignIn .signIn .content form .inputBox {
   position: relative;
   width: 225px;
   box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.1), inset -2px -5px 10px rgb(255, 255, 255), 15px 15px 10px rgba(0, 0, 0, 0.05), 15px 10px 15px rgba(0, 0, 0, 0.025);
-  /* autre style sans box-shadow: ; */
   border-radius: 25px;
 }
-.container .drop .content form .inputBox::before {
-  content: "";
-  position: absolute;
-  left: 50px;
-  transform: translateX(-50%);
-  width: 65px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-}
-.container .drop .content form .inputBox input {
+.containerSignIn .signIn .content form .inputBox input {
   border: none;
   outline: none;
   background: transparent;
@@ -499,46 +535,40 @@ body {
   font-size: 1rem;
   padding: 10px 15px;
 }
-.container .drop .content form .inputBox:last-child {
+.containerSignIn .signIn .content form .inputBox:last-child {
   width: 80px;
 }
-.container .drop .content form .inputBox button {
-  width: 80%;
-  color: #000000;
+.containerSignIn .signIn .content form .inputBox button {
+  color: #fff;
   text-transform: uppercase;
-  font-size: 1rem;
   cursor: pointer;
   letter-spacing: 0.1em;
   font-weight: 500;
   position: relative;
   border-radius: 30px;
   text-align: center;
-  padding: 9px 0px;
+  padding: 10px;
   border: none;
   outline: none;
   transition: 0.5s;
+  background: radial-gradient(rgba(255, 255, 255, 0.5), #4b4b4b, #000, #fff);
 }
-.container .drop .content form .inputBox button:hover::before {
-  background: radial-gradient(#000, rgba(0, 0, 0, 0.6705882353), #000000, black);
-  box-shadow: 1px 2px 15px #fff;
+.containerSignIn .signIn .content form .inputBox button:hover::before {
+  z-index: -1;
+  box-shadow: 0px 0px 0px 5px black;
+  transition: 1s;
 }
-.container .drop .content form .inputBox button:hover {
-  letter-spacing: 0.4em;
-  width: 100%;
-  font-weight: 700;
-}
-.container .drop .content form .inputBox button::before {
+.containerSignIn .signIn .content form .inputBox button::before {
   content: "";
   position: absolute;
-  left: -35px;
+  left: 0;
   top: 0;
   cursor: pointer;
   width: 100%;
   height: 100%;
   border-radius: 30px;
-  padding-left: 70px;
-  box-shadow: inset 1px 2px 15px #fff;
   background: radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6705882353), #000000, #fff);
+  transition: 1s;
 }
 
 /* ----------------------------forgot password  */
@@ -589,13 +619,14 @@ body {
   cursor: unset;
 }
 .signup::before {
-  left: 15px;
-  width: 15px;
-  height: 15px;
+  left: 7px;
+  width: 13px;
+  height: 13px;
   background: #fff;
 }
 .signup a {
   text-decoration: none;
+  color: black;
 }
 
 .errorMessages {
@@ -603,6 +634,37 @@ body {
   font-size: 15px;
 }
 
+@media (max-width: 768px) {
+  #bodySignIn .divColor .color:nth-child(1),
+  #bodySignIn .divColor .color:nth-child(2),
+  #bodySignIn .divColor .color:nth-child(3),
+  #bodySignIn .divColor .color:nth-child(4) {
+    animation: none;
+  }
+  #bodySignIn .divColor .color:nth-child(5),
+  #bodySignIn .divColor .color:nth-child(6) {
+    display: none;
+  }
+  .containerSignIn .signIn {
+    width: 300px;
+    height: 300px;
+  }
+  .containerSignIn .signIn::before {
+    top: 17px;
+    left: 48px;
+  }
+  .containerSignIn .signIn::after {
+    top: 62px;
+    left: 77px;
+  }
+  .containerSignIn .btns {
+    bottom: -95px;
+    right: 170px;
+  }
+  .containerSignIn .signup {
+    right: 80px;
+  }
+}
 .home {
   position: relative;
   display: grid;
@@ -610,6 +672,7 @@ body {
   gap: 1rem;
   padding: 0 1rem;
   background: linear-gradient(150deg, transparent, rgba(2, 214, 221, 0.9), transparent);
+  min-height: 100vh;
 }
 
 .profileUser {
@@ -631,18 +694,18 @@ body {
   align-items: center;
 }
 
-.profileRight {
-  margin: 10px 0;
-}
-
 .cardProfilPage {
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   overflow: hidden;
   border-radius: 1rem;
   margin: 10px 0;
   background: #2f363e;
-  height: 450px;
+  gap: 5px;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
   /* ---------------------------------------img-------------------------------------- */
   /* --------------------------------------------------------info user------------------- */
 }
@@ -652,36 +715,40 @@ body {
 .cardProfilPage .imgCover img {
   width: 100%;
   height: 300px;
+  border-radius: 10px;
 }
 .cardProfilPage .imgProfile {
   position: absolute;
-  top: 65%;
+  top: 95%;
   left: 0%;
-  transform: translate(10%, -100%);
+  transform: translate(0%, -100%);
   display: flex;
   align-items: center;
   border-radius: 50%;
+  border: 10px solid #2f363e;
   overflow: hidden;
-}
-.cardProfilPage .imgProfile::before {
-  content: "";
+  transition: 1s;
 }
 .cardProfilPage .imgProfile img {
   width: 130px;
   height: 130px;
 }
-.cardProfilPage > span {
-  position: absolute;
-  top: 65%;
-  left: 0%;
-  transform: translate(150px, -100%);
-  font-size: 18px;
-  color: #fff;
+.cardProfilPage .contentData {
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  width: 95%;
+  border-radius: 10px;
+  background: repeating-radial-gradient(black, transparent 5px);
+  padding: 10px;
+  transition: 1s;
 }
 .cardProfilPage .contentData .details {
   text-align: center;
-  width: 100%;
+  width: 95%;
   transition: 0.5s;
+  background: black;
+  box-shadow: inset 0px 0px 30px #02d6dd;
 }
 .cardProfilPage .contentData .details h2 {
   font-size: 1.25em;
@@ -696,8 +763,7 @@ body {
 }
 .cardProfilPage .contentData .details .data {
   display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
+  justify-content: flex-end;
   padding: 0 0.5rem;
 }
 .cardProfilPage .contentData .details .data h3:nth-child(1) {
@@ -713,8 +779,7 @@ body {
   font-size: 1em;
   font-weight: 600;
   color: #02d6dd;
-  background: black;
-  width: 33%;
+  width: 30%;
   padding: 0.8rem 0 0.8rem;
   position: relative;
 }
@@ -754,7 +819,9 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  border-radius: 1rem;
   margin: 10px 0;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
   /* ---------------------------------------img-------------------------------------- */
   /* --------------------------------------------------------info user------------------- */
 }
@@ -768,13 +835,16 @@ body {
   overflow: hidden;
   background: #2f363e;
   border-radius: 1rem;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
 }
 .cardHomePage .imgBx .imgCover {
   width: 100%;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
 }
 .cardHomePage .imgBx .imgCover img {
   height: 50%;
   width: 100%;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .cardHomePage .imgBx .imgProfile {
   position: absolute;
@@ -847,6 +917,9 @@ body {
 .cardHomePage .contentData .details .actionBtn {
   text-align: center;
 }
+.cardHomePage .contentData .details .actionBtn a {
+  text-decoration: none;
+}
 .cardHomePage .contentData .details .actionBtn p {
   font-size: 20px;
   font-weight: 500;
@@ -854,13 +927,22 @@ body {
   color: #02d6dd;
 }
 
+@media (max-width: 991px) {
+  .cardProfilPage .imgProfile {
+    top: 88%;
+    left: -2%;
+  }
+  .cardProfilPage .contentData {
+    width: 100%;
+  }
+}
 .containerBtn {
   position: absolute;
   right: 2rem;
   top: 2rem;
   z-index: 3;
 }
-.containerBtn .buttonToogle {
+.containerBtn .buttonToggle {
   position: relative;
   height: 26px;
   width: 55px;
@@ -870,10 +952,10 @@ body {
   align-items: center;
   justify-content: space-around;
   transform: scale(1.3);
-  box-shadow: inset 0px 3px 0px #333;
-  color: #fff;
+  box-shadow: inset 0px 3px 0px black;
+  color: black;
 }
-.containerBtn .buttonToogle .ball {
+.containerBtn .buttonToggle .ball {
   background: repeating-radial-gradient(#e65c00, #fcfcfc 15px);
   border-radius: 50%;
   height: 23px;
@@ -891,16 +973,14 @@ body {
   transition: transform 0.8s cubic-bezier(0.45, -1.12, 0.35, 1.78);
 }
 
-.containerBtn.active .ball.home-page {
-  background: repeating-radial-gradient(#02d6dd, #111110 12px);
-  transition: transform 0.8s cubic-bezier(0.45, -1.12, 0.35, 1.78);
-}
-
 .containerBtn.home-page {
   position: absolute;
   right: 5rem;
   top: 1rem;
   z-index: 3;
+}
+.containerBtn.home-page .buttonToggle {
+  color: white;
 }
 .containerBtn.home-page .ball {
   background: repeating-radial-gradient(rgba(255, 255, 255, 0.6117647059), #111110 1px);
@@ -922,7 +1002,6 @@ body {
   justify-content: center;
   border-bottom-left-radius: 100px;
   border-top-right-radius: 100px;
-  transform: skew(-30deg, 0deg);
 }
 .containeBarre p {
   color: #fff;
@@ -942,7 +1021,6 @@ body {
 
 .navigation {
   position: relative;
-  min-width: 240px;
   min-height: 100px;
   max-width: 400px;
   border-radius: 30px;
@@ -951,20 +1029,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px 0;
+  padding-top: 15px;
+  flex-wrap: wrap;
 }
 .navigation li {
   position: relative;
   list-style: none;
-  width: 80px;
-  margin: 0 5px;
+  margin: 0 5px 25px;
+}
+.navigation li:hover .icon {
+  transform: translateY(-10px);
+  background: linear-gradient(150deg, rgba(2, 214, 221, 0.9), #2f363e, #2f363e);
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25), inset 2px 2px 3px rgba(255, 255, 255, 0.25), inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+}
+.navigation li a {
+  color: #02d6dd;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-decoration: none;
-}
-.navigation li a {
-  color: #02d6dd;
 }
 .navigation li a::before {
   content: "";
@@ -986,12 +1072,6 @@ body {
   align-items: center;
   transition: 0.5s;
 }
-.navigation li a .icon:hover {
-  transform: translateY(-10px);
-  background: linear-gradient(150deg, transparent, rgba(2, 214, 221, 0.9), transparent);
-  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25), inset 2px 2px 3px rgba(255, 255, 255, 0.25), inset -3px -3px 5px rgba(0, 0, 0, 0.5);
-  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
-}
 .navigation li a.active::before {
   box-shadow: 0 0 1px #02d6dd, 0 0 5px #02d6dd, inset 0 0 1px, inset 0 0 5px #02d6dd, inset 0 0 7px #02d6dd;
 }
@@ -1009,7 +1089,8 @@ body {
   display: flex;
   align-items: center;
   max-width: 400px;
-  gap: 20px;
+  gap: 3px;
+  transition: 1s;
 }
 .follower .followerImage {
   width: 3.2rem;
@@ -1027,8 +1108,9 @@ body {
 }
 .follower .fc-button {
   height: 2rem;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 2px 2px;
+  width: 100px;
+  transition: 0.5s;
   border-radius: 5px;
   border: 2px solid black;
 }
@@ -1040,6 +1122,7 @@ body {
   background: #2f363e;
   color: aqua;
   cursor: pointer;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
 }
 .follower .UnfollowButton {
   color: #2f363e;
@@ -1047,6 +1130,24 @@ body {
   background: transparent;
 }
 
+@media (max-width: 1149px) {
+  .follower {
+    display: flex;
+  }
+  .follower .fc-button {
+    padding: 0px 1px;
+    width: 65px;
+  }
+}
+@media (max-width: 991px) {
+  .follower {
+    display: flex;
+    flex-direction: column;
+  }
+  .follower .fc-button {
+    width: 100px;
+  }
+}
 .FollowersCard {
   width: 100%;
   gap: 1rem;
@@ -1066,6 +1167,7 @@ body {
   background: #2f363e;
   margin: 10px 0;
   border-radius: 1rem;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
 }
 .PostShare .imageAndInput {
   display: flex;
@@ -1080,10 +1182,11 @@ body {
   border-radius: 50%;
 }
 .PostShare .imageAndInput input {
-  padding: 10px 0px;
+  padding: 10px 5px;
   border-radius: 15px;
   flex-basis: 90%;
   outline: none;
+  border: none;
 }
 .PostShare .containeOption {
   display: flex;
@@ -1154,11 +1257,20 @@ body {
 .PostShare .containeOption .previewImage img {
   width: 100%;
 }
+.PostShare .containeOption .previewVideo {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.PostShare .containeOption .previewVideo video {
+  width: 100%;
+}
 
 .Posts {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 10px 0;
 }
 
 .Post {
@@ -1168,9 +1280,8 @@ body {
   background-color: #2f363e;
   border-radius: 1rem;
   gap: 1rem;
-}
-.Post span {
-  font-size: 18px;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  position: relative;
 }
 
 .Post > img {
@@ -1179,9 +1290,15 @@ body {
   border-radius: 0.5rem;
 }
 
+.containe-updateDelecteComment {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
 .postReact {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
   gap: 1.5rem;
 }
 .postReact img {
@@ -1194,7 +1311,7 @@ body {
   gap: 1rem;
 }
 .container-Img-details img {
-  width: 3.2rem;
+  width: 4.2rem;
   height: 4.2rem;
   cursor: pointer;
 }
@@ -1205,9 +1322,6 @@ body {
 .container-Img-details .details span {
   letter-spacing: 2px;
 }
-.container-Img-details .details span i {
-  color: #02d6dd;
-}
 .container-Img-details .details span:first-child {
   font-weight: 700;
   cursor: pointer;
@@ -1216,6 +1330,11 @@ body {
 .container-Img-details .details span:last-child {
   margin-top: 10px;
   color: #fff;
+}
+
+.container-like span {
+  color: #02d6dd;
+  margin-left: 5px;
 }
 
 .InfoCard {
@@ -1229,7 +1348,9 @@ body {
   height: 450px;
   max-width: 600px;
   margin: 10px 0;
+  mix-blend-mode: luminosity;
   position: relative;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25), 10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
 }
 
 .infoHead {
@@ -1327,6 +1448,42 @@ body {
   background: #2f363e;
   transform: skew(25deg); /* fait que le trait soit oblique au millieu    https://developer.mozilla.org/fr/docs/Web/CSS/transform-function/skew*/
   z-index: -1;
+}
+
+.containe-postComment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.containe-postComment img {
+  width: 3.2rem;
+  height: 3.2rem;
+  cursor: pointer;
+}
+.containe-postComment .containe-imgName {
+  display: flex;
+  margin-bottom: 5px;
+  gap: 10px;
+  box-shadow: 1px 1px 15px inset black;
+  padding: 10px;
+  color: white;
+  letter-spacing: 3px;
+  line-height: 20px;
+}
+.containe-postComment .containe-imgName span {
+  font-weight: 700;
+}
+.containe-postComment .containe-inputComments {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+.containe-postComment .containe-inputComments input[type=text] {
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
 }
 
 .bouttonLogOut {
@@ -1436,4 +1593,42 @@ body {
 .bouttonLogOut:hover span:nth-child(11) {
   text-shadow: -377px -95px 4px rgba(255, 255, 255, 0.5);
   transition: 2s;
+}
+
+.btnSubmitComments {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  align-self: flex-end;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.btnSubmitComments::before, .btnSubmitComments::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 5px;
+  background: #2f363e;
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.btnSubmitComments::before {
+  top: 0px;
+  right: -10px;
+}
+
+.btnSubmitComments::after {
+  bottom: 0px;
+  left: -10px;
+}
+
+.btnSubmitComments:hover::before {
+  box-shadow: 5px 10px #02d6dd, 0px 20px #2f3e3c;
+}
+
+.btnSubmitComments:hover::after {
+  box-shadow: -5px -10px #02d6dd, 0px -20px #2f363e;
 }/*# sourceMappingURL=index.css.map */
