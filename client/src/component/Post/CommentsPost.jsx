@@ -39,21 +39,16 @@ const CommentsPost = ({ post }) => {
           } alt="" />
           <div>
             <span>mounirrrrr</span>
-            {/* <p className="comment">il abuse la </p> */}
-            {posts.map((comment) => {
-              console.log("comment", comment.comments);
+            {posts.map((post) => (
+              console.log("post", post.comments)
 
-              comment.comments.map((text) => {
-                console.log("textCommentaire : ", text.text);
-                return (
-                  <p>text</p>
-                )
-              })
-
-              return (
-                <p>a</p>
-              )
-            })}
+              // comment.comments.map((text) => {
+              //     console.log("textCommentaire : ", text.text)
+              //     return (
+              //       <p>text</p>
+              //     )
+              //   })
+            ))}
           </div>
 
         </div>
