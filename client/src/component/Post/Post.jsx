@@ -7,6 +7,7 @@ import { useUserContext } from "../utils/AppContext/AppContext";
 import LikeButton from "./LikeButton";
 import UpdatePost from "./UpdatePost";
 import DeletePost from "./DeletePost";
+import FormattedData from "../utils/FormattedData/FormattedData";
 
 
 // je recupère en props les informations envoyées du composants Posts 
@@ -32,8 +33,8 @@ const Post = ({ post }) => {
             alt="imgUser"
           />
           <div className="details">
-            <div>
-              <span>{user.firstname}</span>
+            <div className="containe-nameDate">
+              <span>{user.firstname}</span><span><FormattedData post={post.updatedAt} /></span>
             </div>
             <UpdatePost post={post} user={user} isUpdate={isUpdate} />
           </div>
@@ -63,9 +64,9 @@ const Post = ({ post }) => {
         </div>
         {/* pour afficher les commantaires du post */}
         {comment && (
-          <CommentsPost />
-          // <CommentsPost post={post} />
-          //     <p>abdallah</p>
+
+          <CommentsPost post={post} user={user} />
+
 
         )}
 

@@ -30,10 +30,13 @@
         font-weight: 700;
       }
     }
+
      p  {
-      // display: flex;
-      color: red;
+      color: #9b9b9b;
+      margin-left: auto;//vous indiquez au navigateur de pousser cet élément aussi loin que possible vers la droite à l'intérieur du conteneur
+      font-size: 14px;
     }
+    
     
   }
   .containe-inputComments{

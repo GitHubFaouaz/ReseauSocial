@@ -43,26 +43,38 @@
     width: 4.2rem;
     height: 4.2rem;
     cursor: pointer;
-    // border-radius: 50%;
+   
   }
   .details {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    .containe-nameDate{
+      display: flex;
+      align-items: center;
+   
+      span:last-child {
+        margin-left: auto;
+        font-size: 14px;
+        color: #9b9b9b;
+      }
+    }
     span {
       letter-spacing: 2px;
-      // color: $white;
+      color: $white;
+
      
     }
     span:first-child {
       font-weight: 700;
-      cursor: pointer;
-      color: $white;
+
     }
 
-    span:last-child {
-      margin-top: 10px;
-      color: $white;
-    }
+    // span:last-child {
+    //   // margin-top: 10px;
+     
+    // }
   }
 }
 

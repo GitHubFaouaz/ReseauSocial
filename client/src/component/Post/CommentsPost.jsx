@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
-import { useUserContext } from "../utils/AppContext/AppContext";
 import { useDispatch, useSelector } from 'react-redux';
 import FormattedData from '../utils/FormattedData/FormattedData';
-const CommentsPost = ({ post }) => {
+
+const CommentsPost = ({ post, user }) => {
   const [text, setText] = useState();
-  const { user } = useUserContext();
-  const { posts } = useSelector((state) => state.postReducer);
+
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -15,28 +14,29 @@ const CommentsPost = ({ post }) => {
 
     <div className="containe-postComment">
       < div className="commentsLength" >
-        {posts.map((post) => (
-          post.comments.map((comment) => {
-            console.log("textCommentaire : ", comment.text)
-            console.log('comment', comment);
-            return (
-              <div className="containe-imgName" key={comment._id}>
-                <img src={
-                  user.profilePicture
-                    ? serverPublic + user.profilePicture
-                    : serverPublic + "defaultProfile.png"
-                } alt="" />
-                <div className="containe-nameAndText">
-                  <span>{user.firstname}</span>
-                  <span>{comment.text}</span>
-                </div>
-                <p><FormattedData post={comment.timestamp} /></p>
 
-              </div >
-            )
-          })
+        {post.comments.map((comment) => {
+          // console.log("textCommentaire : ", comment.text)
+          // console.log('comment', comment);
+          return (
+            <div className="containe-imgName" key={comment._id}>
+              <img src={
+                user.profilePicture
+                  ? serverPublic + user.profilePicture
+                  : serverPublic + "defaultProfile.png"
+              } alt="" />
+              <div className="containe-nameAndText">
+                <span>{user.firstname}</span>
+                <span>{comment.text}</span>
+              </div>
+              <p><FormattedData post={comment.timestamp} /></p>
 
-        ))}
+            </div >
+          )
+        })
+
+        }
+
 
 
       </div >

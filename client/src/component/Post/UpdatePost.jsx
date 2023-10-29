@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
-import FormattedData from "../utils/FormattedData/FormattedData";
 import { updatePost } from "../../actions/PostsAction";
 
 const UpdatePost = ({ post, user, isUpdate }) => {
@@ -20,7 +19,8 @@ const UpdatePost = ({ post, user, isUpdate }) => {
 
     isUpdate ? (
       <div>
-        <span>{post.desc}</span><FormattedData post={post.updatedAt} /></div >) : (
+        <span>{post.desc}</span>
+      </div >) : (
       <>
         <textarea
           defaultValue={post.desc}
