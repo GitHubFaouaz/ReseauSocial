@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
 import { useUserContext } from "../utils/AppContext/AppContext";
 import { useDispatch, useSelector } from 'react-redux';
+import FormattedData from '../utils/FormattedData/FormattedData';
 const CommentsPost = ({ post }) => {
   const [text, setText] = useState();
   const { user } = useUserContext();
@@ -27,7 +28,9 @@ const CommentsPost = ({ post }) => {
                 } alt="" />
                 <div className="containe-nameAndText">
                   <span>{user.firstname}</span>
-                  <p>{comment.text}</p></div>
+                  <span>{comment.text}</span>
+                </div>
+                <p><FormattedData post={comment.timestamp} /></p>
 
               </div >
             )
@@ -41,7 +44,7 @@ const CommentsPost = ({ post }) => {
 
 
       <div className="containe-inputComments">
-        <input type='text' placeholder="Laissez un commentaire" />
+        <input type='text' placeholder="Laissez un commentaire" onChange={(e) => setText(e.target.value)} />
         <ButtonSubmitComments texte={'Envoyer'} />
 
       </div>

@@ -20,7 +20,7 @@ const UpdatePost = ({ post, user, isUpdate }) => {
 
     isUpdate ? (
       <div>
-        <span>{post.desc}</span><FormattedData post={post} /></div >) : (
+        <span>{post.desc}</span><FormattedData post={post.updatedAt} /></div >) : (
       <>
         <textarea
           defaultValue={post.desc}
