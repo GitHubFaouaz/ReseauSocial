@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const CommentsPost = ({ post }) => {
   const [text, setText] = useState();
   const { user } = useUserContext();
-  // const { posts } = useSelector((state) => state.postReducer);
+  const { posts } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -40,12 +40,19 @@ const CommentsPost = ({ post }) => {
           <div>
             <span>mounirrrrr</span>
             {/* <p className="comment">il abuse la </p> */}
-            {post.desc.map((comment) => {
-              console.log("text", comment);
-              return (
-                <p>{comment}</p>
-              )
+            {posts.map((comment) => {
+              console.log("comment", comment.comments);
 
+              comment.comments.map((text) => {
+                console.log("textCommentaire : ", text.text);
+                return (
+                  <p>text</p>
+                )
+              })
+
+              return (
+                <p>a</p>
+              )
             })}
           </div>
 
