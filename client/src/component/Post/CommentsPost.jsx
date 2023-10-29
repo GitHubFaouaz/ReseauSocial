@@ -11,49 +11,34 @@ const CommentsPost = ({ post }) => {
 
   const handleComments = () => { }
   return (
-    <div className="containe-postComment" >
-      <div className="commentsLength">
-        <div className="containe-imgName">
-          <img src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
-              : serverPublic + "defaultProfile.png"
-          } alt="" />
-          <div>
-            <span>nom photo</span>
-            <p className="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque, necessitatibus quidem? Illum, sunt repellendus. Quos reiciendis vitae ex, ipsam harum architecto perferendis optio ab debitis deserunt officiis adipisci eius odio!</p>
-          </div>
-          {/* {posts.comments.text.map((comment) => {
-              console.log("text", comment);
-              return (
-                <p>{comment}</p>
-              )
-          
-            })} */}
-        </div>
-        <div className="containe-imgName">
-          <img src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
-              : serverPublic + "defaultProfile.png"
-          } alt="" />
-          <div>
-            <span>mounirrrrr</span>
-            {posts.map((post) => (
-              console.log("post", post.comments)
 
-              // comment.comments.map((text) => {
-              //     console.log("textCommentaire : ", text.text)
-              //     return (
-              //       <p>text</p>
-              //     )
-              //   })
-            ))}
-          </div>
+    <div className="containe-postComment">
+      < div className="commentsLength" >
+        {posts.map((post) => (
+          post.comments.map((comment) => {
+            console.log("textCommentaire : ", comment.text)
+            console.log('comment', comment);
+            return (
+              <div className="containe-imgName" key={comment._id}>
+                <img src={
+                  user.profilePicture
+                    ? serverPublic + user.profilePicture
+                    : serverPublic + "defaultProfile.png"
+                } alt="" />
+                <div className="containe-nameAndText">
+                  <span>{user.firstname}</span>
+                  <p>{comment.text}</p></div>
 
-        </div>
+              </div >
+            )
+          })
 
-      </div>
+        ))}
+
+
+      </div >
+
+
 
       <div className="containe-inputComments">
         <input type='text' placeholder="Laissez un commentaire" />
@@ -61,7 +46,8 @@ const CommentsPost = ({ post }) => {
 
       </div>
 
-    </div>
+    </div >
+
   );
 };
 
