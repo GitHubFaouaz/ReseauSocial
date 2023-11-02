@@ -136,7 +136,7 @@ export const commentPost = (req, res) => {
        {$push: {
           comments: {
             commenterId: req.body.commenterId,//id de celui qui post  comme dans le model
-            commenterPseudo: req.body.commenterPseudo,
+            // commenterPseudo: req.body.commenterPseudo,
             text: req.body.text,
             timestamp: new Date().getTime(),//qui sera convertie en front 
           },

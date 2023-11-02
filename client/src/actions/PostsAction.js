@@ -86,13 +86,14 @@ export const deletePost = (id,userId) => async (dispatch) => {
 
 }
 
-export const addComment = (postId,commenterId,text) => async (dispatch) => {
-  dispatch({type:'DELETEPOST_START'});
+export const addCommentPost = (postId,commenterId,text) => async (dispatch) => {
+  dispatch({type:'COMMENTPOST_START'});
    
   try{
     const addCommentPost = await PostsApi.ApiCommentPost(postId,commenterId,text)
-
+   dispatch({type:'COMMENTPOST_SUCCESS' , data: addCommentPost.data })
   }catch (error){
-     
+    console.error('error',error.response);
+    dispatch({type:'COMMENTPOST_FAIL' , error : error  })
   }
 }

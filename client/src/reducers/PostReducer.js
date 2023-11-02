@@ -32,15 +32,12 @@ const postReducer = (
         post._id === action.data.id ? { ...post, likes:[action.data.userId, ...post.likes]   } : post
       ),
          loading: false, error: false };
- 
- 
-
     case "LIKE_FAIL":
       return { ...state, loading: false, error: true };
-    case "UNLIKE_START": 
+   
+      case "UNLIKE_START": 
       return { ...state, loading: true, error: false };
-
-         case "UNLIKE_SUCCESS":
+     case "UNLIKE_SUCCESS":
   return {
     ...state,
     posts: state.posts.map((post) => {
@@ -52,13 +49,11 @@ const postReducer = (
     loading: false,
     error: false
   };
-
-    case "UNLIKE_FAIL":
+     case "UNLIKE_FAIL":
       return { ...state, loading: false, error: true };
       
       case "UPDATEPOST_START": 
       return { ...state, loading: true, error: false };
-       
       case "UPDATEPOST_SUCCESS":
          
         return { ...state, posts: state.posts.map((post) => 

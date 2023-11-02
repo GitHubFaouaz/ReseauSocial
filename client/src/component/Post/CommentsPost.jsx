@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
 import { useDispatch, useSelector } from 'react-redux';
 import FormattedData from '../utils/FormattedData/FormattedData';
+import { addCommentPost, getTimelinePosts } from '../../actions/PostsAction';
+import Post from './Post';
 
 const CommentsPost = ({ post, user }) => {
   const [text, setText] = useState();
@@ -9,7 +11,15 @@ const CommentsPost = ({ post, user }) => {
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const handleComments = () => { }
+  const handleComments = (e) => {
+    e.preventDefault()
+
+    if (text) {
+      dispatch(addCommentPost(post._id, user.id, text))
+      dispatch(getTimelinePosts());
+      setText('')
+    }
+  }
   return (
 
     <div className="containe-postComment">
@@ -45,7 +55,7 @@ const CommentsPost = ({ post, user }) => {
 
       <div className="containe-inputComments">
         <input type='text' placeholder="Laissez un commentaire" onChange={(e) => setText(e.target.value)} value={text} />
-        <ButtonSubmitComments texte={'Envoyer'} />
+        <ButtonSubmitComments texte={'Envoyer'} onClick={handleComments} />
 
       </div>
 
