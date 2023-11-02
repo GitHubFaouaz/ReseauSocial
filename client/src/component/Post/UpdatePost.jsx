@@ -6,7 +6,8 @@ import { updatePost } from "../../actions/PostsAction";
 const UpdatePost = ({ post, user, isUpdate }) => {
   const [updateTexte, setUpdateTexte] = useState('')
   const dispatch = useDispatch();
-  const updateItem = async () => {
+  const updateItem = async (e) => {
+    // e.preventDefault(); a voir
     try {
       if (post) {
         await dispatch(updatePost(post._id, user._id, updateTexte));

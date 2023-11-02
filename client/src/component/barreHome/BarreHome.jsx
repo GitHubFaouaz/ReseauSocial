@@ -5,7 +5,7 @@ const BarreHome = () => {
   const { user } = useUserContext();
   return (
     <div className="containeBarre">
-      <p className="welcom">bienvenue {user.lastname}</p>
+      <p className="welcom">Bienvenue {user.lastname}</p>
     </div>
   );
 };

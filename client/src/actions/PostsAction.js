@@ -85,3 +85,14 @@ export const deletePost = (id,userId) => async (dispatch) => {
   }
 
 }
+
+export const addComment = (postId,commenterId,text) => async (dispatch) => {
+  dispatch({type:'DELETEPOST_START'});
+   
+  try{
+    const addCommentPost = await PostsApi.ApiCommentPost(postId,commenterId,text)
+
+  }catch (error){
+     
+  }
+}

@@ -44,7 +44,7 @@ const CommentsPost = ({ post, user }) => {
 
 
       <div className="containe-inputComments">
-        <input type='text' placeholder="Laissez un commentaire" onChange={(e) => setText(e.target.value)} />
+        <input type='text' placeholder="Laissez un commentaire" onChange={(e) => setText(e.target.value)} value={text} />
         <ButtonSubmitComments texte={'Envoyer'} />
 
       </div>
