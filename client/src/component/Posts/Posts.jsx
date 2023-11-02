@@ -26,13 +26,13 @@ const Posts = () => {
        dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
   
     }, [ dispatch,user._id]); */
-  useEffect(() => {
-    // if (loadPost) {
-    dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
-    //  setloadPost(false);
-    // }
-    // }, [loadPost, dispatch]);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // if (loadPost) {
+  //   // dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
+  //   //  setloadPost(false);
+  //   // }
+  //   // }, [loadPost, dispatch]);
+  // }, [dispatch]);
 
   if (!posts) return "No Posts";
 

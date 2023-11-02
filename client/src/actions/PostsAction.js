@@ -26,6 +26,15 @@ export const getTimelinePosts = () => async (dispatch) => {
     dispatch({ type: "RETREIVING_FAIL" });
   }
 }; */
+export const getPost = (postId) =>  async (dispatch) => {
+  dispatch({type:'GETPOST_START'})
+    try {
+      const getPost = await PostsApi.getPost(postId);  
+      dispatch({ type: 'GETPOST_SUCCESS', data: getPost.data });
+    } catch (error) {
+      dispatch({ type: 'GETPOST_FAILURE', data: error });
+    }
+  };
 
 
 export const LikePost = (id,userId) => async (dispatch) => { // postId et userId

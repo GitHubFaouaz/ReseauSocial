@@ -112,7 +112,7 @@ export const likePost = async (req, res) => {
 
 // Get timeline posts  A REVOIRE.............
 export const getTimelinePosts = async (req, res) => {
-  // lesture de la base de donné
+  // lecture de la base de donné
   PostModel.find((err, docs) => {
       //envoi moi le docs (la data) ou s'il ya erreur envoi
       if (!err) res.send(docs);

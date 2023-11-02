@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import ButtonSubmitComments from '../utils/BouttonSubmitComments/ButtonSubmitComments';
 import { useDispatch, useSelector } from 'react-redux';
 import FormattedData from '../utils/FormattedData/FormattedData';
-import { addCommentPost, getTimelinePosts } from '../../actions/PostsAction';
-import Post from './Post';
+import { addCommentPost, getPost, getTimelinePosts } from '../../actions/PostsAction';
 
 const CommentsPost = ({ post, user }) => {
   const [text, setText] = useState();
@@ -11,12 +10,13 @@ const CommentsPost = ({ post, user }) => {
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  // const handleComments = async (e) => {
   const handleComments = (e) => {
     e.preventDefault()
 
     if (text) {
       dispatch(addCommentPost(post._id, user.id, text))
-      dispatch(getTimelinePosts());
+      dispatch(getPost(post._id))
       setText('')
     }
   }
