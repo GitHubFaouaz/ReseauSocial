@@ -7,7 +7,7 @@ import { useUserContext } from "../utils/AppContext/AppContext";
 
 // Récupération de tous les posts ....
 const Posts = () => {
-  // const [loadPost, setloadPost] = useState(true); 
+  const [loadPost, setloadPost] = useState(true);
   // const params = useParams();
   const dispatch = useDispatch();
   // const {user} =  useUserContext();
@@ -26,12 +26,12 @@ const Posts = () => {
        dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
   
     }, [ dispatch,user._id]); */
-  // useEffect(() => {
-  //   // if (loadPost) {
-  //   // dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
-  //   //  setloadPost(false);
-  //   // }
-  //   // }, [loadPost, dispatch]);
+  useEffect(() => {
+    if (loadPost) {
+      dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
+      setloadPost(false);
+    }
+  }, [loadPost, dispatch]);
   // }, [dispatch]);
 
   if (!posts) return "No Posts";

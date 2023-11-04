@@ -14,23 +14,13 @@ export const getTimelinePosts = () => async (dispatch) => {
     dispatch({ type: "RETREIVING_FAIL" });
   }
 };
-/* export const getTimelinePosts = (id) => async (dispatch) => {
-  dispatch({ type: "RETREIVING_START" });
-  try {
-    // const { data } = await PostsApi.getTimelinePosts(id);
-    const dataPost = await PostsApi.getTimelinePosts(id);
-    console.log('dataPostGet' ,  dataPost);
-    dispatch({ type: "RETREIVING_SUCCESS", data: dataPost.data });
-  } catch (error) {
-    // console.log(error);
-    dispatch({ type: "RETREIVING_FAIL" });
-  }
-}; */
+
 export const getPost = (postId) =>  async (dispatch) => {
   dispatch({type:'GETPOST_START'})
     try {
       const getPost = await PostsApi.getPost(postId);  
       dispatch({ type: 'GETPOST_SUCCESS', data: getPost.data });
+      console.log('getPost' , getPost);
     } catch (error) {
       dispatch({ type: 'GETPOST_FAILURE', data: error });
     }
@@ -101,6 +91,7 @@ export const addCommentPost = (postId,commenterId,text) => async (dispatch) => {
   try{
     const addCommentPost = await PostsApi.ApiCommentPost(postId,commenterId,text)
    dispatch({type:'COMMENTPOST_SUCCESS' , data: addCommentPost.data })
+   return addCommentPost.data
   }catch (error){
     console.error('error',error.response);
     dispatch({type:'COMMENTPOST_FAIL' , error : error  })
