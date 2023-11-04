@@ -17,7 +17,7 @@ const CommentsPost = ({ post, user }) => {
     if (text) {
       dispatch(addCommentPost(post._id, user.id, text))
       // dispatch(getPost(post._id))
-      // getTimelinePosts()
+
       setText('')
     }
   }

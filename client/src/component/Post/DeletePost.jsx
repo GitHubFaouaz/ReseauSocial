@@ -19,7 +19,6 @@ const DeletePost = ({ post, user, setIsUpdate, isUpdate }) => {
       <div className="containe-updateDelecteComment">
 
         <FontAwesomeIcon icon={faPenNib} style={{ cursor: "pointer" }} onClick={() => setIsUpdate(!isUpdate)} />
-        {/* <FontAwesomeIcon icon={faPenNib} style={{ cursor: "pointer" }} onClick={toggleIsUpdate} /> */}
         <FontAwesomeIcon icon={faTrashCan} style={{ cursor: "pointer" }} onClick={buttonDeletePost}
         />
       </div>

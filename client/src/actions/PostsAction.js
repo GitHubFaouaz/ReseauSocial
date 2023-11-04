@@ -57,9 +57,9 @@ export const updatePost = (id,userId,desc) => async (dispatch) => {
   dispatch({type:'UPDATEPOST_START'});
   try {
     const newPost = await PostsApi.ApiUpdatePost(id,userId,desc);
-    // console.log('newPost' + JSON.stringify( newPost.data,null,2));
+    console.log('newPost' + JSON.stringify( newPost.data,null,2));
     dispatch({type:'UPDATEPOST_SUCCESS' , data: newPost.data }) // newPost: { userId, desc } 
-    return newPost.data;
+    // return newPost.data.desc;
   }catch (error) {
     // console.log(error.response.message);
     dispatch({type:'UPDATEPOST_FAIL' , error : error.response.message  })
@@ -85,13 +85,14 @@ export const deletePost = (id,userId) => async (dispatch) => {
 
 }
 
+// METTRE A JOURS LE POSTReduceer 
 export const addCommentPost = (postId,commenterId,text) => async (dispatch) => {
   dispatch({type:'COMMENTPOST_START'});
    
   try{
     const addCommentPost = await PostsApi.ApiCommentPost(postId,commenterId,text)
    dispatch({type:'COMMENTPOST_SUCCESS' , data: addCommentPost.data })
-   return addCommentPost.data
+
   }catch (error){
     console.error('error',error.response);
     dispatch({type:'COMMENTPOST_FAIL' , error : error  })

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo, useMemo } from "react";
-import { getTimelinePosts } from "../../actions/PostsAction";
+import { getPost, getTimelinePosts } from "../../actions/PostsAction";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -21,15 +21,12 @@ const Posts = () => {
 
 
 
-  // lorsque le composant est monté ou lorsque la valeur de dispatch ou user._id change. En d'autres termes, chaque fois que l'ID de l'utilisateur change ou que vous avez besoin de déclencher la récupération des publications de la chronologie
-  /*    useEffect(() => {
-       dispatch(getTimelinePosts(user._id)); //obtenir des publications sur la chronologie
-  
-    }, [ dispatch,user._id]); */
+
   useEffect(() => {
     if (loadPost) {
       dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
       setloadPost(false);
+
     }
   }, [loadPost, dispatch]);
   // }, [dispatch]);
@@ -43,16 +40,16 @@ const Posts = () => {
 
 
 
+
   return (
     <div className="Posts">
       {loading
         ? "Chargement..." // pendant le chargement
         : posts.map((post) => {
-          // console.log( "keyPost" ,post._id);
+          // console.log("keyPost", post._id);
 
           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
           //  const userPosted = users.find((user) => user._id === post.userId);
-
 
           //  return <  Post post={post} user = {userPosted}   key={post._id}/>; // on affiche tous les posts avec le id
           return <  Post post={post} key={post._id} />; // on affiche tous les posts avec le id

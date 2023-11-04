@@ -14,7 +14,7 @@ import FormattedData from "../utils/FormattedData/FormattedData";
 
 const Post = ({ post }) => {
   const { user } = useUserContext();
-  const [comment, setComment] = useState(false)
+  // const [comment, setComment] = useState(false)
   const [isUpdate, setIsUpdate] = useState(true)
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   // console.log('dataProps',  post); // post du post 
@@ -48,7 +48,7 @@ const Post = ({ post }) => {
         {/* le button update n'apparait que pour celui qui a posté  */}
         <DeletePost post={post} user={user} isUpdate={isUpdate} setIsUpdate={setIsUpdate} />
 
-        <div className="postReact">
+        {/* <div className="postReact">
           <FontAwesomeIcon
             icon={faComment}
             style={{ fontSize: "30px", cursor: "pointer" }}
@@ -61,14 +61,14 @@ const Post = ({ post }) => {
             icon={faShare}
             style={{ fontSize: "30px", cursor: "pointer" }}
           />
-        </div>
+        </div> */}
         {/* pour afficher les commantaires du post */}
-        {comment && (
+        {/* {comment && (
 
           <CommentsPost post={post} user={user} />
 
 
-        )}
+        )} */}
 
       </div>
     </>
