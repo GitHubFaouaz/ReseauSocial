@@ -24,11 +24,12 @@ const Posts = () => {
 
   useEffect(() => {
     if (loadPost) {
-      dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
+      // dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
+      dispatch(getPost(posts._id))
       setloadPost(false);
 
     }
-  }, [loadPost, dispatch]);
+  }, [loadPost, dispatch, posts._id]);
   // }, [dispatch]);
 
   if (!posts) return "No Posts";

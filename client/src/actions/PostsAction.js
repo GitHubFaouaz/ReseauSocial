@@ -22,7 +22,7 @@ export const getPost = (postId) =>  async (dispatch) => {
       dispatch({ type: 'GETPOST_SUCCESS', data: getPost.data });
       console.log('getPost' , getPost);
     } catch (error) {
-      dispatch({ type: 'GETPOST_FAILURE', data: error });
+      dispatch({ type: 'GETPOST_FAIL', data: error });
     }
   };
 

@@ -21,6 +21,12 @@ const postReducer = (
     case "RETREIVING_SUCCESS":
       return { ...state, posts: action.data, loading: false, error: false };
     case "RETREIVING_FAIL":
+    break
+    case "GETPOST_START": 
+      return { ...state, loading: true, error: false }; 
+    case "GETPOST_SUCCESS":
+      return { ...state, posts: action.data, loading: false, error: false };
+    case "GETPOST_FAIL":
       return { ...state, loading: false, error: true };
 
     case "LIKE_START": 
