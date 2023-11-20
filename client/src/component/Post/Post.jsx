@@ -9,20 +9,18 @@ import UpdatePost from "./UpdatePost";
 import DeletePost from "./DeletePost";
 import FormattedData from "../utils/FormattedData/FormattedData";
 
-
-// je recupère en props les informations envoyées du composants Posts 
+// je recupère en props les informations envoyées du composants Posts
 
 const Post = ({ post }) => {
   const { user } = useUserContext();
-  // const [comment, setComment] = useState(false)
-  const [isUpdate, setIsUpdate] = useState(true)
+  const [comment, setComment] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(true);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  // console.log('dataProps',  post); // post du post 
+  // console.log('dataProps',  post); // post du post
 
   return (
     <>
-      <div className="Post"     >
-
+      <div className="Post">
         <div className="container-Img-details">
           <img
             src={
@@ -34,21 +32,30 @@ const Post = ({ post }) => {
           />
           <div className="details">
             <div className="containe-nameDate">
-              <span>{user.firstname}</span><span><FormattedData post={post.updatedAt} /></span>
+              <span>{user.firstname}</span>
+              <span>
+                <FormattedData post={post.updatedAt} />
+              </span>
             </div>
             <UpdatePost post={post} user={user} isUpdate={isUpdate} />
           </div>
-
         </div>
         <img // si image on l'affiche dans la page au centre
-          src={post.image ? process.env.REACT_APP_PUBLIC_FOLDER + post.image : ""} // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
+          src={
+            post.image ? process.env.REACT_APP_PUBLIC_FOLDER + post.image : ""
+          } // on va chercher limage dans le back end grace au server et ensuite l'affichée en front end
           alt="imgPost"
         />
 
         {/* le button update n'apparait que pour celui qui a posté  */}
-        <DeletePost post={post} user={user} isUpdate={isUpdate} setIsUpdate={setIsUpdate} />
+        <DeletePost
+          post={post}
+          user={user}
+          isUpdate={isUpdate}
+          setIsUpdate={setIsUpdate}
+        />
 
-        {/* <div className="postReact">
+        <div className="postReact">
           <FontAwesomeIcon
             icon={faComment}
             style={{ fontSize: "30px", cursor: "pointer" }}
@@ -61,23 +68,12 @@ const Post = ({ post }) => {
             icon={faShare}
             style={{ fontSize: "30px", cursor: "pointer" }}
           />
-        </div> */}
+        </div>
         {/* pour afficher les commantaires du post */}
-        {/* {comment && (
-
-          <CommentsPost post={post} user={user} />
-
-
-        )} */}
-
+        {comment && <CommentsPost post={post} user={user} />}
       </div>
     </>
   );
 };
 
-
-
-
-
 export default memo(Post);
-
