@@ -20,37 +20,44 @@ function SignUp() {
   const dispatch = useDispatch();
   const errorReduce = useSelector((state) => state.authReducer.error);
   // console.log(lowerCaseRef.current)
-  
+
   const HandleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = event.currentTarget;
 
     const valuesFormData = Object.fromEntries(new FormData(formData));
-    
-    // if(lowerCaseRef.current.classList.contains('valid')&& ...){ 
-      // ref.current fait référence à l'élément DOM réel correspondant à cette référence.
-      // ref.current === input du dom par exemple dont le useref lowerCaseRef est lié    
-     if ([lowerCaseRef, upperCaseRef, digitRef, specialCharRef, minLengthRef].every(ref => ref.current?.classList.contains('valid'))) {
-     if (valuesFormData.password === valuesFormData.confirmPassword) {
-        dispatch(sign_Up(valuesFormData));
-       if(errorReduce){
-        setError(errorReduce) 
-        //  console.log(errorReduce);
-        //  setFormSubmit(true);
-       } else{
-        dispatch(sign_Up(valuesFormData));
-        setFormSubmit(false);
-       }
-        }else {
-          setError("Les mots de passe ne correspondent pas");
-        }
-     
 
+    // if(lowerCaseRef.current.classList.contains('valid')&& ...){
+    // ref.current fait référence à l'élément DOM réel correspondant à cette référence.
+    // ref.current === input du dom par exemple dont le useref lowerCaseRef est lié
+    if (
+      [
+        lowerCaseRef,
+        upperCaseRef,
+        digitRef,
+        specialCharRef,
+        minLengthRef,
+      ].every((ref) => ref.current?.classList.contains("valid"))
+    ) {
+      if (valuesFormData.password === valuesFormData.confirmPassword) {
+        dispatch(sign_Up(valuesFormData));
+        if (errorReduce) {
+          setError(errorReduce);
+          //  console.log(errorReduce);
+          //  setFormSubmit(true);
+        } else {
+          dispatch(sign_Up(valuesFormData));
+          setFormSubmit(false);
+        }
+      } else {
+        setError("Les mots de passe ne correspondent pas");
+      }
     } else {
- 
       // console.log(' Les conditions de validation du mot de passe ne sont pas valides ')
-      setError(' Les conditions de validation du mot de passe ne sont pas valides ')
+      setError(
+        " Les conditions de validation du mot de passe ne sont pas valides "
+      );
     }
   };
 
@@ -60,7 +67,7 @@ function SignUp() {
 
   return (
     <>
-      {formSubmit ?  (
+      {formSubmit ? (
         <div className="auth">
           <div className="colorBg"></div>
           <div className="colorBg"></div>
@@ -70,7 +77,7 @@ function SignUp() {
             <div className=".containerLogo">
               <img src={logo} alt="logo" />
 
-              <h1>TAWHID</h1>
+              <h1>BindYourSelf</h1>
             </div>
 
             <div className="box">
@@ -87,7 +94,12 @@ function SignUp() {
                   <i></i>
                 </div>
                 <div className="inputBox">
-                  <input type="text" required="required" name="email" onChange={()=> setError('') } />
+                  <input
+                    type="text"
+                    required="required"
+                    name="email"
+                    onChange={() => setError("")}
+                  />
                   <span>Email</span>
                   <i></i>
                 </div>
@@ -173,9 +185,9 @@ function SignUp() {
             </div>
           </div>
         </div>
-      ):(
-      <SignIn />
-    ) }
+      ) : (
+        <SignIn />
+      )}
     </>
   );
 }

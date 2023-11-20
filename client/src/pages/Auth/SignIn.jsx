@@ -13,34 +13,29 @@ function SignIn() {
 
   const dispatch = useDispatch();
 
-  // pour que le state soit a jour sans attendre le prochain render pour afficher lerreur 
+  // pour que le state soit a jour sans attendre le prochain render pour afficher lerreur
   useEffect(() => {
     if (error) {
       setErrorMessage(error);
     }
   }, [error]);
- 
-  const HandleSubmit =  async (e) => {  
 
-    
-      e.preventDefault();
-      
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+
     const formData = e.currentTarget;
 
     const valuesFormData = Object.fromEntries(new FormData(formData));
     // console.log(valuesFormData);
-        dispatch(logIn(valuesFormData));
-      if (error) {
-          setErrorMessage(error);
-        }else{
-
+    dispatch(logIn(valuesFormData));
+    if (error) {
+      setErrorMessage(error);
+    } else {
       dispatch(logIn(valuesFormData));
-        }
-      };
-  
+    }
+  };
 
   return (
-
     <div id="bodySignIn">
       <div className="divColor">
         <div className="color ball"></div>
@@ -54,7 +49,7 @@ function SignIn() {
         <div className=".containerLogo">
           <img src={logo} alt="logo" />
 
-          <h1>TAWHID</h1>
+          <h1>BindYourSelf</h1>
         </div>
         <div className="signIn">
           <div className="content">
@@ -65,8 +60,7 @@ function SignIn() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                   onChange={()=> setErrorMessage('')}
-             
+                  onChange={() => setErrorMessage("")}
                 />
               </div>
               <div className="inputBox">
@@ -74,9 +68,7 @@ function SignIn() {
                   type="password"
                   name="password"
                   placeholder="password"
-                  onChange={()=> setErrorMessage('')}
-                
-            
+                  onChange={() => setErrorMessage("")}
                 />
               </div>
               <div className="inputBox">
@@ -86,8 +78,15 @@ function SignIn() {
           </div>
         </div>
         <div className="btns">
-          {errorMessages ? <p className="errorMessages">{errorMessages}</p> : <p> Mot de passe <br />oublié?</p>   
-          }
+          {errorMessages ? (
+            <p className="errorMessages">{errorMessages}</p>
+          ) : (
+            <p>
+              {" "}
+              Mot de passe <br />
+              oublié?
+            </p>
+          )}
         </div>
 
         <div href="#" className="btns signup">
@@ -95,7 +94,6 @@ function SignIn() {
         </div>
       </div>
     </div>
-
   );
 }
 

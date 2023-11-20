@@ -24,8 +24,8 @@ const Posts = () => {
 
   useEffect(() => {
     if (loadPost) {
-      // dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
-      dispatch(getPost(posts._id))
+      dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
+      // dispatch(getPost(posts._id))
       setloadPost(false);
 
     }
