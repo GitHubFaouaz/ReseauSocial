@@ -18,44 +18,32 @@ const Posts = () => {
   // let { posts, loading } = useSelector((state) => state.postReducer);
   const { posts, loading } = useSelector((state) => state.postReducer);
 
-
-
-
-
   useEffect(() => {
     if (loadPost) {
       dispatch(getTimelinePosts()); //obtenir des publications sur la chronologie
       // dispatch(getPost(posts._id))
       setloadPost(false);
-
     }
   }, [loadPost, dispatch, posts._id]);
   // }, [dispatch]);
 
   if (!posts) return "No Posts";
 
-
   //si posts  comparaison pour trouver le user qui correspond a l'url (params.id)
   // if (params.id) posts = posts.filter((posts) => posts.userId === params.id); // userId de celui qui a posté  = id de url
-
-
-
-
 
   return (
     <div className="Posts">
       {loading
         ? "Chargement..." // pendant le chargement
         : posts.map((post) => {
-          // console.log("keyPost", post._id);
+            // console.log("keyPost", post._id);
 
-          // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté 
-          //  const userPosted = users.find((user) => user._id === post.userId);
+            // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté
+            //  const userPosted = users.find((user) => user._id === post.userId);
 
-          //  return <  Post post={post} user = {userPosted}   key={post._id}/>; // on affiche tous les posts avec le id
-          return <  Post post={post} key={post._id} />; // on affiche tous les posts avec le id
-
-        })}
+            return <Post post={post} key={post._id} />; // on affiche tous les posts avec le id
+          })}
     </div>
   );
 };

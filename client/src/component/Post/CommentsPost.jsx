@@ -20,11 +20,10 @@ const CommentsPost = ({ post, user }) => {
 
     if (text) {
       dispatch(addCommentPost(post._id, user.id, text));
-      // dispatch(getPost(post._id))
-      dispatch(getTimelinePosts());
-
-      setText("");
+      // dispatch(getTimelinePosts());
     }
+    // dispatch(getPost(post._id));
+    setText("");
   };
   return (
     <div className="containe-postComment">
