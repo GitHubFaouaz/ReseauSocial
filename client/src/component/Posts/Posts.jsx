@@ -17,6 +17,7 @@ const Posts = () => {
   // console.log('userPost' , user);
   // let { posts, loading } = useSelector((state) => state.postReducer);
   const { posts, loading } = useSelector((state) => state.postReducer);
+  const [localPosts, setLocalPosts] = useState([]);
 
   useEffect(() => {
     if (loadPost) {
@@ -25,27 +26,53 @@ const Posts = () => {
       setloadPost(false);
     }
   }, [loadPost, dispatch, posts._id]);
-  // }, [dispatch]);
+
+  useEffect(() => {
+    if (posts) {
+      setLocalPosts(posts);
+    }
+  }, [posts]);
 
   if (!posts) return "No Posts";
 
   //si posts  comparaison pour trouver le user qui correspond a l'url (params.id)
   // if (params.id) posts = posts.filter((posts) => posts.userId === params.id); // userId de celui qui a posté  = id de url
 
+  // return (
+  //   <div className="Posts">
+  //     {loading
+  //       ? "Chargement..." // pendant le chargement
+  //       : posts.map((post) => {
+  //           // console.log("keyPost", post._id);
+
+  //           // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté
+  //           //  const userPosted = users.find((user) => user._id === post.userId);
+
+  //           return <Post post={post} key={post._id} />; // on affiche tous les posts avec le id
+  //         })}
+  //   </div>
+  // );
+  //...
   return (
     <div className="Posts">
-      {loading
-        ? "Chargement..." // pendant le chargement
-        : posts.map((post) => {
-            // console.log("keyPost", post._id);
+      {
+        loading
+          ? "Chargement..." // pendant le chargement
+          : Array.isArray(localPosts)
+          ? // ? Posts.map((post) => {
+            localPosts.map((post) => {
+              // console.log("keyPost", post._id);
 
-            // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté
-            //  const userPosted = users.find((user) => user._id === post.userId);
+              // on cherche l'utilisateur correspondant à l'id de l'utilisateur qui a posté
+              //  const userPosted = users.find((user) => user._id === post.userId);
 
-            return <Post post={post} key={post._id} />; // on affiche tous les posts avec le id
-          })}
+              return <Post post={post} key={post._id} />; // on affiche tous les posts avec le id
+            })
+          : "Aucun post trouvé" // ou tout autre message en cas d'absence de tableau
+      }
     </div>
   );
+  //...
 };
 
 export default Posts;

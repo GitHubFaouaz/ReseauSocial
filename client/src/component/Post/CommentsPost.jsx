@@ -20,9 +20,8 @@ const CommentsPost = ({ post, user }) => {
 
     if (text) {
       dispatch(addCommentPost(post._id, user.id, text));
-      // dispatch(getTimelinePosts());
+      dispatch(getPost(post._id));
     }
-    // dispatch(getPost(post._id));
     setText("");
   };
   return (
