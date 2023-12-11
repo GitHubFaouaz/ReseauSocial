@@ -25,7 +25,7 @@ const Posts = () => {
       // dispatch(getPost(posts._id))
       setloadPost(false);
     }
-  }, [loadPost, dispatch, posts._id]);
+  }, [loadPost, dispatch]);
 
   useEffect(() => {
     if (posts) {
@@ -33,7 +33,7 @@ const Posts = () => {
     }
   }, [posts]);
 
-  if (!posts) return "No Posts";
+  // if (!posts) return "No Posts";
 
   //si posts  comparaison pour trouver le user qui correspond a l'url (params.id)
   // if (params.id) posts = posts.filter((posts) => posts.userId === params.id); // userId de celui qui a posté  = id de url

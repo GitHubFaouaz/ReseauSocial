@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonSubmitComments from "../utils/BouttonSubmitComments/ButtonSubmitComments";
 import { useDispatch, useSelector } from "react-redux";
 import FormattedData from "../utils/FormattedData/FormattedData";
@@ -20,10 +20,16 @@ const CommentsPost = ({ post, user }) => {
 
     if (text) {
       dispatch(addCommentPost(post._id, user.id, text));
-      dispatch(getPost(post._id));
     }
     setText("");
   };
+  useEffect(() => {
+    // dispatch(getPost(post._id));
+    // if (text) {
+    dispatch(getTimelinePosts());
+    // }
+  }, [text, dispatch, post._id]);
+
   return (
     <div className="containe-postComment">
       <div className="commentsLength">
